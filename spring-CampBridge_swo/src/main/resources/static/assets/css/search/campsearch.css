@@ -1,0 +1,101 @@
+/* 캠핑장 검색 */
+section{margin: 150px 50px; text-align: center;}
+*{margin: 0; padding: 0;}
+ul, li{list-style: none;}
+h1{font-weight: 700; margin:40px 0 60px 0;}
+a{text-decoration: none;}
+.notice_search a{color: black;}
+
+.list_wrap{width: 1300px; margin: 0 auto; padding: 90px;}
+.list_wrap ul{font-size: 0; margin-top: 0px;}
+.list_wrap .item{ display: inline-block; width: 30%; margin-left: 5%; margin-top: 40px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); border-radius: 10px;} 
+.list_wrap .item:nth-child(-n+3){margin-top: 0;}
+.list_wrap .item:nth-child(3n-2){margin-left: 0;}
+.list_wrap .item .image{width: 100%; height: 200px; background-color: #ddd; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover;}
+    .list_wrap .item1 .image{background-image: url(../img/campsearch/1.jpg); border-radius: 10px;}
+    .list_wrap .item2 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item3 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item4 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item5 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item6 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item8 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item9 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item10 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item11 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item12 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item .cont{padding: 15px;}
+.list_wrap .item strong{display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700; width: 287px;}
+.list_wrap .item p{font-size: 15px; letter-spacing: -1px;}
+.list_wrap .item a{color:black; display: inline-block; margin-top: 10px; margin-left: 225px; padding: 5px 10px; font-size: 13px; letter-spacing: -1px; background: #ffce32; font-weight: 700; border-radius: 3px; transition: all 1s ease;}
+.list_wrap .item a:hover{background: #009223; color: #fff; font-weight: 700;}
+
+/* 체크박스 */
+.check_w ul {list-style: none; padding: 0; margin: 0; display: flex; margin-left: 50px;}
+.check_w ul li {margin-right: 25px; /* 각 체크박스 사이의 간격 설정 */}
+.folder_w {width: 1070px; height: 70px; display: flex; border:1px black solid; align-items: center; margin-left: 382px; margin-top: 10px; border-radius: 10px;}
+strong{width: 70px; text-align: center; margin-left: 15px;}
+
+/* 검색, 초기화 버튼 */
+.detail_btn_w{margin: 10px 0 0 0;}
+.b_lightgray, .b_blue{margin-top: 20px; margin-left: 15px; width: 100px; height: 40px; background: #ffce32; font-weight: 700; border: none; border-radius: 10px;}
+.b_lightgray:hover, .b_blue:hover{background: #009223; color: #fff; font-weight: 700;}
+
+/* 뷰 */
+.camp_top_info{display: block; width: 80%; align-items: center; margin-left: 320px;}
+.skip{margin-bottom: 100px;}
+.camp_info_box{position: relative; width: 80%; height: auto; overflow: hidden; clear: both; margin-bottom: 100px;}
+.camp_info_box .img_b{width: 48%; height: 40%; float: left; background: #eee; border: 1px solid #dedede; box-sizing: border-box; margin-left: 10px;}
+.camp_info_box .img_b > img {object-fit: cover; width: 100%; height: 100%;}
+.camp_info_box .cont_tb {width: 45%; float: right; height: auto; overflow: hidden; margin-top: 22px;}
+
+/* 뷰 - 메뉴 */
+.camp_cont_w {width: 80%; position: relative; height: auto; clear: both; margin-left: 280px;}
+.camp_intro{border: 2px solid black; width: 83%;}
+.camp_intro_txt > span {font-size: 14px; color: #000; display: block; line-height: 25px;}
+.camp_intro_txt > span.date_info {display: block; font-size: 13px; color: #888; padding-top: 10px;}
+
+/* 뷰 - 캠핑장소개 ~ 후기 */
+input[type="radio"]{display: none; float: left;}
+input[type="radio"]+label{display: inline-block; margin-top: -57px; float: left; padding: 15px; background: #ffce32; color: black; font-weight: 700; font-size: 20px; cursor: pointer; border-top-left-radius: 10px; border-top-right-radius: 10px;}
+input[type="radio"]:checked+label{background: #009223; color: #fff; float: left; margin-top: -57px;} 
+
+.tabmenu_ti{margin-left: 350px;}
+.conbox{width: 1100px; height: auto; background: white; display: none; border-bottom: 3px solid black; border-top: 3px solid black;}
+.date_info{display: flex;}
+.conbox{text-align: left; padding: 10px 10px 10px 10px; margin-top: 160px;}
+
+input[id="tab01"]:checked ~ .con1{display: block;}
+input[id="tab02"]:checked ~ .con2{display: block;}
+input[id="tab03"]:checked ~ .con3{display: block;}
+input[id="tab04"]:checked ~ .con4{display: block;}
+
+/* 뷰 - 캠핑장 시설정보 */
+.camp_item_g ul{list-style-type: none; padding: 0; display: flex; /* Flexbox를 사용하여 가로 정렬 */ margin: 10px 0 10px 400px;}
+.camp_item_g ul li{margin-right: 10px; /* 각 리스트 아이템 간의 간격 설정 */}   
+
+th{border: none;}
+.notice_search th{border-bottom: 2px solid black; border-top: 2px solid black;}
+.camp_item_g{margin-top: 20px;}
+.icon_h3 {position: relative; font-size: 20px; color: #000; padding-left: 29px; line-height: 27px; margin: 30px 0 13px -970px; letter-spacing: -0.08em; word-break: break-all;}
+#table_type03{width: 1030px; margin: -60px 0 0 400px;}
+.table_ul05{list-style-type: none; display: flex; /* Flexbox를 사용하여 가로 정렬 */padding: 0;}
+.table_ul05 li{margin-top: -7px; height:15px;; margin-left: 30px; /* 각 리스트 아이템 간의 간격 설정 */}
+.etc_type{list-style-type: none; display: flex; /* Flexbox를 사용하여 가로 정렬 */padding: 0; margin-left: 30px; border: none;}
+.info_notice{border-top: 2px solid black; border-bottom: 2px solid black; margin: 20px 0 20px 0; padding: 10px 0 10px 0;}
+.info_f_red{color: red; font-weight: 700;}
+.t_c td{height: auto; width: 800px; border-bottom: 1px #eee solid; padding: 10px 10px 10px 10px;}
+.t_c th{height: auto; width: 200px; text-align: center;}
+
+/*하단넘버링*/
+.bottom_number{margin-top: -20px; display: flex; justify-content: center;}
+.bottom_number li{list-style: none; width: 30px; height: 30px; padding: 0; cursor: pointer; border-radius: 5px;}
+.number{width: 30px; height: 30px; padding: 0; list-style: none; font-weight: 700;}
+.number:hover{width: 30px; height: 30px; padding: 0; list-style: none; background: #009223; border: 1px solid #009223; color: #ffce32; transition: all 0.4s; font-weight: 700;}
+.first{background: url(../img/list/btn_pre00.png) no-repeat;}
+.prev{background: url(../img/list/btn_pre01.png) no-repeat;}
+.number{display: flex; position: relative; top: 1px; height: 33px !important; margin-left: 5px; margin-right: 5px; border: 1px #989898 solid; align-items: center; justify-content: center;}
+.number>div{position: relative; top: 2px;}
+.next{background: url(../img/list/btn_next01.png) no-repeat;}
+.last{background: url(../img/list/btn_next00.png) no-repeat;}
+
+

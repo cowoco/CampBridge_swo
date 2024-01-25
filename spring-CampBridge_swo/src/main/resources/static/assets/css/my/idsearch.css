@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+section {margin:150px 50px; text-align:center;}
+.signUp_02 h1{font-weight: 700; text-align: center; margin-top:50px;}
+.amount3 {position:relative; margin-top:80px; margin-left: auto; margin-right: auto; margin-bottom:80px; border-radius: 10px; width:50%; border:6px #FFCE32 solid; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; overflow:hidden;}
+.amount3 p {margin:50px 0 50px 0; font-size:25px; font-weight: 600; text-align: center; color:#868e94;}
+.amount3 .idguide{font-size: 18px; color:red;} 
+
+button {margin-bottom: 50px;  background-color: #009223;  color: #fff; padding: 10px 15px; font-size: 16px;  border: none;  border-radius: 5px;  cursor: pointer;  transition: background-color 0.3s;}
+button:hover {background-color: #45a049;}
+
+
+

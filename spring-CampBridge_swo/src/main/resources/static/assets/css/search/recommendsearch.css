@@ -1,0 +1,30 @@
+*{margin: 0; padding: 0;}
+section{margin:150px 50px; text-align:center;}
+.list_wrap ul, li{list-style: none;}
+.notice_search_cardstyle a{text-decoration: none; color: #009223;}
+.notice_search_cardstyle h1{font-weight: 700; margin:40px 0 60px 0;}
+.list_wrap_theme_main h2{font-weight: 900; margin-left: 40px;}
+.list_wrap_theme h2{font-weight: 900; margin-left: 40px;}
+.list_wrap{width: 1300px; margin: -240px 0 0 220px;}
+.list_wrap ul{font-size: 0; margin-top: 350px;}
+.list_wrap .item{display: inline-block; width: 27%; margin: 40px 0 0 60px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); border-radius: 10px;}
+.list_wrap .item:nth-child(-n+3){margin-top: 0;}
+.list_wrap .item .image{width: 100%; height: 200px; background-color: #ddd; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover;}
+    .list_wrap .item1 .image{background-image: url(../img/1.jpg); border-radius: 10px;}
+    .list_wrap .item2 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item3 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item4 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item5 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item6 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item7 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item8 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item9 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item10 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item11 .image{background-image: url(1.jpg); border-radius: 10px;}
+    .list_wrap .item12 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item .cont{padding: 15px;}
+.list_wrap .item strong{display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700; text-align: center;}
+.list_wrap .item p{font-size: 15px; letter-spacing: -1px;}
+.list_wrap .item a{color:black; display: inline-block; margin-top: 10px; margin-left: 244px; padding: 5px 10px; font-size: 13px; letter-spacing: -1px; background: #FFCE32; font-weight: 700; border-radius: 3px; transition: all 1s ease;}.list_wrap .item a:hover{background: #009223; color: #fff; font-weight: 700;}
+.list_wrap_theme{margin-top:20px;}
+.list_wrap_theme_top{width:300px; height:100px; padding:30px; color:#009223;}

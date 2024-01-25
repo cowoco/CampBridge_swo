@@ -1,0 +1,65 @@
+/* 캠핑장 검색 */
+*{margin: 0; padding: 0;}
+ul, li{list-style: none;}
+a{text-decoration: none; color: #009223;}
+
+.list_wrap{width: 1100px; height:1600px;  margin: 0 auto; padding: 100px;
+position: relative; left:5px;right: 120px; border-top: 2px solid #009223; border-bottom:2px solid #009223; }
+.list_wrap ul{font-size: 0; margin-top: 0px;}
+.list_wrap .item{ display: inline-block; width: 30%; margin-left: 5%; margin-top: 40px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); border-radius: 10px;} 
+.list_wrap .item:nth-child(-n+3){margin-top: 0;}
+.list_wrap .item:nth-child(3n-2){margin-left: 0;}
+.list_wrap .item .image{width: 100%; height: 200px; background-color: #ddd; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover;}
+.list_wrap .item1 .image{background-image: url(../img/campsearch/1.jpg); border-radius: 10px;}
+.list_wrap .item2 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item3 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item4 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item5 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item6 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item7 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item8 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item9 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item10 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item11 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item12 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item .cont{padding: 15px;}
+.list_wrap .item strong{display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700;}
+.list_wrap .item p{font-size: 15px; letter-spacing: -1px;}
+.list_wrap .item a{width: 70px; color:black; display: inline-block; margin-top: 10px; margin-left: 150px; padding: 5px 10px; font-size: 13px; letter-spacing: -1px; background: #ffce32; font-weight: 700; border-radius: 3px; transition: all 1s ease;}
+.list_wrap .item a:hover{background: #009223; color: #fff; font-weight: 700;}
+
+/* 체크박스 */
+.check_w ul {list-style: none; padding: 0; margin: 0; display: flex; margin-left: 50px;}
+.check_w ul li {margin-right: 25px; /* 각 체크박스 사이의 간격 설정 */}
+.folder_w {width: 1070px; height: 70px; display: flex; border:1px black solid; align-items: center; margin-left: 380px; margin-top: 10px; border-radius: 10px;}
+.folder_w strong {margin-left: 20px; width: 70px;/* 가운데 정렬 */}
+
+/* 검색, 초기화 버튼 */
+.b_lightgray, .b_blue{margin-top: 20px; width: 100px; height: 40px; background: #ffce32; font-weight: 700; border: none; border-radius: 10px;}
+.b_lightgray:hover, .b_blue:hover{background: #009223; color: #fff; font-weight: 700;}
+
+/* 뷰 */
+.camp_top_info{display: block; width: 80%; align-items: center; margin-left: 320px;}
+.skip{margin-bottom: 100px;}
+.camp_info_box{position: relative; width: 80%; height: auto; overflow: hidden; clear: both; margin-bottom: 100px;}
+.camp_info_box .img_b{width: 50%; height: 484px; float: left; background: #eee; border: 1px solid #dedede; box-sizing: border-box;}
+.camp_info_box .img_b > img {object-fit: cover; width: 100%; height: 100%;}
+.camp_info_box .cont_tb {width: 45%; float: right; height: auto; overflow: hidden; margin-top: -90px;}
+
+/* 뷰 - 메뉴 */
+.camp_cont_w {width: 80%; position: relative; height: auto; clear: both; margin-left: 280px;}
+.camp_intro{border: 2px solid black;width: 83%;}
+.camp_intro_txt > span {font-size: 14px; color: #000; display: block; line-height: 25px;}
+.camp_intro_txt > span.date_info {display: block; font-size: 13px; color: #888; padding-top: 10px;}
+
+/* 뷰 - 캠핑장소개 ~ 후기 */
+/* input[type="radio"]{display: none;}
+input[type="radio"]+label{display: inline-block; padding: 15px; background: #ffce32; color: black; font-weight: 700; font-size: 20px; cursor: pointer; border-top-left-radius: 10px; border-top-right-radius: 10px;}
+input[type="radio"]:checked+label{background: #009223; color: #fff;}  */
+
+/* .conbox{width: 1200px; height: 200px; background: #aaa; margin: 0 auto; display: none;}
+.date_info{display: flex;}
+input[id="tab01"]:checked ~ .con1{display: block;}
+input[id="tab02"]:checked ~ .con2{display: block;}
+input[id="tab03"]:checked ~ .con3{display: block;}
+input[id="tab04"]:checked ~ .con4{display: block;} */

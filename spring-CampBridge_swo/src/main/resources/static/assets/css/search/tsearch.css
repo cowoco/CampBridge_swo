@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+section {margin:150px 50px; text-align: center;}
+
+/*--------------------------------------------------------------
+# 테마 검색
+--------------------------------------------------------------*/
+
+/* 체크박스 부분 */
+.t_check h1{font-weight: 700; margin:40px 0 60px 0;}
+.t_check ul{margin:20px 20px;}
+.t_check ul li{float: left; padding-right:15px; list-style-type: none; font-size: 18px;}
+.thema {width:1050px; height:140px; font-family: Arial, sans-serif; margin-left:400px; border: 2px solid #009223;  border-radius: 5px;}
+.thema li {margin: 10px 10px;}
+.thema input[type="checkbox"] {margin-right: 5px;}
+.thema label {cursor: pointer;}
+.thema input[type="checkbox"]:checked + label {font-weight: bold; color: #4CAF50;}
+
+/* 검색버튼 */
+#s_Btn {margin:50px 0 0 0;}
+#s_Btn button {margin-bottom: 50px;  background-color: #009223;  color: #fff; padding: 10px 15px; font-size: 16px;  border: none;  border-radius: 5px;  cursor: pointer;  transition: background-color 0.3s;}
+#s_Btn button:hover {background-color: #45a049;}
+
+/* 더보기 버튼 */
+#p_Btn button {margin-bottom: 50px;  background-color: #ffce32;  color: black; font-weight: bold; padding: 10px 15px; font-size: 16px;  border: none;  border-radius: 5px;  cursor: pointer;  border-radius: 25px; transition: background-color 0.3s;}
+#p_Btn button:hover {background-color: #009223; color:white; font-weight: bold;}
+
+/* 리스트 */
+.t_list{width: 1300px; margin: 0 auto; padding: 100px;}
+.t_list ul{font-size: 0;}
+.t_list .item{ display: inline-block; width: 30%; margin-left: 5%; margin-top: 40px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); border-radius: 10px;} 
+.t_list .item:nth-child(-n+3){margin-top: 0;}
+.t_list .item:nth-child(3n-2){margin-left: 0;}
+.t_list .item .image{width: 100%; height: 200px; background-color: #ddd; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover;}
+.t_list .item1 .image{background-image: url(../../assets/img/tsearch/cpRent1.png); border-radius: 10px;}
+.t_list .item2 .image{background-image: url(../../assets/img/tsearch/cpRent2.png); border-radius: 10px;}
+.t_list .item3 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item4 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item5 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item6 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item7 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item8 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item9 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item10 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item11 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item12 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item .cont{padding: 15px;}
+.t_list .item strong{display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700;}
+.t_list .item p{font-size: 15px; letter-spacing: -1px;}
+.t_list .item a{color:black; display: inline-block; margin-top: 10px; margin-left: 200px; padding: 5px 10px; font-size: 13px; letter-spacing: -1px; background: #FFCE32; font-weight: 700; border-radius: 3px; transition: all 1s ease;}
+.t_list .item a:hover{background: #009223; color: #fff; font-weight: 700;}
+
+
+
+
+
+
+
+
