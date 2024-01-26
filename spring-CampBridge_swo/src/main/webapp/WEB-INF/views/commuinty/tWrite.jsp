@@ -35,7 +35,7 @@
 		<link href="../assets/css/commuinty/writeStyle.css" rel="stylesheet">
 		<script src="../assets/js/summernote-lite.js"></script>
         <script src="../assets/js/summernote/lang/summernote-ko-KR.js"></script>
-		<link href="../assets/css/commuinty/summernote-lite.css" rel="stylesheet">
+		<link href="../assets/css/summernote-lite.css" rel="stylesheet">
 		
 		<!-- Template nWrite JS File -->
   		<script src="../assets/js/tWrite.js"></script>

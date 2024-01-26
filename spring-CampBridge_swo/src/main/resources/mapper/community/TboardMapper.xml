@@ -1,0 +1,15 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!--인터페이스 연결 MemberMapper.java -->  
+<mapper namespace="com.java.www.mapper.TBoardMapper"> 
+  	<!-- 게시글 전체 가져오기 -->
+	<select id="tb_selectAll" resultType="com.java.www.dto.TBoardDto">
+		 select * from t_board order by t_bgroup desc, t_bstep asc
+	</select>
+	<select id="tb_selectCountAll" resultType="com.java.www.dto.TBoardDto">
+		select count(*) from t_board
+	</select>
+	
+
+</mapper>

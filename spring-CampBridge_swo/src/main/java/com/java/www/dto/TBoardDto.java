@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class tBoardDto {
+public class TBoardDto {
 	
 	
 	private int t_bno;

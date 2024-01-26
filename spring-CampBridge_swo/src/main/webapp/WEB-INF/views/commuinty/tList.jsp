@@ -42,7 +42,7 @@
 	    	<h1 style="margin: 10px; font-weight: 700; position: relative; top: 40px; left: -550px; ">캠핑꿀팁(Tip)</h1>
 		    <!-- 검색창 -->
 		    <div class="searchDiv">
-			  <form action="" method="get" name="searchFrm">
+			  <form action="tList" method="get" name="searchFrm">
 			    <select name="searchTitle" id="searchTitle" class="searchTitle">
 			       <option value="all">전체</option>
 			       <option value="btitle">제목</option>
@@ -69,76 +69,25 @@
 			        <th>작성일</th>
 			        <th>조회수</th>
 			      </tr>
-			      <tr>
-			        <td id="No">1</td>
-			        <td class="table-title"><a href="tView">게시글 내용이 들어갑니다.</a></td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
-			      <tr>
-			        <td id="No">2</td>
-			        <td class="table-title">게시글 내용이 들어갑니다.</td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
-			      <tr>
-			        <td id="No">3</td>
-			        <td class="table-title">게시글 내용이 들어갑니다.</td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
-			      <tr>
-			        <td id="No">4</td>
-			        <td class="table-title">게시글 내용이 들어갑니다.</td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
-			      <tr>
-			        <td id="No">5</td>
-			        <td class="table-title">게시글 내용이 들어갑니다.</td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
-			      <tr>
-			        <td id="No">6</td>
-			        <td class="table-title">게시글 내용이 들어갑니다.</td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
-			      <tr>
-			        <td id="No">7</td>
-			        <td class="table-title">게시글 내용이 들어갑니다.</td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
-			      <tr>
-			        <td id="No">8</td>
-			        <td class="table-title">게시글 내용이 들어갑니다.</td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
-			      <tr>
-			        <td id="No">9</td>
-			        <td class="table-title">게시글 내용이 들어갑니다.</td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
-			      <tr>
-			        <td id="No">10</td>
-			        <td class="table-title">게시글 내용이 들어갑니다.</td>
-			        <td>관리자</td>
-			        <td>2024-12-31</td>
-			        <td>111</td>
-			      </tr>
+			      <!-- 내용부분 -->
+			       <c:if test="${map.list.size()==0}">
+				      <tr>
+				      	<td colspan='5'>게시글이 존재하지 않습니다.</td>
+				      </tr>
+				   </c:if>
+			      <c:forEach var="bdto" items="${map.list}">
+				      <tr>
+				        <td id="No">${bdto.t_bno}</td>
+				        <td class="table-title">
+				        <a href="tView?t_bno=${bdto.t_bno}">
+				        	${bdto.t_btitle}
+				        </a>
+				        </td>
+				        <td>${bdto.id }</td>
+				        <td>${bdto.t_bdate}</td>
+				        <td>${bdto.t_bhit}</td>
+				      </tr>
+			      </c:forEach>
 		  		</div>
 		    </table>
 			 	<a href="tWrite"><button class="write">글쓰기</button></a>
@@ -146,18 +95,19 @@
 	    	
 	    	<!-- 하단넘버링 시작 -->
 		     <ul class="page-num">
-			      <li class="first"></li>
-			      <li class="prev"></li>
-			      <li class="num">1</li>
-			      <li class="num">2</li>
-			      <li class="num">3</li>
-			      <li class="num">4</li>
-			      <li class="num">5</li>
-			      <li class="num">6</li>
-			      <li class="num">7</li>
-			      <li class="num">8</li>
-			      <li class="num">9</li>
-			      <li class="num">10</li>
+			      <a href="tList?page=1"><li class="first"></li></a>
+			      <c:if test="${map.page<=1}">
+			      	<li class="prev"></li>
+			      </c:if>
+			      <c:if test="${map.page>1}">
+			      	<a href="tList?page=${map.page-1}"><li class="prev"></li></a>
+			      </c:if>
+			      <c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
+			      	<c:if test="${map.page==i }">
+			      		<li class="num on"><div>${i}</div></li>
+			       </c:if>
+			      </c:forEach>
+			      
 			      <li class="next"></li>
 			      <li class="last"></li>
    			 </ul>

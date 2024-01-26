@@ -1,12 +1,22 @@
 package com.java.www.controller;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.java.www.service.TBService;
 
 @Controller
 @RequestMapping("commuinty")
 public class CController {
+	
+	@Autowired
+	TBService tbService;
 	
 	//1.공지사항 리스트
 	@GetMapping("nList")
@@ -55,8 +65,17 @@ public class CController {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////파티원 모집 게시판
 	
 	//3.꿀팁 게시판 리스트Pg
-	@GetMapping("tList")
-	public String tipList() {
+	@GetMapping("tList") //게시글 전체 가져오기
+	public String tipList(@RequestParam(defaultValue = "1")int page,
+			@RequestParam(required = false)String category,
+			@RequestParam(required = false)String searchWord,Model model) {
+		//db에서 가져오기 
+		Map<String, Object> map = tbService.tb_selectAll(page,category,searchWord);
+		//model에 저장
+		model.addAttribute("map", map);
+		System.out.println("게시글 총 개수 :" + (int)map.get("countAll"));
+		
+		
 		return "/commuinty/tList";
 	}// tList()
 	
