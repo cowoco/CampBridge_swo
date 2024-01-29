@@ -30,9 +30,9 @@
 	    <!-- Template Main CSS File -->
  		<link href="../assets/css/main2.css" rel="stylesheet">
        	<link href="../assets/css/header.css" rel="stylesheet">
-		<link href="../assets/css/commuinty/listStyle.css" rel="stylesheet">
-		<link href="../assets/css/commuinty/viewStyle.css" rel="stylesheet">
-		<link href="../assets/css/commuinty/writeStyle.css" rel="stylesheet">
+		<link href="../assets/css/community/listStyle.css" rel="stylesheet">
+		<link href="../assets/css/community/viewStyle.css" rel="stylesheet">
+		<link href="../assets/css/community/writeStyle.css" rel="stylesheet">
 		<script src="../assets/js/summernote-lite.js"></script>
         <script src="../assets/js/summernote/lang/summernote-ko-KR.js"></script>
 		<link href="../assets/css/summernote-lite.css" rel="stylesheet">
@@ -50,7 +50,7 @@
 		
 			<!-- 꿀팁 게시판 글쓰기 -->
 	    	<h1 style="float: left; margin: 40px; font-weight: 700; position: relative; left:235px; top: 30px;">꿀팁게시판 작성</h1>
-			<form action="" name="freeFrm" method="post" enctype="multipart/form-data">
+			<form action="tWrite" name="freeFrm" method="post" enctype="multipart/form-data">
 			    <table>
 			     <colgroup>
 			        <col width="5%">
@@ -59,11 +59,11 @@
 			        <col width="10%">
 	   			</colgroup>
 			      <tr>
-			        <th colspan="4" style="text-align: left;"><input type="text" id="t_btitle" placeholder=" ※ 게시글 제목을 입력해주세요."> </span></th>
+			        <th colspan="4" style="text-align: left;"><input type="text" id="t_btitle" name="t_btitle"  placeholder=" ※ 게시글 제목을 입력해주세요."> </span></th>
 			      </tr>
 			      <tr style="border-bottom: 2px solid #009223">
 			        <td colspan="4"><strong>작성자 | </strong style="text-align: center;">
-			        <input type="text" value="aaa" readonly="readonly" style="border: 1px solid transparent;">
+			        <input type="text" name="id" readonly="readonly" style="border: 1px solid transparent;">
 			        </td>
 			      </tr>
 			      <tr>
@@ -75,7 +75,7 @@
 			    </table>
 			</form>
 			<div class="listBtn">
-		    	<a href="#"><div class="list" id="saveBtn">저장</div></a>
+		    	<button type="submit" class="list" id="saveBtn">저장</button>
 		    	<a href="tList"><div class="list">취소</div></a>
 			</div>
  		 </section>

@@ -30,8 +30,8 @@
 	    <!-- Template Main CSS File -->
  		<link href="../assets/css/main2.css" rel="stylesheet">
        	<link href="../assets/css/header.css" rel="stylesheet">
-		<link href="../assets/css/commuinty/listStyle.css" rel="stylesheet">
-		<link href="../assets/css/commuinty/viewStyle.css" rel="stylesheet">
+		<link href="../assets/css/community/listStyle.css" rel="stylesheet">
+		<link href="../assets/css/community/viewStyle.css" rel="stylesheet">
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
@@ -51,24 +51,31 @@
 		        <col width="12%">
    			</colgroup>
 		    <tr>
-		        <th style="text-align: center;"><strong>1007</strong></th>
-		        <th style="text-align: left;"><span>게시글 제목이 들어갑니다.</span></th>
+		        <th style="text-align: center;"><strong>${map.tbdto.t_bno}</strong></th>
+		        <th style="text-align: left;"><span>${map.tbdto.t_btitle}</span></th>
 		        <th style="text-align: right;"><strong>작성일</strong></th>
-		        <th>2019-12-11</th>
+		        <th><fmt:formatDate value="${map.tbdto.t_bdate}" pattern="yyyy-MM-dd"/></th>
 		      </tr>
 		      <tr style="border-bottom: 2px solid #009223">
 		        <td style="text-align: center;"><strong>작성자</strong style="text-align: center;"></td>
-		        <td>관리자</td>
+		        <td>${map.tbdto.id}</td>
 		        <td style="text-align: right;"><strong>조회수</strong></td>
-		        <td>123</td>
+		        <td>${map.tbdto.t_bhit}</td>
 		      </tr>
 		      <tr>
-		        <td colspan="4" class="article">게시글 내용이 들어갑니다.<br><br><br><br><br></td>
+		        <td colspan="4" class="article">${map.tbdto.t_bcontent}<br><br><br><br><br></td>
 		      </tr>
 		       <tr style="border-bottom: 2px solid #009223;">
-		        <td class="article" style="text-align: center;"><strong>첨부파일 </strong>
-		        </td>
-		        <td colspan="3">※첨부파일 없음</td>
+			        <td class="article" style="text-align: center;"><strong>첨부파일 </strong>
+			        </td>
+			        <td colspan="3">
+			        	<c:if test="${map.tbdto.t_bfile=!null}">
+			       			${map.tbdto.t_bfile}
+			        	</c:if>
+			        	<c:if test="${map.tbdto.t_bfile==null}">
+			       		    ※첨부된 파일이 없습니다.
+			        	</c:if>
+			        </td>
 		      </tr>
 		    </table>
 		    

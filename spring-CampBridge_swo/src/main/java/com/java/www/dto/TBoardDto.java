@@ -24,7 +24,7 @@ public class TBoardDto {
 	private int t_bgroup;
 	private int t_bstep;
 	private int t_bindent;
-	private String bfile;
+	private String t_bfile;
 	
 
 }

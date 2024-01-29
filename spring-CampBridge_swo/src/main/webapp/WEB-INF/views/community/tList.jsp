@@ -30,7 +30,7 @@
 	    <!-- Template Main CSS File -->
 	    <link href="../assets/css/main2.css" rel="stylesheet">
 		<link href="../assets/css/header.css" rel="stylesheet">
-		<link href="../assets/css/commuinty/listStyle.css" rel="stylesheet">
+		<link href="../assets/css/community/listStyle.css" rel="stylesheet">
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
@@ -45,12 +45,12 @@
 			  <form action="tList" method="get" name="searchFrm">
 			    <select name="searchTitle" id="searchTitle" class="searchTitle">
 			       <option value="all">전체</option>
-			       <option value="btitle">제목</option>
-			       <option value="bcontent">내용</option>
+			       <option value="t_btitle">제목</option>
+			       <option value="t_bcontent">내용</option>
 			       <option value="id">작성자</option>
 			    </select>
 			    	<input type="text" name="searchWord" id="searchWord" class="searchWord" placeholder=" 검색어를 입력해주세요.">
-			    	<button type="button" onclick="searchBtn()" id="searchBtn" class="searchBtn">검색</button>
+			    	<button type="submit" onclick="searchBtn()" id="searchBtn" class="searchBtn">검색</button>
 			  </form>
 			</div>
 			<table>
@@ -75,17 +75,18 @@
 				      	<td colspan='5'>게시글이 존재하지 않습니다.</td>
 				      </tr>
 				   </c:if>
-			      <c:forEach var="bdto" items="${map.list}">
+			      <c:forEach var="tbdto" items="${map.list}">
 				      <tr>
-				        <td id="No">${bdto.t_bno}</td>
+				        <td id="No">${tbdto.t_bno}</td>
 				        <td class="table-title">
-				        <a href="tView?t_bno=${bdto.t_bno}">
-				        	${bdto.t_btitle}
+				        <a href="tView?t_bno=${tbdto.t_bno}">
+				        	<c:forEach var="i" begin="1" end="${tbdto.t_bindent}" step="1">▶</c:forEach>
+				        	${tbdto.t_btitle}
 				        </a>
 				        </td>
-				        <td>${bdto.id }</td>
-				        <td>${bdto.t_bdate}</td>
-				        <td>${bdto.t_bhit}</td>
+				        <td>${tbdto.id}</td>
+				        <td><fmt:formatDate value="${tbdto.t_bdate}" pattern="yyyy-MM-dd"/></td>
+				        <td>${tbdto.t_bhit}</td>
 				      </tr>
 			      </c:forEach>
 		  		</div>
@@ -102,14 +103,24 @@
 			      <c:if test="${map.page>1}">
 			      	<a href="tList?page=${map.page-1}"><li class="prev"></li></a>
 			      </c:if>
-			      <c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
-			      	<c:if test="${map.page==i }">
-			      		<li class="num on"><div>${i}</div></li>
-			       </c:if>
-			      </c:forEach>
 			      
-			      <li class="next"></li>
-			      <li class="last"></li>
+			      <c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
+			      		<c:if test="${map.page==i }">
+			      			<li class="num on"><div>${i}</div></li>
+				       </c:if>
+				       <c:if test="${map.page!=i}">
+					       	<a href="tList?page=${i}">
+					       	<li class="num"><div>${i}</div></li>
+							</a>			       
+				       </c:if>
+			      </c:forEach>
+			       <c:if test="${map.page<map.maxPage}">
+				      <a href="tList?page=${map.page+1}"><li class="next"></li></a>
+			      </c:if>
+			      <c:if test="${map.page>=map.maxPage}">
+				     <li class="next"></li>
+			      </c:if>
+			      <a href="tList?page=${map.maxPage}"><li class="last"></li></a>
    			 </ul>
    			 <!-- 하단넘버링 끝 -->
 		</section>

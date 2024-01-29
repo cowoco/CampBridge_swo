@@ -5,11 +5,39 @@
 <mapper namespace="com.java.www.mapper.TBoardMapper"> 
   	<!-- 게시글 전체 가져오기 -->
 	<select id="tb_selectAll" resultType="com.java.www.dto.TBoardDto">
-		 select * from t_board order by t_bgroup desc, t_bstep asc
+		 select *from (select rownum rnum, a.* from
+		 (select * from t_board
+		 	<if test="searchTitle == 't_btitle' or searchTitle == 't_bcontent' or searchTitle == 'id' ">
+				where ${searchTitle} like '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchTitle == 'all' ">
+				where t_btitle like '%'||#{searchWord}||'%' or t_bcontent like '%'||#{searchWord}||'%' or id like '%'||#{searchWord}||'%'
+			</if>
+		  order by t_bgroup desc, t_bstep asc) a )
+		 where rnum between #{startRow} and  #{endRow}
 	</select>
-	<select id="tb_selectCountAll" resultType="com.java.www.dto.TBoardDto">
+	<!--게시글 총 개수  -->
+	<select id="tb_selectCountAll" resultType="int">
 		select count(*) from t_board
+		<if test="searchTitle == 't_btitle' or searchTitle == 't_bcontent' or searchTitle == 'id'">
+			where ${searchTitle} like '%'||#{searchWord}||'%'
+		</if>
+		<if test="searchTitle == 'all' ">
+			where t_btitle like '%'||#{searchWord}||'%' or t_bcontent like '%'||#{searchWord}||'%' or id like '%'||#{searchWord}||'%' 
+		</if>
+		
 	</select>
+	<!-- 게시글 1개 가져오기- 현재글  -->
+	<select id="tb_selectOne" resultType="com.java.www.dto.TBoardDto">
+		select * from t_board where t_bno=#{t_bno}
+	</select>
+	<!-- 게시글(글쓰기) 저장  -->
+	<insert id="tWrite">
+		insert into t_board values (t_board_seq.nextval,#{id},#{t_btitle},#{t_bcontent},sysdate,
+		1,t_board_seq.currval,0,0,#{t_bfile})
+	</insert>
+	
+	
 	
 
 </mapper>
