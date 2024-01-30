@@ -80,10 +80,13 @@ public class TBServiceImpl implements TBService{
 	public Map<String, Object> tb_selectOne(int t_bno) {
 		//게시글 1개 가져오기
 		TBoardDto tbdto = tboardMapper.tb_selectOne(t_bno);
+		TBoardDto tprevdto = tboardMapper.tb_selectOnePrev(t_bno);
+		TBoardDto tnextdto = tboardMapper.tb_selectOneNext(t_bno);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("tbdto",tbdto);
-		
+		map.put("tprevdto",tprevdto);
+		map.put("tnextdto",tnextdto);
 		return map;
 	}//tb_selectOne//게시글 1개 가져오기
 
@@ -93,6 +96,26 @@ public class TBServiceImpl implements TBService{
 		//글쓰기 저장
 		int result = tboardMapper.tWrite(tbdto);
 		System.out.println("TBServiceImpl tWrite reslt : "+result);
+		
+	}
+
+
+
+	@Override
+	public void tDelete(int t_bno) {
+		//게시글 삭제
+		int result = tboardMapper.tDelete(t_bno);
+		System.out.println("TBServiceImpl tDelete result : "+result);
+		
+	}
+
+
+
+	@Override
+	public void doTBoard(TBoardDto tbdto) {
+		//게시글 수정 저장
+		int result = tboardMapper.doTBoard(tbdto);
+		System.out.println("TBServiceImpl doTBoard result : "+result);
 		
 	}
 

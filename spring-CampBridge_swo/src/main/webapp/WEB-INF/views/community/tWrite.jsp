@@ -50,7 +50,7 @@
 		
 			<!-- 꿀팁 게시판 글쓰기 -->
 	    	<h1 style="float: left; margin: 40px; font-weight: 700; position: relative; left:235px; top: 30px;">꿀팁게시판 작성</h1>
-			<form action="tWrite" name="freeFrm" method="post" enctype="multipart/form-data">
+			<form action="tWrite" name="tipFrm" method="post" enctype="multipart/form-data">
 			    <table>
 			     <colgroup>
 			        <col width="5%">
@@ -63,21 +63,21 @@
 			      </tr>
 			      <tr style="border-bottom: 2px solid #009223">
 			        <td colspan="4"><strong>작성자 | </strong style="text-align: center;">
-			        <input type="text" name="id" readonly="readonly" style="border: 1px solid transparent;">
+			        <input type="text" value="aaa" readonly="readonly" style="border: 1px solid transparent;">
 			        </td>
 			      </tr>
 			      <tr>
 			        <td colspan="4" class="article"><textarea rows="9" name="t_bcontent" id="summernote" placeholder=" ※ 게시글 내용을 입력해주세요."></textarea> </td>
 			      </tr>
 			      <tr style="border-bottom: 2px solid #009223; line-height: 20px;">
-			        <td colspan="4" class="article"><input type="file" name="t_bfile" id="t_bfile"></td>
+			        <td colspan="4" class="article"><input type="file" name="tfile" id="t_bfile"></td>
 			      </tr>
 			    </table>
-			</form>
 			<div class="listBtn">
-		    	<button type="submit" class="list" id="saveBtn">저장</button>
-		    	<a href="tList"><div class="list">취소</div></a>
+		    	<button type="submit" class="list tWrite" id="saveBtn">저장</button>
+		    	<button type="button" class="list tCancel" onclick="javascript:location.href='tList'">취소</button>
 			</div>
+			</form>
  		 </section>
 		
 		<!-- ======= Footer ======= -->

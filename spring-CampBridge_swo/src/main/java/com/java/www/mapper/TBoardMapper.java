@@ -20,9 +20,19 @@ public interface TBoardMapper {
 	
 	//게시글 1개 가져오기- 현재글
 	TBoardDto tb_selectOne(int t_bno);
+	//게시글 1개 가져오기- 이전글
+	TBoardDto tb_selectOnePrev(int t_bno);
+	//게시글 1개 가져오기- 다음글
+	TBoardDto tb_selectOneNext(int t_bno);
 	
 	//글쓰기 저장
 	int tWrite(TBoardDto tbdto);
+	
+	//게시글 삭제
+	int tDelete(int t_bno);
+	
+	//게시글 수정 저장
+	int doTBoard(TBoardDto tbdto);
 
 
 	

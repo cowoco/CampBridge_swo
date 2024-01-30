@@ -43,6 +43,7 @@
 		   
 			<!-- 꿀팁게시글 보기-->
 	    	<h1 style="float: left; margin: 40px 0 0 700px; font-weight: 700; position: relative; left:50px;">꿀팁 게시글</h1>
+		    <form action="" id="t_VFrm" name="t_VFrm" method="post">
 		    <table>
 		     <colgroup>
 		        <col width="10%">
@@ -69,20 +70,34 @@
 			        <td class="article" style="text-align: center;"><strong>첨부파일 </strong>
 			        </td>
 			        <td colspan="3">
-			        	<c:if test="${map.tbdto.t_bfile=!null}">
+			        	<c:if test="${map.tbdto.t_bfile != null }">
 			       			${map.tbdto.t_bfile}
-			        	</c:if>
-			        	<c:if test="${map.tbdto.t_bfile==null}">
-			       		    ※첨부된 파일이 없습니다.
-			        	</c:if>
+			       		</c:if>
+			        	<c:if test="${map.tbdto.t_bfile == null }">
+			       			※첨부파일이 없습니다.
+			       		</c:if>
 			        </td>
 		      </tr>
 		    </table>
-		    
+		    </form>
+		    <script>
+		    	$(function(){
+		    		$(".tUpdateBtn").click(function(){
+		    			if(confirm("수정페이지로 이동합니다.")){
+		    				$("#t_VFrm").attr("action","tUpdate").submit();
+		    			}
+		    		});//tUpdateBtn //수정페이지
+		    		$(".tDelBtn").click(function(){
+		    			if(confirm("게시글을 삭제하시겠습니까?")){
+		    				$("#t_VFrm").attr("action","tDelete").submit();
+		    			}
+		    		});//tDelBtn//게시글 삭제
+		    	});
+		    </script>
 		    <!-- 버튼 -->
 		    <div class="listBtn">
-		    	<button class="list">삭제</button>
-		    	<a href="tUpdate"><button class="list">수정</button></a>
+		    	<button class="list tDelBtn">삭제</button>
+		    	<button class="list tUpdateBtn">수정</button>
 		    	<a href="tList"><button class="list">목록</button></a>
 		    </div>
 		    
@@ -105,10 +120,24 @@
 		    <!-- 이전글/다음글-->
 		    <table style="margin-top: -150px; ">
 		      <tr>
-		        <td colspan="4"><strong>다음글</strong> <span class="separator">|</span><a href="#"> [키즈잼] 2월 프로그램 안내</a></td>
+		        <td colspan="4"><strong>다음글</strong> <span class="separator">|</span>
+		        <c:if test="${map.tnextdto != null }">
+		        	<a href="tView?t_bno=${map.tnextdto.t_bno}">${map.tnextdto.t_btitle}</a>
+		        </c:if>
+		        <c:if test="${map.tnextdto == null }">
+		        	다음글이 없습니다.
+		        </c:if>
+		        </td>  
 		      </tr>
 		      <tr>
-		        <td colspan="4"><strong>이전글</strong> <span class="separator">|</span><a href="#"> [키즈잼] 2020년 1분기 정기 휴관일 안내</a></td>
+		        <td colspan="4"><strong>이전글</strong> <span class="separator">|</span>
+		        <c:if test="${map.tprevdto != null }">
+		       		<a href="tView?t_bno=${map.tprevdto.t_bno}">${map.tprevdto.t_btitle}</a>
+		        </c:if>
+		        <c:if test="${map.tprevdto == null }">
+		        	이전글이 없습니다.
+		        </c:if>
+		        </td>
 		      </tr>
 		    </table>
 		    <!-- 이전글/다음글 끝-->
