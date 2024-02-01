@@ -1,9 +1,11 @@
 package com.java.www.mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.java.www.dto.TBCommentDto;
 import com.java.www.dto.TBoardDto;
 
 @Mapper
@@ -33,6 +35,18 @@ public interface TBoardMapper {
 	
 	//게시글 수정 저장
 	int doTBoard(TBoardDto tbdto);
+
+	//댓글 전체 가져오기
+	List<TBCommentDto> TBCommemtSelectAll(int t_bno);
+	
+	//db에 저장된 댓글 1개 가져오기
+	void TBCommentInsert(TBCommentDto tcdto);
+	
+	//저장된 댓글 1개 가져오기
+	TBCommentDto TBCommemtSelectOne(int t_cno);
+	
+	//댓글 삭제 
+	int TBCommentDelete(int t_cno);
 
 
 	

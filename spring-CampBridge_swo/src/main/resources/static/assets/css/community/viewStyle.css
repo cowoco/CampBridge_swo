@@ -78,17 +78,17 @@ textarea{border-radius:10px; border: 2px solid #009223;}
 #replyPw{line-height: 3px; padding-left: 124px; width: 19%; position: relative; top: -71px; left: 820px;}
 #replyIPw{width: 62%;}
 #replyBorder{float: right;  border: 1px solid transparent;}
-#rUBtn{width: 50px; line-height:25px;  text-align: center; border: 1px solid  #ffce32; border-radius:5px; background:  #ffce32; color:#009223; font-weight: 700;}
-#rDelBtn{width: 50px;  line-height: 25px; border: 1px solid #ffce32; border-radius:5px; background:  #ffce32;  color:#009223; font-weight: 700;}
-#rUBtn:hover{width: 50px; line-height:25px;  text-align: center; border: 1px solid #009223; border-radius:5px; background:  #009223; color:#ffce32; font-weight: 700; transition: all 0.4s;}
-#rDelBtn:hover{width: 50px;  line-height: 25px; border: 1px solid  #ce1212; border-radius:5px; background:  #ce1212;  color:#ffce32; font-weight: 700; transition: all 0.4s;}
+.rUBtn{width: 50px; line-height:25px;  text-align: center; border: 1px solid  #ffce32; border-radius:5px; background:  #ffce32; color:#009223; font-weight: 700;}
+.rDelBtn{width: 50px;  line-height: 25px; border: 1px solid #ffce32; border-radius:5px; background:  #ffce32;  color:#009223; font-weight: 700;}
+.rUBtn:hover{width: 50px; line-height:25px;  text-align: center; border: 1px solid #009223; border-radius:5px; background:  #009223; color:#ffce32; font-weight: 700; transition: all 0.4s;}
+.rDelBtn:hover{width: 50px;  line-height: 25px; border: 1px solid  #ce1212; border-radius:5px; background:  #ce1212;  color:#ffce32; font-weight: 700; transition: all 0.4s;}
 
 .participant{display: flex;  width: 1254px; height: 120px; background: #ffce32; border-radius: 5px; margin: 30px 0 0 275px;}
 .participant_no{width: 301px; height: 100px; background: white; border-radius: 5px; margin: 10px 10px 10px 10px; border: 2px solid #009223;}
 .participant_img{width: 70px; height: 70px; margin: 17px 30px;}
 .participant_in{float: left; text-align: left; margin: -78px 0 0 120px;}
 .reply_body{margin-top: -160px;}
-
+.noreplyT{font-size: 20px; font-weight:200; text-align: center; color: #E2E2E2;}
 
 
 

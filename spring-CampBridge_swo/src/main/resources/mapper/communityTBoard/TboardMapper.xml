@@ -52,9 +52,10 @@
 	
 	<!-- 게시글(글쓰기) 저장  -->
 	<insert id="tWrite">
-		insert into t_board values (t_board_seq.nextval,aaa,#{t_btitle},#{t_bcontent},sysdate,
-		1,t_board_seq.currval,0,0,#{t_bfile})
+		insert into t_board values (t_board_seq.nextval,'aaa',#{t_btitle},#{t_bcontent},sysdate,
+		0,t_board_seq.currval,0,0,#{t_bfile})
 	</insert>
+	
 	<!-- 게시글 삭제 -->
 	<delete id="tDelete">
 		delete t_board where t_bno=#{t_bno}
@@ -65,7 +66,25 @@
 		update t_board set t_btitle=#{t_btitle},t_bcontent=#{t_bcontent},t_bdate=sysdate,
 		t_bfile=#{t_bfile} where t_bno=#{t_bno}
 	</update>
+	<!--  ====== 댓글 ======  -->
+	<!-- 댓글 전체 가져오기  -->
+	<select id="TBCommemtSelectAll"  resultType="com.java.www.dto.TBCommentDto">
+		select * from t_comment where t_bno=#{t_bno} order by t_cno desc
+	</select>
+	<!-- db에 저장된 댓글 1개 가져오기  -->
+	<insert id="TBCommentInsert">
+		<selectKey resultType="int" keyProperty="t_cno" order="BEFORE">
+			select t_comment_seq.nextval from dual
+		</selectKey>
+		insert into t_comment values (#{t_cno},#{t_bno},'aaa',#{t_cpw},#{t_ccontent},sysdate)
+	</insert>
+	<!-- 저장된 댓글 1개 가져오기  -->
+	<select id="TBCommemtSelectOne" resultType="com.java.www.dto.TBCommentDto">
+		select * from t_comment where t_cno=#{t_cno}
+	</select>
+	<!-- 댓글 삭제 하기 -->
+	<delete id="TBCommentDelete">
+		delete t_comment where t_cno=#{t_cno}
+	</delete>
 	
-	
-
 </mapper>

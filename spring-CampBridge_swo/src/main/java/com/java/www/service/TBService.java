@@ -2,6 +2,7 @@ package com.java.www.service;
 
 import java.util.Map;
 
+import com.java.www.dto.TBCommentDto;
 import com.java.www.dto.TBoardDto;
 
 public interface TBService {
@@ -24,6 +25,12 @@ public interface TBService {
 	
 	//게시글 수정저장
 	void doTBoard(TBoardDto tbdto);
+	
+	//댓글입력 - ajax
+	TBCommentDto TBCommentInsert(TBCommentDto tcdto);
+	
+	//댓글삭제 - ajax 
+	String TBCommentDelete(int t_cno);
 
 
 }

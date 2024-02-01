@@ -39,6 +39,7 @@
 		
 		<!-- Template nWrite JS File -->
   		<script src="../assets/js/tWrite.js"></script>
+  		<script src="../assets/js/summernote.js"></script>
 		
 	</head>
 	<body>
@@ -74,7 +75,7 @@
 			      </tr>
 			    </table>
 			<div class="listBtn">
-		    	<button type="submit" class="list tWrite" id="saveBtn">저장</button>
+		    	<button type="submit" class="list tWrite" id="T_saveBtn">저장</button>
 		    	<button type="button" class="list tCancel" onclick="javascript:location.href='tList'">취소</button>
 			</div>
 			</form>

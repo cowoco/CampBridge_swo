@@ -53,7 +53,7 @@
 			        <col width="10%">
 	   			</colgroup>
 			      <tr>
-			        <th colspan="4" style="text-align: left;"><input type="text" id="f_btitle" placeholder=" ※ 게시글 제목을 입력해주세요."> </span></th>
+			        <th colspan="4" style="text-align: left;"><input type="text" id="f_btitle" value="${map.tbdto.t_btitle }"></span></th>
 			      </tr>
 			      <tr style="border-bottom: 2px solid #009223">
 			        <td colspan="4"><strong>작성자 | </strong style="text-align: center;">

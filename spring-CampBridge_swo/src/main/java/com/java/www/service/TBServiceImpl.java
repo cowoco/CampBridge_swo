@@ -2,11 +2,13 @@ package com.java.www.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.www.dto.TBCommentDto;
 import com.java.www.dto.TBoardDto;
 import com.java.www.mapper.TBoardMapper;
 
@@ -84,9 +86,12 @@ public class TBServiceImpl implements TBService{
 		TBoardDto tnextdto = tboardMapper.tb_selectOneNext(t_bno);
 		
 		Map<String, Object> map = new HashMap<>();
+		List<TBCommentDto> TBCommentlist = tboardMapper.TBCommemtSelectAll(t_bno);
 		map.put("tbdto",tbdto);
 		map.put("tprevdto",tprevdto);
 		map.put("tnextdto",tnextdto);
+		map.put("TBCommentlist",TBCommentlist);
+	
 		return map;
 	}//tb_selectOne//게시글 1개 가져오기
 
@@ -117,6 +122,31 @@ public class TBServiceImpl implements TBService{
 		int result = tboardMapper.doTBoard(tbdto);
 		System.out.println("TBServiceImpl doTBoard result : "+result);
 		
+	}
+
+
+
+	@Override //db에 저장된 댓글 1개 가져오기
+	public TBCommentDto TBCommentInsert(TBCommentDto tcdto) {
+		//ajax 댓글입력
+		tboardMapper.TBCommentInsert(tcdto);
+		System.out.println("TBServiceImpl TBCommentInsert t_cno :"+tcdto.getT_cno());
+		System.out.println("TBServiceImpl TBCommentInsert t_cdate :"+tcdto.getT_cdate());
+		
+		TBCommentDto tbCommentDto = new TBCommentDto();
+		tbCommentDto = tboardMapper.TBCommemtSelectOne(tcdto.getT_cno());
+		System.out.println("TBServiceImpl tbCommentDto t_ccontent :"+tcdto.getT_ccontent());
+		return tbCommentDto;
+	}
+
+
+
+	@Override
+	public String TBCommentDelete(int t_cno) {
+		String result="";
+		int re = tboardMapper.TBCommentDelete(t_cno);
+		
+		return result+re;
 	}
 
 
