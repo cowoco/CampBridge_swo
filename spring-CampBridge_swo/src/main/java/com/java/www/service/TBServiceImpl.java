@@ -150,4 +150,20 @@ public class TBServiceImpl implements TBService{
 	}
 
 
+
+	@Override
+	public TBCommentDto t_BCommentUpdate(TBCommentDto tcdto) {
+		//session_id 
+		
+		//수정저장
+		tboardMapper.t_BCommentUpdate(tcdto);
+		//댓글 1개 가져오기 
+		TBCommentDto tbCommentDto = new TBCommentDto();
+		tbCommentDto = tboardMapper.TBCommemtSelectOne(tcdto.getT_cno());
+		
+		
+		return tbCommentDto;
+	}
+
+
 }

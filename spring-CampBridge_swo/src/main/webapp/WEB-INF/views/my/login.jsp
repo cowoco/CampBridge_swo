@@ -32,15 +32,20 @@
 	    <!-- Template Main CSS File -->
 	    <link href="../assets/css/main2.css" rel="stylesheet">
 	    <link href="../assets/css/header.css" rel="stylesheet">
-		<link href="../assets/css/commuinty/listStyle.css" rel="stylesheet">
         <link href="../assets/css/my/login.css" rel="stylesheet">
+        
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+        
+        
         
     	<script>
 			$(function(){
 				
+				
+				
 				$("#signUpBtn").click(function(){
 					alert("회원가입 페이지로 이동합니다.")
-					location.href="a_signUp.do";
+					location.href="signUp";
 				});//#회원가입
 		    //----------------아이디 저장하기--------------------
 				var savedId = localStorage.getItem("rememberedId");
@@ -52,7 +57,7 @@
 				$("#loginBtn").click(function(){
 					var enteredId = $("#id").val();
 			        var enteredPw = $("#pw").val();
-					if(enteredId.length<3){
+					if(enteredId.length<1){
 					alert("아이디를 입력하세요.")
 					$("#id").focus();
 					return false
@@ -67,8 +72,14 @@
 					if($("#remember-check").is(":checked")){
 						localStorage.setItem("rememberedId", enteredId);
 					}else{localStorage.removeItem("rememberedId");}//if-else
+					
 					loginFrm.submit();
 				});//로그인버튼
+				
+				
+				
+				
+				
 				//----아이디 저장하기 체크박스 시작-------	
 			});//제이쿼리 구문
 			  function onSuccess(googleUser) {
@@ -89,8 +100,9 @@
 			      });
 			    }			
 		</script>
-		 <!--Google login  -->
+		 <!--Google login 
        	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+       	 -->
     </head>
     <body>
     <!-- ======= Header ======= -->
@@ -98,9 +110,11 @@
 	<!-- End Header -->
 	 
 	 <section class="loginback" >
+	 	
         <div class="login_wap">
+       		<img src="../assets/img/login/login02.png" style="margin-top: 30px;">
             <h2>로 그 인</h2>
-            <form name="loginFrm" method="post" id="log_f" action="do_Login.do">
+            <form name="loginFrm" method="post" id="log_f" action="doLogin">
                 <input type="text" name="id" placeholder="아이디" id="id">
                 <input type="password" name="pw" placeholder=" 비밀번호" id="pw">
                 <label for="remember-check" id="labelpw">
@@ -110,9 +124,21 @@
                 <div id="find">
                 	<span><a href="idpw_search" >아이디/비밀번호 찾기</a></span>
                 </div>
-                <hr class="line">
-                <input type="button" id="naverloginBtn" style="margin-bottom: 2px" >
-                <input type="button" id="kakaologinBtn" >
+                <script>
+                	$(function(){
+                		$("#kakaologinBtn").click(function(){
+                			alert("카카오로그인");
+                			location.href="https://kauth.kakao.com/oauth/authorize?client_id=6a62d12451f24681e508a5652789bd95&redirect_uri=http://localhost:8000/kakao/oauth&response_type=code";
+                		});
+                		
+                		
+                		
+                		
+                	});//j
+                </script>
+                <button type="button" id="kakaologinBtn">
+                <img src="/assets/img/login/kakao_login.png">
+                 </button>
               	 <div id="my-signin2"></div>
               	<div class="ex_join">
                 <p class="askSingup">아직 계정이 없나요? &nbsp<span class="suGo"><a href="signUp">회원가입</a></span></p>

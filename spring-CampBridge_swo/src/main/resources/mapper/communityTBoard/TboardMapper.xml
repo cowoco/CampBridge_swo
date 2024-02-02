@@ -86,5 +86,9 @@
 	<delete id="TBCommentDelete">
 		delete t_comment where t_cno=#{t_cno}
 	</delete>
+	<!-- 댓글 수정저장  -->
+	<update id="t_BCommentUpdate">
+		update t_comment set t_ccontent=#{t_ccontent},t_cdate=sysdate where t_cno=#{t_cno}
+	</update>
 	
 </mapper>

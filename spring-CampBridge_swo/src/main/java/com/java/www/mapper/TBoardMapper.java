@@ -47,6 +47,9 @@ public interface TBoardMapper {
 	
 	//댓글 삭제 
 	int TBCommentDelete(int t_cno);
+	
+	//댓글 수정저장
+	void t_BCommentUpdate(TBCommentDto tcdto);
 
 
 	

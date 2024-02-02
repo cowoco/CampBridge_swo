@@ -124,25 +124,26 @@ public class TBController {
 	// 3. 꿀팁 게시글 수정Pg
 	@PostMapping("doTBoard") // 게시글 수정페이지 저장
 	public String doTBoard(TBoardDto tcdto, @RequestPart MultipartFile tfile, Model model) throws Exception {
-
-		System.out.println("CController tUpdate tcdto :" + tcdto.getT_bno());
+		//bdto -> bfile
+		System.out.println("CController tUpdate tcdto t_bno :" + tcdto.getT_bno());
 		String orgName = "";
 		String newName = "";
 		if (!tfile.isEmpty()) {
 			orgName = tfile.getOriginalFilename();
 			long time = System.currentTimeMillis();
 			newName = time + "_" + orgName;
-			String upload = "c:/upload"; // 파일저장위치
+			String upload = "c:/upload"; // 파일저장위치 ㅜ
 			File f = new File(upload + newName);
 			tfile.transferTo(f);// 파일전송
 			tcdto.setT_bfile(newName);
 		}
-		// db연결
-		tbService.doTBoard(tcdto);
+		//db연결
+		tbService.doTBoard(tcdto); //파일업로드가 없으면 기존파일 그대로 사용
 		// model
 		model.addAttribute("result", "tUpdate");
 		return "/community/doTBoard";
-	}
+	}// 게시글 수정페이지 저장
+	
 	// 3.꿀팁 댓글 작성Pg
 	@PostMapping("t_BCommentInsert")//댓글 1개 입력 
 	@ResponseBody //ajax-데이터전송
@@ -167,6 +168,15 @@ public class TBController {
 		return "삭제처리";
 	}
 	
+	// 3.꿀팁 댓글 수정Pg
+	@PostMapping("t_BCommentUpdate")//댓글 수정 저장
+	@ResponseBody //ajax -데이터 전송
+	public TBCommentDto t_BCommentUpdate(TBCommentDto tcdto) {
+		System.out.println("TBController t_BCommentUpdate cno : "+tcdto.getT_cno());
+		//service연결 - 댓글수정저장
+		TBCommentDto tbCommentDto = tbService.t_BCommentUpdate(tcdto);
+		return tbCommentDto;
+	}
 	
 	
 	

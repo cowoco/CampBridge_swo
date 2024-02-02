@@ -104,10 +104,11 @@
 		    </div>
 		   <script>
 		  		$(function(){
+		  			let temp=0;
 		  			let t_bno = ${map.tbdto.t_bno};
 				//------------------- 댓글 1개 저장 시작 --------------------
+		  		  $("#replybtn").click(function(){
 		  			
-		  			$("#replybtn").click(function(){
 		  			let t_ccontent = $(".t_replyType").val();
 			    	let t_cpw = $(".t_replynum").val();
 			    	
@@ -196,6 +197,7 @@
 			  //------------------- 댓글 삭제 시작 --------------------
 				 $(function(){
 					 let temp=0;
+					 
 					$(document).on("click",".rDelBtn",function(){
 						//alert("부모의 id : "+$(this).parent().parent().parent().attr("id"));
 						//alert("부모의  : "+Number($(".tCount").text()));
@@ -220,8 +222,8 @@
 							});//ajax
 							alert("댓글이 삭제 되었습니다.");
 						}//if
-						
 					});//rDelBtn //댓글 삭제버튼
+					
 			  //------------------- 댓글 삭제 끝 --------------------
 			  //------------------- 댓글 수정 시작 --------------------
 			  	//댓글 수정창 열기
@@ -234,28 +236,29 @@
 					alert("댓글을 수정합니다.");
 					//alert($(this).parent().parent().parent().attr("id"));
 					//alert($(this).parent().prev().text());
+					//alert($(this).parent().parent().find("span").text());
 				
 					let t_cno= $(this).parent().parent().parent().attr("id");
 					let t_ccontent =$(this).parent().prev().text();
+					let t_cdate = $(this).parent().parent().find("span").text();
+					let id = "aaa";
 					
 					let hdate = '';
-					hdata += '<td><strong>댓글 작성자</strong>|<span style="color: blue;">${tcdto.id}</span>&nbsp;&nbsp;&nbsp;<span>${tcdto.t_cdate}</span>';
-					hdata += '';
-					hdata += '';
-					hdata += '';
-					hdata += '';
-					<td><strong>댓글 작성자</strong>|<span style="color: blue;">${tcdto.id}</span>&nbsp;&nbsp;&nbsp;<span>${tcdto.t_cdate}</span>
-					<li id="replyTxt">&nbsp;&nbsp;${tcdto.t_ccontent}</li>
-					<li id="replyBtn">
-						<button class="rDelBtn" style="cursor: pointer;">삭제</button>&nbsp;
-						<button class="rUBtn tcUpdateBtn" style="cursor: pointer;">수정</button>
-					</li>
-					</td>		
+					hdata +='<td><strong>댓글 작성자</strong>|<strong style="color: blue;">'+id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+t_cdate+'</span>';
+					hdata +='<li id="replyTxt"><textarea cols="145%">'+t_ccontent+'</textarea></li>';
+					hdata +='<li id="replyBtn">';
+					hdata +='<button class="rCanBtn">취소</button>&nbsp;';
+					hdata +='<button class="rSaveBtn">저장</button>';
+					hdata +='</li>';
+					hdata +='</td>';
+				
+					
+					
+					$("#"+t_cno).html(hdata); //기존 html 삭제 후 추가
+					temp=1; //수정창 열기
+					
 					
 				});//tcUpdateBtn
-			  
-			  
-			  
 			  
 			  //------------------- 댓글 수정 끝 ---------------------
 				 });//function
@@ -263,7 +266,7 @@
 		 
 		    <!-- 댓글보기-->
 		    <table style="margin-top: 70px;">
-		      <td style="font-weight: 700">총<strong class="tCount" style="color: #009223">&nbsp;&nbsp;${map.TBCommentlist.size() }</strong>&nbsp;개의 댓글이 등록되었습니다.</td>
+		      <td style="font-weight: 700">총 <strong class="tCount" style="color: #009223">&nbsp;&nbsp;${map.TBCommentlist.size()}</strong>&nbsp;개의 댓글이 등록되었습니다.</td>
 			  
 			<tbody class="replyBox">
 			<c:forEach var="tcdto" items="${map.TBCommentlist}">
@@ -276,6 +279,16 @@
 					</li>
 					</td>			
 				</tr>
+				
+				<!-- 수정창
+					<td><strong>댓글 작성자</strong>|<span style="color: blue;">${tcdto.id}</span>&nbsp;&nbsp;&nbsp;<span>${tcdto.t_cdate}</span>
+					<li id="replyTxt"><textarea cols="145%">${tcdto.t_ccontent}</textarea></li>
+					<li id="replyBtn">
+						<button class="rCanBtn">취소</button>
+						<button class="rSaveBtn">저장</button>
+					</li>
+					</td>
+				-->
 			</c:forEach>
 			
 			</tbody>

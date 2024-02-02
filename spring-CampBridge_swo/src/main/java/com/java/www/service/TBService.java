@@ -31,6 +31,9 @@ public interface TBService {
 	
 	//댓글삭제 - ajax 
 	String TBCommentDelete(int t_cno);
+	
+	//댓글수정 저장
+	TBCommentDto t_BCommentUpdate(TBCommentDto tcdto);
 
 
 }
