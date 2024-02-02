@@ -35,6 +35,9 @@
 		<link href="../assets/css/community/viewStyle.css" rel="stylesheet">
 		
 		<!-- Template nWrite JS File -->
+		<script >
+			let t_bno = ${map.tbdto.t_bno};
+		</script>
 		<script src="../assets/js/TBoard/tView.js"></script>
 		
 		
@@ -86,73 +89,32 @@
 		      </tr>
 		    </table>
 		    </form>
+	
+		    <!-- 버튼 -->
+		    
 		    <script>
 		    	$(function(){
-
-		    		$(".tDelBtn").click(function(){
-		    			if(confirm("게시글을 삭제하시겠습니까?")){
-		    				$("#t_VFrm").attr("action","tDelete").submit();
-		    			}
-		    		});//tDelBtn//게시글 삭제
-		    	});
+		    		 // 작성자 확인 (예: 작성자 ID가 '작성자ID'로 가정)
+		            var authorId = "${map.tbdto.id}";
+		            // 현재 사용자 확인 (예: 현재 사용자 ID가 '현재사용자ID'로 가정)
+		            var currentUserId = "${session_id}";
+		            // 작성자와 현재 사용자가 일치할 경우 삭제 및 수정 버튼 표시
+		            if (authorId === currentUserId) {
+		                $(".tDelBtn").show();  // Show delete button
+		                $(".tUpdateBtn").show();  // Show update button
+		            } else {
+		                $(".tDelBtn").hide();  // Hide delete button
+		                $(".tUpdateBtn").hide();  // Hide update button
+		            }
+		    	})
+		    	
 		    </script>
-		    <!-- 버튼 -->
+		    
 		    <div class="listBtn">
 		    	<button class="list tDelBtn">삭제</button>
 		    	<a href="tUpdate?t_bno=${map.tbdto.t_bno}"><button type="button" class="list tUpdateBtn">수정</button></a>
 		    	<a href="tList"><button type="button" class="list">목록</button></a>
 		    </div>
-		   <script>
-		  		$(function(){
-		  			let temp=0;
-		  			let t_bno = ${map.tbdto.t_bno};
-				//------------------- 댓글 1개 저장 시작 --------------------
-		  		  $("#replybtn").click(function(){
-		  			
-		  			let t_ccontent = $(".t_replyType").val();
-			    	let t_cpw = $(".t_replynum").val();
-			    	
-			    	if($(".t_replyType").val().length<1){
-			    		alert("댓글을 입력하셔야 저장 가능합니다.");
-			    		$("t_replyType").focus();
-			    		return false;
-			    	}
-			    	
-			    	$.ajax({
-			    		url:"/community/t_BCommentInsert",
-			    		data:{"t_ccontent":t_ccontent,"t_cpw":t_cpw,"t_bno":t_bno},
-			    		type:"post",
-			    		dataType:"json",
-			    		success:function(data){
-			    			alert("댓글이 저장되었습니다.");
-			    			console.log(data);
-			    			//태그 입력시작
-			    			let hdata="";
-			    			hdata +='<tr id="'+data.t_cno+'">';
-			    			hdata +='<td><strong>댓글 작성자</strong>|<span style="color: blue;">'+data.id+'</span>&nbsp;&nbsp;&nbsp;<span>'+data.t_cdate+'</span>';
-			    			hdata +='<li id="replyTxt">&nbsp;&nbsp;'+data.t_ccontent+'</li>';
-			    			hdata +='<li id="replyBtn">';
-			    			hdata +='<button class="rDelBtn" style="cursor: pointer;">삭제</button>&nbsp';
-			    			hdata +='<button class="rUBtn" style="cursor: pointer;">수정</button>';
-			    			hdata +='</li>';
-			    			hdata +='</td>';
-			    			hdata +='</tr>';
-			    			$(".replyBox").prepend(hdata);
-			    			
-			    			//글쓴 내용 지우기 
-			    			$(".t_replyType").val("");
-			    			$(".t_replynum").val("");
-			    		
-			    		},
-			    		error:function(){
-			    			alert("실패");
-			    		}
-			    		
-			    	});// ajax
-		  		});//replybtn - 등록버튼을 클릭해야지만
-				//------------------- 댓글 1개 저장 끝 --------------------
-		  		});//function
-		    </script>
 		    <!-- 댓글입력-->
 		    <table id="replyPw">
 			    <tr>
@@ -194,76 +156,32 @@
 		    </table>
 		    <!-- 이전글/다음글 끝-->
 		    <script type="text/javascript">
-			  //------------------- 댓글 삭제 시작 --------------------
-				 $(function(){
-					 let temp=0;
-					 
-					$(document).on("click",".rDelBtn",function(){
-						//alert("부모의 id : "+$(this).parent().parent().parent().attr("id"));
-						//alert("부모의  : "+Number($(".tCount").text()));
-						
-						let t_cno= $(this).parent().parent().parent().attr("id");
-						let tCount = Number($(".tCount").text());
-						if(confirm("댓글을 삭제하겠습니까?")){
-							//ajax
-							$.ajax({
-								url:"/community/t_BCommentDelete",
-								type:"post",
-								data:{"t_cno":t_cno},
-								dataType:"text",
-								success:function(data){
-									console.log(data);
-									$("#"+t_cno).remove();
-									$(".tCount").text(tCount-1);
-								},
-								error:function(){
-									alert("실패");
-								}
-							});//ajax
-							alert("댓글이 삭제 되었습니다.");
-						}//if
-					});//rDelBtn //댓글 삭제버튼
-					
-			  //------------------- 댓글 삭제 끝 --------------------
-			  //------------------- 댓글 수정 시작 --------------------
-			  	//댓글 수정창 열기
-				$(document).on("click",".tcUpdateBtn",function(){
-					if(temp != 0){
-						alert("다른 입력창이 열려 있습니다.");
-						return false;
-					}
-					
-					alert("댓글을 수정합니다.");
-					//alert($(this).parent().parent().parent().attr("id"));
-					//alert($(this).parent().prev().text());
-					//alert($(this).parent().parent().find("span").text());
+			//========== 댓글 수정창 저장 시작 ============
+			$(document).on("click",".rSaveBtn",function(){
+				alert("수정된 댓글을 저장 합니다.");
 				
-					let t_cno= $(this).parent().parent().parent().attr("id");
-					let t_ccontent =$(this).parent().prev().text();
-					let t_cdate = $(this).parent().parent().find("span").text();
-					let id = "aaa";
-					
-					let hdate = '';
-					hdata +='<td><strong>댓글 작성자</strong>|<strong style="color: blue;">'+id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+t_cdate+'</span>';
-					hdata +='<li id="replyTxt"><textarea cols="145%">'+t_ccontent+'</textarea></li>';
-					hdata +='<li id="replyBtn">';
-					hdata +='<button class="rCanBtn">취소</button>&nbsp;';
-					hdata +='<button class="rSaveBtn">저장</button>';
-					hdata +='</li>';
-					hdata +='</td>';
 				
-					
-					
-					$("#"+t_cno).html(hdata); //기존 html 삭제 후 추가
-					temp=1; //수정창 열기
-					
-					
-				});//tcUpdateBtn
-			  
-			  //------------------- 댓글 수정 끝 ---------------------
-				 });//function
+				
+				
+				
+				
+			});
+
+			
+			//========== 댓글 수정창 저장 끝 ============
+			//%%%%%%%%%% 댓글 수정 취소 시작 %%%%%%%%%%%%%
+			$(document).on("click",".rCanBtn",function(){
+				alert("댓글수정을 취소 합니다.");
+			});
+			
+			
+			
+			
+			
+			//%%%%%%%%%% 댓글 수정 취소 끝  %%%%%%%%%%%%%
 		    </script>
-		 
+		    
+		
 		    <!-- 댓글보기-->
 		    <table style="margin-top: 70px;">
 		      <td style="font-weight: 700">총 <strong class="tCount" style="color: #009223">&nbsp;&nbsp;${map.TBCommentlist.size()}</strong>&nbsp;개의 댓글이 등록되었습니다.</td>
@@ -271,7 +189,7 @@
 			<tbody class="replyBox">
 			<c:forEach var="tcdto" items="${map.TBCommentlist}">
 				<tr id="${tcdto.t_cno}">
-					<td><strong>댓글 작성자</strong>|<span style="color: blue;">${tcdto.id}</span>&nbsp;&nbsp;&nbsp;<span>${tcdto.t_cdate}</span>
+					<td><strong>댓글 작성자</strong>|<strong style="color: blue;">${tcdto.id}</strong>&nbsp;&nbsp;&nbsp;<span>${tcdto.t_cdate}</span>
 					<li id="replyTxt">&nbsp;&nbsp;${tcdto.t_ccontent}</li>
 					<li id="replyBtn">
 						<button class="rDelBtn" style="cursor: pointer;">삭제</button>&nbsp;
