@@ -106,8 +106,7 @@
 		                $(".tDelBtn").hide();  // Hide delete button
 		                $(".tUpdateBtn").hide();  // Hide update button
 		            }
-		    	})
-		    	
+		    	});
 		    </script>
 		    
 		    <div class="listBtn">
@@ -155,33 +154,6 @@
 		      </tr>
 		    </table>
 		    <!-- 이전글/다음글 끝-->
-		    <script type="text/javascript">
-			//========== 댓글 수정창 저장 시작 ============
-			$(document).on("click",".rSaveBtn",function(){
-				alert("수정된 댓글을 저장 합니다.");
-				
-				
-				
-				
-				
-				
-			});
-
-			
-			//========== 댓글 수정창 저장 끝 ============
-			//%%%%%%%%%% 댓글 수정 취소 시작 %%%%%%%%%%%%%
-			$(document).on("click",".rCanBtn",function(){
-				alert("댓글수정을 취소 합니다.");
-			});
-			
-			
-			
-			
-			
-			//%%%%%%%%%% 댓글 수정 취소 끝  %%%%%%%%%%%%%
-		    </script>
-		    
-		
 		    <!-- 댓글보기-->
 		    <table style="margin-top: 70px;">
 		      <td style="font-weight: 700">총 <strong class="tCount" style="color: #009223">&nbsp;&nbsp;${map.TBCommentlist.size()}</strong>&nbsp;개의 댓글이 등록되었습니다.</td>
@@ -189,6 +161,7 @@
 			<tbody class="replyBox">
 			<c:forEach var="tcdto" items="${map.TBCommentlist}">
 				<tr id="${tcdto.t_cno}">
+					
 					<td><strong>댓글 작성자</strong>|<strong style="color: blue;">${tcdto.id}</strong>&nbsp;&nbsp;&nbsp;<span>${tcdto.t_cdate}</span>
 					<li id="replyTxt">&nbsp;&nbsp;${tcdto.t_ccontent}</li>
 					<li id="replyBtn">

@@ -102,18 +102,11 @@ public class TBController {
 	}// tWrite() //글쓰기저장, 오버로딩
 
 	// 3. 꿀팁 게시글 삭제Pg
-	@PostMapping("tDelete") // 게시글 삭제
-	public String tDelete(@RequestParam(defaultValue = "1") int t_bno, Model model) {
-		System.out.println("CController tDelete t_bno : " + t_bno);
-		// service 연결
-		tbService.tDelete(t_bno);
-		// model
-		model.addAttribute("result", "tView_Del");
-		return "/community/doTBoard";
-	}// tDelete() //게시글 삭제
+	// 게시글 삭제
+	
 
 	// 3. 꿀팁 게시글 수정Pg
-	@GetMapping("tUpdate") // 게시글 수정페이지 보기
+	// 게시글 수정페이지 보기
 	public String tUpdate(@RequestParam(defaultValue = "1") int t_bno, Model model) {
 		System.out.println("CController tUpdate t_bno :" + t_bno);
 		Map<String, Object> map = tbService.tb_selectOne(t_bno);
@@ -122,27 +115,10 @@ public class TBController {
 	}// tUpdate()//게시글 수정페이지 보기
 
 	// 3. 꿀팁 게시글 수정Pg
-	@PostMapping("doTBoard") // 게시글 수정페이지 저장
-	public String doTBoard(TBoardDto tcdto, @RequestPart MultipartFile tfile, Model model) throws Exception {
-		//bdto -> bfile
-		System.out.println("CController tUpdate tcdto t_bno :" + tcdto.getT_bno());
-		String orgName = "";
-		String newName = "";
-		if (!tfile.isEmpty()) {
-			orgName = tfile.getOriginalFilename();
-			long time = System.currentTimeMillis();
-			newName = time + "_" + orgName;
-			String upload = "c:/upload"; // 파일저장위치 ㅜ
-			File f = new File(upload + newName);
-			tfile.transferTo(f);// 파일전송
-			tcdto.setT_bfile(newName);
-		}
-		//db연결
-		tbService.doTBoard(tcdto); //파일업로드가 없으면 기존파일 그대로 사용
-		// model
-		model.addAttribute("result", "tUpdate");
-		return "/community/doTBoard";
-	}// 게시글 수정페이지 저장
+	// 게시글 수정페이지 저장
+	
+	
+	
 	
 	// 3.꿀팁 댓글 작성Pg
 	@PostMapping("t_BCommentInsert")//댓글 1개 입력 

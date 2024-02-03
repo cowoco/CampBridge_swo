@@ -44,7 +44,7 @@
 		   
 			<!-- 꿀팁 게시판 글수정 -->
 	    	<h1 style="float: left; margin: 40px; font-weight: 700; position: relative; left:235px; top: 30px;">꿀팁게시글 수정</h1>
-			<form action="" name="freeFrm" method="post" enctype="multipart/form-data">
+			<form action="doTUpdate" name="freeFrm" method="post" enctype="multipart/form-data">
 			    <table>
 			     <colgroup>
 			        <col width="5%">
@@ -61,7 +61,7 @@
 			        </td>
 			      </tr>
 			      <tr>
-			        <td colspan="4" class="article"><textarea rows="9" name="f_bcontent" id="f_bcontent" placeholder=" ※ 게시글 내용을 입력해주세요."></textarea> </td>
+			        <td colspan="4" class="article"><textarea rows="9" name="f_bcontent" id="f_bcontent" placeholder=" ※ 게시글 내용을 입력해주세요.">${map.tbdto.t_bcontent}</textarea> </td>
 			      </tr>
 			      <tr style="border-bottom: 2px solid #009223; line-height: 20px;">
 			        <td colspan="4" class="article"><input type="file" name="f_bfile" id="f_bfile"></td>
@@ -70,7 +70,7 @@
 			</form>
 			<div class="listBtn">
 		    	<a href="#"><div class="list">수정</div></a>
-		    	<a href="tView"><div class="list">취소</div></a>
+		    	<a href="tView?t_bno=${map.tbdto.t_bno}"><div class="list">취소</div></a>
 			</div>
  		 </section>
 		

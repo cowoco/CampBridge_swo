@@ -21,10 +21,10 @@ public interface TBService {
 	void tWrite(TBoardDto tbdto);
 	
 	//게시글 삭제
-	void tDelete(int t_bno);
+
 	
 	//게시글 수정저장
-	void doTBoard(TBoardDto tbdto);
+
 	
 	//댓글입력 - ajax
 	TBCommentDto TBCommentInsert(TBCommentDto tcdto);

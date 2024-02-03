@@ -106,24 +106,15 @@ public class TBServiceImpl implements TBService{
 
 
 
-	@Override
-	public void tDelete(int t_bno) {
-		//게시글 삭제
-		int result = tboardMapper.tDelete(t_bno);
-		System.out.println("TBServiceImpl tDelete result : "+result);
-		
-	}
+	
+	//게시글 삭제
 
 
 
-	@Override
-	public void doTBoard(TBoardDto tbdto) {
-		//게시글 수정 저장
-		int result = tboardMapper.doTBoard(tbdto);
-		System.out.println("TBServiceImpl doTBoard result : "+result);
-		
-	}
 
+	
+	//게시글 수정 저장
+	
 
 
 	@Override //db에 저장된 댓글 1개 가져오기
@@ -141,7 +132,7 @@ public class TBServiceImpl implements TBService{
 
 
 
-	@Override
+	@Override//댓글 삭제
 	public String TBCommentDelete(int t_cno) {
 		String result="";
 		int re = tboardMapper.TBCommentDelete(t_cno);
@@ -151,7 +142,7 @@ public class TBServiceImpl implements TBService{
 
 
 
-	@Override
+	@Override//댓글 수정
 	public TBCommentDto t_BCommentUpdate(TBCommentDto tcdto) {
 		//session_id 
 		

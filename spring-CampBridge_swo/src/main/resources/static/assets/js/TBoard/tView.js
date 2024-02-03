@@ -5,8 +5,8 @@ let temp=0;
 
 $(function(){
 	$(".tDelBtn").click(function(){
-	    			if(confirm("게시글을 삭제하시겠습니까?")){
-	    				$("#t_VFrm").attr("action","tDelete").submit();
+	    if(confirm("게시글을 삭제하시겠습니까?")){
+	    	$("#t_VFrm").attr("action","tDelete").submit();
 	     }
 	  });//tDelBtn//게시글 삭제
 //------------------- 댓글 1개 저장 시작 --------------------
@@ -102,6 +102,7 @@ $(function(){
 		let id = "aaa";
 		
 		let hdata = '';
+		hdata += '<input type="hidden" id="hiddenTxt" value="'+t_ccontent+'">';
 		hdata +='<td><strong>댓글 작성자</strong>|<strong style="color: blue;">'+id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+t_cdate+'</span>';
 		hdata +='<li id="replyTxt"><textarea cols="145%">'+t_ccontent+'</textarea></li>';
 		hdata +='<li id="replyBtn">';
@@ -118,6 +119,74 @@ $(function(){
 		
 	});//tcUpdateBtn //댓글 수정창 열기
 	//********** 댓글 수정창 열기 끝 **************
+	//========== 댓글 수정창 저장 시작 ============
+	$(document).on("click",".rSaveBtn",function(){
+		alert("수정된 댓글을 저장 합니다.");
+		//alert($(this).parent().prev().find("textarea").val());
+		
+	let t_cno= $(this).parent().parent().parent().attr("id");
+	let t_ccontent = $(this).parent().prev().find("textarea").val();
+	let t_cdate = $(this).parent().parent().find("span").text();
+	let id ="bbb";
+	
+	//ajax - 댓글수정 저장
+	$.ajax({
+		url:"/community/t_BCommentUpdate",
+		type:"post",
+		data:{"t_cno":t_cno,"t_ccontent":t_ccontent},
+		dataType:"json",
+		success:function(data){
+			alert("댓글이 수정되었습니다.");
+			console.log(data);
+			
+			//태그 입력 시작
+			let hdata ="";
+			
+			//hdata+='<input type="hidden" value="'+data.t_cpw+'" class="t_cpw">';
+			hdata+='<td><strong>댓글 작성자</strong>|<strong style="color: blue;">'+data.id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+data.t_cdate+'</span>';
+			hdata+='<li id="replyTxt">'+data.t_ccontent+'</li>';
+			hdata+='<li id="replyBtn">';
+			hdata+='<button class="rDelBtn" style="cursor: pointer;">삭제</button>&nbsp;';
+			hdata+='<button class="rUBtn tcUpdateBtn" style="cursor: pointer;">수정</button>';
+			hdata+='</li>';
+			hdata+='</td>';
+			hdata+='</tr>';
+			
+			$("#"+t_cno).html(hdata);  //html삭제 후 추가
+			temp=0;
+		},
+		error:function(){
+			alert("실패");
+		}
+		});//ajax - 댓글수정 저장 끝
+	});//rSaveBtn
+	//========== 댓글 수정창 저장 끝 ============
+	//%%%%%%%%%% 댓글 수정 취소 시작 %%%%%%%%%%%%%
+	$(document).on("click",".rCanBtn",function(){
+		alert("댓글 수정을 취소 합니다.");
+		
+		let t_cno= $(this).parent().parent().parent().attr("id");
+		let t_ccontent = $(this).closest("tr").find("input[type='hidden']").val();
+		let t_cdate = $(this).parent().parent().find("span").text();
+		let id ="bbb";
+		
+		//태그 입력 시작
+		let hdata ="";
+		
+		//hdata+='<input type="hidden" value="'+data.t_cpw+'" class="t_cpw">';
+		hdata+='<td><strong>댓글 작성자</strong>|<strong style="color: blue;">'+id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+t_cdate+'</span>';
+		hdata+='<li id="replyTxt">'+t_ccontent+'</li>';
+		hdata+='<li id="replyBtn">';
+		hdata+='<button class="rDelBtn" style="cursor: pointer;">삭제</button>&nbsp;';
+		hdata+='<button class="rUBtn tcUpdateBtn" style="cursor: pointer;">수정</button>';
+		hdata+='</li>';
+		hdata+='</td>';
+		hdata+='</tr>';
+		
+		$("#"+t_cno).html(hdata);  //html삭제 후 추가
+		temp=0;
+	  });//rCanBtn
+	//%%%%%%%%%% 댓글 수정 취소 끝  %%%%%%%%%%%%%
 
   //------------------- 댓글 수정 끝 ---------------------
   

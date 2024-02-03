@@ -55,17 +55,16 @@
 		insert into t_board values (t_board_seq.nextval,'aaa',#{t_btitle},#{t_bcontent},sysdate,
 		0,t_board_seq.currval,0,0,#{t_bfile})
 	</insert>
-	
 	<!-- 게시글 삭제 -->
-	<delete id="tDelete">
-		delete t_board where t_bno=#{t_bno}
-	</delete>
+	
+	
 	
 	<!-- 게시글 수정 저장 -->
-	<update id="doTBoard">
-		update t_board set t_btitle=#{t_btitle},t_bcontent=#{t_bcontent},t_bdate=sysdate,
-		t_bfile=#{t_bfile} where t_bno=#{t_bno}
-	</update>
+	
+	
+	
+	
+	
 	<!--  ====== 댓글 ======  -->
 	<!-- 댓글 전체 가져오기  -->
 	<select id="TBCommemtSelectAll"  resultType="com.java.www.dto.TBCommentDto">
