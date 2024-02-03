@@ -29,7 +29,9 @@ public interface TBoardMapper {
 	
 	//글쓰기 저장
 	int tWrite(TBoardDto tbdto);
-
+	
+	//게시글 수정 저장
+	int doTBUpdate(TBoardDto tbdto);
 
 	//댓글 전체 가져오기
 	List<TBCommentDto> TBCommemtSelectAll(int t_bno);

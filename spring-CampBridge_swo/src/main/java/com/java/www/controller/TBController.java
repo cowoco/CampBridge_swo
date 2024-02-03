@@ -1,6 +1,7 @@
 package com.java.www.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,16 +108,37 @@ public class TBController {
 
 	// 3. 꿀팁 게시글 수정Pg
 	// 게시글 수정페이지 보기
-	public String tUpdate(@RequestParam(defaultValue = "1") int t_bno, Model model) {
-		System.out.println("CController tUpdate t_bno :" + t_bno);
+	@PostMapping("tUpdate")
+	public String tUpdate(@RequestParam(defaultValue = "1")int t_bno,Model model) {
+		//System.out.println("TBController tUpdate : "+t_bno);
 		Map<String, Object> map = tbService.tb_selectOne(t_bno);
-		model.addAttribute("map", map);
-		return "/community/tUpdate";
-	}// tUpdate()//게시글 수정페이지 보기
+		model.addAttribute("map",map);
+		return "community/tUpdate";
+	}
 
 	// 3. 꿀팁 게시글 수정Pg
 	// 게시글 수정페이지 저장
-	
+	@PostMapping("doTBUpdate")
+	public String doTBUpdate(TBoardDto tbdto,@RequestPart MultipartFile tfiles) throws Exception {
+		
+		System.out.println("TBController  doTBUpdate bno : "+tbdto.getT_bno());
+		String orgName="";
+		String newName="";
+		if(!tfiles.isEmpty()) {
+			orgName = tfiles.getOriginalFilename();
+			long time = System.currentTimeMillis();
+			newName = time+"_"+orgName;
+			String upload ="c:.upload/";
+			File f = new File(upload+newName);
+			tfiles.transferTo(f);
+			tbdto.setT_bfile(newName);
+			
+		}//if
+		//db전송 
+		tbService.doTBUpdate(tbdto);
+		
+		return "/community/doTBUpdate";
+	}
 	
 	
 	

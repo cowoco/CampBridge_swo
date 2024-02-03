@@ -24,6 +24,7 @@ public interface TBService {
 
 	
 	//게시글 수정저장
+	void doTBUpdate(TBoardDto tbdto);
 
 	
 	//댓글입력 - ajax
@@ -34,6 +35,8 @@ public interface TBService {
 	
 	//댓글수정 저장
 	TBCommentDto t_BCommentUpdate(TBCommentDto tcdto);
+	
+	
 
 
 }

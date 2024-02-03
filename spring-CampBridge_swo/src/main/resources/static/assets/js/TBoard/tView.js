@@ -9,6 +9,11 @@ $(function(){
 	    	$("#t_VFrm").attr("action","tDelete").submit();
 	     }
 	  });//tDelBtn//게시글 삭제
+	$(".tUpdateBtn").click(function(){
+	   alert("수정페이지로 이동합니다."); 
+	    $("#t_VFrm").attr("action","tUpdate").submit()
+	   
+	  });//tUpdateBtn//게시글 수정
 //------------------- 댓글 1개 저장 시작 --------------------
 	  $("#replybtn").click(function(){
 		

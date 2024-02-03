@@ -60,10 +60,10 @@
 	
 	
 	<!-- 게시글 수정 저장 -->
-	
-	
-	
-	
+	<update id="doTUpdate">
+		update t_board set t_btitle=#{t_btitle},t_bcontent=#{t_bcontent},t_bdate=sysdate,
+		t_bfile=#{t_bfile} where t_bno=#{t_bno}
+	</update>
 	
 	<!--  ====== 댓글 ======  -->
 	<!-- 댓글 전체 가져오기  -->

@@ -114,6 +114,12 @@ public class TBServiceImpl implements TBService{
 
 	
 	//게시글 수정 저장
+	@Override
+	public void doTBUpdate(TBoardDto tbdto) {
+		int result = tboardMapper.doTBUpdate(tbdto);
+		System.out.println("TBServiceImpl doTBUpdate doTBUpdate : "+result);
+		
+	}//게시글 수정 저장
 	
 
 
@@ -155,6 +161,10 @@ public class TBServiceImpl implements TBService{
 		
 		return tbCommentDto;
 	}
+
+
+
+	
 
 
 }

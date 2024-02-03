@@ -52,7 +52,7 @@
 		   
 			<!-- 꿀팁게시글 보기-->
 	    	<h1 style="float: left; margin: 40px 0 0 700px; font-weight: 700; position: relative; left:50px;">꿀팁 게시글</h1>
-		    <form action="" id="t_VFrm" name="t_VFrm" method="post">
+		    <form action="#" id="t_VFrm" name="t_VFrm" method="post">
 		    <table>
 		     <colgroup>
 		        <col width="10%">
@@ -110,8 +110,8 @@
 		    </script>
 		    
 		    <div class="listBtn">
-		    	<button class="list tDelBtn">삭제</button>
-		    	<a href="tUpdate?t_bno=${map.tbdto.t_bno}"><button type="button" class="list tUpdateBtn">수정</button></a>
+		    	<button type="button" class="list tDelBtn">삭제</button>
+		    	<button type="button" class="list tUpdateBtn">수정</button>
 		    	<a href="tList"><button type="button" class="list">목록</button></a>
 		    </div>
 		    <!-- 댓글입력-->
