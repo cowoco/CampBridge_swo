@@ -38,7 +38,7 @@
 		<link href="../assets/css/summernote-lite.css" rel="stylesheet">
 		
 		<!-- Template nWrite JS File -->
-  		<script src="../assets/js/tWrite.js"></script>
+  		<script src="../assets/js/TBoard/tWrite.js"></script>
   		<script src="../assets/js/summernote.js"></script>
 		
 	</head>

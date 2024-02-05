@@ -37,6 +37,23 @@
 		<!-- Template nWrite JS File -->
 		<script >
 			let t_bno = ${map.tbdto.t_bno};
+			
+			$(function(){
+				/*========== 자신의 글만 수정 삭제 가능하도록 ===========*/
+				 // 작성자 확인 (예: 작성자 ID가 '작성자ID'로 가정)
+			    var authorId = "${map.tbdto.id}";
+			    // 현재 사용자 확인 (예: 현재 사용자 ID가 '현재사용자ID'로 가정)
+			    var currentUserId = "${session_id}";
+			    // 작성자와 현재 사용자가 일치할 경우 삭제 및 수정 버튼 표시
+			    if (authorId === currentUserId) {
+			        $(".tDelBtn").show();  // Show delete button
+			        $(".tUpdateBtn").show();  // Show update button
+			    } else {
+			        $(".tDelBtn").hide();  // Hide delete button
+			        $(".tUpdateBtn").hide();  // Hide update button
+			    }
+			
+			});
 		</script>
 		<script src="../assets/js/TBoard/tView.js"></script>
 		
@@ -67,7 +84,7 @@
 		        <th><fmt:formatDate value="${map.tbdto.t_bdate}" pattern="yyyy-MM-dd"/></th>
 		      </tr>
 		      <tr style="border-bottom: 2px solid #009223">
-		        <td style="text-align: center;"><strong>작성자</strong style="text-align: center;"></td>
+		        <td style="text-align: center;"><strong style="text-align: center;">작성자</strong></td>
 		        <td>${map.tbdto.id}</td>
 		        <td style="text-align: right;"><strong>조회수</strong></td>
 		        <td>${map.tbdto.t_bhit}</td>
@@ -91,27 +108,13 @@
 		    </form>
 	
 		    <!-- 버튼 -->
-		    
-		    <script>
-		    	$(function(){
-		    		 // 작성자 확인 (예: 작성자 ID가 '작성자ID'로 가정)
-		            var authorId = "${map.tbdto.id}";
-		            // 현재 사용자 확인 (예: 현재 사용자 ID가 '현재사용자ID'로 가정)
-		            var currentUserId = "${session_id}";
-		            // 작성자와 현재 사용자가 일치할 경우 삭제 및 수정 버튼 표시
-		            if (authorId === currentUserId) {
-		                $(".tDelBtn").show();  // Show delete button
-		                $(".tUpdateBtn").show();  // Show update button
-		            } else {
-		                $(".tDelBtn").hide();  // Hide delete button
-		                $(".tUpdateBtn").hide();  // Hide update button
-		            }
-		    	});
-		    </script>
+			
+		
 		    
 		    <div class="listBtn">
 		    	<button type="button" class="list tDelBtn">삭제</button>
 		    	<button type="button" class="list tUpdateBtn">수정</button>
+		    	<button type="button" class="list tReplyBtn">답글</button>
 		    	<a href="tList"><button type="button" class="list">목록</button></a>
 		    </div>
 		    <!-- 댓글입력-->

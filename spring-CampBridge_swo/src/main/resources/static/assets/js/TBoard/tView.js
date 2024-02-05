@@ -4,16 +4,28 @@
 let temp=0;
 
 $(function(){
+
+	
+	
 	$(".tDelBtn").click(function(){
 	    if(confirm("게시글을 삭제하시겠습니까?")){
-	    	$("#t_VFrm").attr("action","tDelete").submit();
+			location.href="tDelete?t_bno="+t_bno;
+	    	//$("#t_VFrm").attr("action","tDelete").submit();
 	     }
 	  });//tDelBtn//게시글 삭제
+	
 	$(".tUpdateBtn").click(function(){
 	   alert("수정페이지로 이동합니다."); 
-	    $("#t_VFrm").attr("action","tUpdate").submit()
+	    location.href="tUpdate?t_bno="+t_bno;
 	   
 	  });//tUpdateBtn//게시글 수정
+	  
+	  $(".tReplyBtn").click(function(){
+		 alert("답글페이지로 이동합니다.");
+		 location.href="tReply?t_bno="+t_bno; 
+	  });
+	  
+
 //------------------- 댓글 1개 저장 시작 --------------------
 	  $("#replybtn").click(function(){
 		
@@ -165,8 +177,8 @@ $(function(){
 		}
 		});//ajax - 댓글수정 저장 끝
 	});//rSaveBtn
-	//========== 댓글 수정창 저장 끝 ============
-	//%%%%%%%%%% 댓글 수정 취소 시작 %%%%%%%%%%%%%
+	//=========== 댓글 수정창 저장 끝 ============
+	//%%%%%%%%%%% 댓글 수정 취소 시작 %%%%%%%%%%%%%
 	$(document).on("click",".rCanBtn",function(){
 		alert("댓글 수정을 취소 합니다.");
 		
@@ -191,7 +203,7 @@ $(function(){
 		$("#"+t_cno).html(hdata);  //html삭제 후 추가
 		temp=0;
 	  });//rCanBtn
-	//%%%%%%%%%% 댓글 수정 취소 끝  %%%%%%%%%%%%%
+	//%%%%%%%%%%% 댓글 수정 취소 끝  %%%%%%%%%%%%%
 
   //------------------- 댓글 수정 끝 ---------------------
   
@@ -199,4 +211,4 @@ $(function(){
 
 
 
-});//function
+});//function-jquery

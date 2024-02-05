@@ -85,8 +85,14 @@ public class TBServiceImpl implements TBService{
 		TBoardDto tprevdto = tboardMapper.tb_selectOnePrev(t_bno);
 		TBoardDto tnextdto = tboardMapper.tb_selectOneNext(t_bno);
 		
+		//조회수 증가 
+		tboardMapper.t_bhitUp(t_bno);
+		
+		
 		Map<String, Object> map = new HashMap<>();
 		List<TBCommentDto> TBCommentlist = tboardMapper.TBCommemtSelectAll(t_bno);
+		System.out.println("TBServiceImpl tb_selectOne tbdto : "+tbdto);
+	
 		map.put("tbdto",tbdto);
 		map.put("tprevdto",tprevdto);
 		map.put("tnextdto",tnextdto);
@@ -108,7 +114,12 @@ public class TBServiceImpl implements TBService{
 
 	
 	//게시글 삭제
-
+	@Override
+	public void tDelete(int t_bno) {
+		int result = tboardMapper.tDelete(t_bno);
+		System.out.println("TBServiceImpl tDelete rsult : "+result);
+		
+	}//tDelete() //게시글 삭제
 
 
 
@@ -117,7 +128,8 @@ public class TBServiceImpl implements TBService{
 	@Override
 	public void doTBUpdate(TBoardDto tbdto) {
 		int result = tboardMapper.doTBUpdate(tbdto);
-		System.out.println("TBServiceImpl doTBUpdate doTBUpdate : "+result);
+		System.out.println("TBServiceImpl doTBUpdate  tbdto :"+tbdto);
+		System.out.println("TBServiceImpl doTBUpdate result : "+result);
 		
 	}//게시글 수정 저장
 	
@@ -161,6 +173,24 @@ public class TBServiceImpl implements TBService{
 		
 		return tbCommentDto;
 	}
+
+
+
+	@Override//답변달기 저장
+	public void doTBReply(TBoardDto tbdto) {
+		//답변달기 저장 - t_bgroup,t_bstep,t_bindent
+		//1. 부모보다 큰 t_bstep은 1씩 증가함
+		//2. 현재글은 부모 t_bstep +1 저장 
+		//3. t_bindent 부모의 1 더하기
+		//4. t_bgorup은 부모와 같음 
+		//조회수 방지
+		tboardMapper.tbstepUp(tbdto);
+		int result = tboardMapper.doTBReply(tbdto);
+		System.out.println("TBServiceImpl doTBReply result : "+result);
+		
+	}
+
+
 
 
 

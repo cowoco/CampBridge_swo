@@ -49,21 +49,28 @@
 		(select row_number() over(order by t_bgroup desc,t_bstep asc)rnum, a.*from
 		t_board a)where t_bno=#{t_bno})-1
 	</select>
+	<!-- 조회수 1증가 -->
+	<update id="t_bhitUp">
+		update t_board set t_bhit=t_bhit+1 where t_bno=#{t_bno}
+	</update>
 	
 	<!-- 게시글(글쓰기) 저장  -->
 	<insert id="tWrite">
 		insert into t_board values (t_board_seq.nextval,'aaa',#{t_btitle},#{t_bcontent},sysdate,
 		0,t_board_seq.currval,0,0,#{t_bfile})
 	</insert>
+	
 	<!-- 게시글 삭제 -->
-	
-	
+	<delete id="tDelete">
+		delete t_board where t_bno=#{t_bno}
+	</delete>
 	
 	<!-- 게시글 수정 저장 -->
-	<update id="doTUpdate">
+	<update id="doTBUpdate">
 		update t_board set t_btitle=#{t_btitle},t_bcontent=#{t_bcontent},t_bdate=sysdate,
 		t_bfile=#{t_bfile} where t_bno=#{t_bno}
 	</update>
+	
 	
 	<!--  ====== 댓글 ======  -->
 	<!-- 댓글 전체 가져오기  -->
@@ -89,5 +96,16 @@
 	<update id="t_BCommentUpdate">
 		update t_comment set t_ccontent=#{t_ccontent},t_cdate=sysdate where t_cno=#{t_cno}
 	</update>
+	<!--  ====== 답변 ======  -->
+	<!-- 다른게시글 bstep 1증가  -->
+	<update id="tbstepUp">
+		update t_board set t_bstep=t_bstep+1 where t_bgroup=#{t_bgroup} and t_bstep>#{t_bstep}
+	</update>
+	<!-- 답변달기 저장  -->
+	<insert id="doTBReply">
+		insert into t_board values (t_board_seq.nextval,#{id},#{t_btitle},#{t_bcontent},sysdate,
+		1,#{t_bgroup},#{t_bstep}+1,#{t_bindent}+1,#{t_bfile})
+	</insert>
+	
 	
 </mapper>

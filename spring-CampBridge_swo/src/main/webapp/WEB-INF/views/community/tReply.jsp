@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>캠핑꿀팁(Tip)_글수정</title>
+		<title>캠핑꿀팁(Tip)_답글달기</title>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	    <meta content="" name="description">
 	    <meta content="" name="keywords">
@@ -39,6 +39,17 @@
 	    <script src="/assets/js/summernote.js"></script>
 		<script src="../assets/js/summernote-lite.js"></script>
         <script src="../assets/js/summernote/lang/summernote-ko-KR.js"></script>
+        
+        <script type="text/javascript">
+ 		 	$(function(){
+ 		 		$(".tUpdateBtn").click(function(){
+ 		 			tipFrm.submit();
+ 		 		});
+ 		 		
+ 		 		
+ 		 	});//j
+ 		 
+ 		 </script>
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
@@ -48,10 +59,14 @@
 	
 		<section class="notice">
 			<!-- 꿀팁 게시판 글수정 -->
-	    	<h1 style="float: left; margin: 40px; font-weight: 700; position: relative; left:235px; top: 30px;">꿀팁게시글 수정</h1>
-			<form action="doTBUpdate" name="tipFrm" method="post" enctype="multipart/form-data">
+	    	<h1 style="float: left; margin: 40px; font-weight: 700; position: relative; left:235px; top: 30px;">꿀팁게시글 답변달기</h1>
+			<form action="doTBReply" name="tipFrm" id="tipFrm" method="post" enctype="multipart/form-data">
 	   			  	<input type="hidden" name="t_bno" value="${map.tbdto.t_bno}">
+	   			  	<input type="hidden" name="id" value="${map.tbdto.id}">
 	   			  	<input type="hidden" name="t_bfile" value="${map.tbdto.t_bfile}">
+	   			  	<input type="hidden" name="t_bgroup" value="${map.tbdto.t_bgroup}">
+	   			  	<input type="hidden" name="t_bstep" value="${map.tbdto.t_bstep}">
+	   			  	<input type="hidden" name="t_bindent" value="${map.tbdto.t_bindent}">
 			    <table>
 			     <colgroup>
 			        <col width="5%">
@@ -62,7 +77,7 @@
 	   			  <tr>
 	   			  </tr>
 			      <tr>
-			        <th colspan="4" style="text-align: left;"><input type="text" name="t_btitle" id="t_btitle" value="${map.tbdto.t_btitle}"></th>
+			        <th colspan="4" style="text-align: left;"><input type="text" name="t_btitle" id="t_btitle" value="┖<답변> ${map.tbdto.t_btitle}"></th>
 			      </tr>
 			      <tr style="border-bottom: 2px solid #009223">
 			        <td colspan="4"><strong style="text-align: center;">작성자 | </strong>
@@ -70,23 +85,29 @@
 			        </td>
 			      </tr>
 			      <tr>
-			        <td colspan="4" class="article"><textarea rows="9" name="t_bcontent" id="summernote" placeholder=" ※ 게시글 내용을 입력해주세요.">${map.tbdto.t_bcontent}</textarea></td>
-			      </tr>
+			        <td colspan="4" class="article">
+<textarea rows="9" name="t_bcontent" id="summernote" placeholder=" ※ 게시글 내용을 입력해주세요.">
+			        
+---------------------------<br>        
+[답글]			        
+${map.tbdto.t_bcontent}
+</textarea>
+					</td>
+				 </tr>
+			      
 			      <tr style="border-bottom: 2px solid #009223; line-height: 20px;">
-			        <td colspan="4" class="article">파일 첨부 : ${map.tbdto.t_bfile}</td>
-			      </tr>
-			      <tr style="border-bottom: 2px solid #009223; line-height: 20px;">
-			        <td colspan="4" class="article"><input type="file" name="files" id="file"></td>
+			        <td colspan="4" class="article"><input type="file" name="tfiles" id="file"></td>
 			      </tr>
 			    </table>
 			<div class="listBtn">
-		    	<button type="submit" class="list tUpdateBtn">수정</button>
+		    	<button type="submit" class="list tUpdateBtn">저장</button>
 			</div>
 			</form>
 			<div class="listBtn">
-		    	<a href="tView?t_bno=${map.tbdto.t_bno}"><button class="list ">취소</button></a>
+		    	<a href="tView?t_bno=${map.tbdto.t_bno}"><button class="list">취소</button></a>
 			</div>
  		 </section>
+ 		 
 		<!-- ======= Footer ======= -->
 	  	<%@include file="../include/footer.jsp" %>
 	 	<!-- End Footer -->

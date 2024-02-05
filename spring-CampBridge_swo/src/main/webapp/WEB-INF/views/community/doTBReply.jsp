@@ -4,16 +4,16 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 	<head>
-		<meta charset="UTF-8">
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<title>doTBUpdate</title>
+	    <meta charset="UTF-8">
+	    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	    <title>꿀팁게시판 - doTBReply</title>
 	</head>
 	<body>
-		<script>
-			 alert("게시글이 수정 되었습니다.");
-			 location.href="tList";
-		</script>			
+	   <script>
+	    	 alert("답변달기가 저장 되었습니다.");
+	    	 location.href="tList";
+	   </script>
 	</body>
 </html>

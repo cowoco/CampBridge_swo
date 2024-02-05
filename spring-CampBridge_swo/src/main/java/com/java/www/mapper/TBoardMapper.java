@@ -26,9 +26,14 @@ public interface TBoardMapper {
 	TBoardDto tb_selectOnePrev(int t_bno);
 	//게시글 1개 가져오기- 다음글
 	TBoardDto tb_selectOneNext(int t_bno);
+	//조회수 1증가
+	void t_bhitUp(int t_bno);
 	
 	//글쓰기 저장
 	int tWrite(TBoardDto tbdto);
+	
+	//게시글 삭제
+	int tDelete(int t_bno);
 	
 	//게시글 수정 저장
 	int doTBUpdate(TBoardDto tbdto);
@@ -47,6 +52,14 @@ public interface TBoardMapper {
 	
 	//댓글 수정저장
 	void t_BCommentUpdate(TBCommentDto tcdto);
+	
+	//------  답변달기  ------
+	//다른게시글 bstep 1증가
+	void tbstepUp(TBoardDto tbdto);
+	//답변달기 저장
+	int doTBReply(TBoardDto tbdto);
+	
+	
 
 
 	
