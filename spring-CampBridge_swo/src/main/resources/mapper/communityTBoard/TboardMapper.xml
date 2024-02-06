@@ -56,7 +56,7 @@
 	
 	<!-- 게시글(글쓰기) 저장  -->
 	<insert id="tWrite">
-		insert into t_board values (t_board_seq.nextval,'aaa',#{t_btitle},#{t_bcontent},sysdate,
+		insert into t_board values (t_board_seq.nextval,#{id},#{t_btitle},#{t_bcontent},sysdate,
 		0,t_board_seq.currval,0,0,#{t_bfile})
 	</insert>
 	
@@ -82,7 +82,7 @@
 		<selectKey resultType="int" keyProperty="t_cno" order="BEFORE">
 			select t_comment_seq.nextval from dual
 		</selectKey>
-		insert into t_comment values (#{t_cno},#{t_bno},'aaa',#{t_cpw},#{t_ccontent},sysdate)
+		insert into t_comment values (#{t_cno},#{t_bno},#{id},#{t_cpw},#{t_ccontent},sysdate)
 	</insert>
 	<!-- 저장된 댓글 1개 가져오기  -->
 	<select id="TBCommemtSelectOne" resultType="com.java.www.dto.TBCommentDto">

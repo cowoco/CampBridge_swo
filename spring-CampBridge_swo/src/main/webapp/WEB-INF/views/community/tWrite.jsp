@@ -64,7 +64,7 @@
 			      </tr>
 			      <tr style="border-bottom: 2px solid #009223">
 			        <td colspan="4"><strong>작성자 | </strong style="text-align: center;">
-			        <input type="text" value="aaa" readonly="readonly" style="border: 1px solid transparent;">
+			        <input type="text" name="id" value="${session_id}" readonly="readonly" style="border: 1px solid transparent;">
 			        </td>
 			      </tr>
 			      <tr>

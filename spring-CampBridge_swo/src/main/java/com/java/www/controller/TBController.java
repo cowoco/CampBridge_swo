@@ -18,6 +18,7 @@ import com.java.www.dto.TBCommentDto;
 import com.java.www.dto.TBoardDto;
 import com.java.www.service.TBService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -224,6 +225,7 @@ public class TBController {
 		System.out.println("TBController t_BCommentUpdate cno : " + tcdto.getT_cno());
 		// service연결 - 댓글수정저장
 		TBCommentDto tbCommentDto = tbService.t_BCommentUpdate(tcdto);
+		
 		return tbCommentDto;
 	}
 

@@ -3,6 +3,7 @@ package com.java.www.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("search")
@@ -48,6 +49,25 @@ public class SController {
 	@GetMapping("tSearch")
 	public String tSearch() {
 		return "/search/tSearch";
+	}// tSearch()
+	
+	//테마검색 데이터 전송
+	@GetMapping("themeData")
+	@ResponseBody //데이터 전송
+	public String themeData(String themeTxt) {
+		System.out.println("themeData txt : "+themeTxt);
+		String page = 1+"";
+		String servicekey="nPPQZrCKczmg%2FdIMJJdN8Zot7BoWCyT0LbxEA8xRBApq7Ahfh1u%2BdWpijsZbTseUr3sHT%2B9sJBV39afyi1K5dA%3D%3D";
+		
+		String result="";
+		if(themeTxt == null || themeTxt.equals("")) {
+		
+			
+		}
+		
+		
+		
+		return "/search/themeData";
 	}// tSearch()
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////테마 검색

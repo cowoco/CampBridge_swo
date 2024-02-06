@@ -31,6 +31,21 @@
 	    <link href="../assets/css/main2.css" rel="stylesheet">
 		<link href="../assets/css/header.css" rel="stylesheet">
 		<link href="../assets/css/community/listStyle.css" rel="stylesheet">
+		<style type="text/css">
+			.table-title1 {
+				text-align: left;
+				white-space:nowrap;
+				overflow:hidden;
+				text-overflow: ellipsis;
+				max-width:557px;
+			}
+			.table-title1 a {
+				table-layout:fixed;
+				white-space:nowrap;
+				overflow:hidden;
+				text-overflow: ellipsis;
+			}
+		</style>
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
@@ -78,7 +93,7 @@
 			      <c:forEach var="tbdto" items="${map.list}">
 				      <tr>
 				        <td id="No">${tbdto.t_bno}</td>
-				        <td class="table-title">
+				        <td class="table-title1">
 				        <a href="tView?t_bno=${tbdto.t_bno}">
 				        	<c:forEach var="i" begin="1" end="${tbdto.t_bindent}" step="1">▶</c:forEach>
 				        	${tbdto.t_btitle}

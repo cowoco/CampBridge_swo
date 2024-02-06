@@ -32,6 +32,8 @@ $(function(){
 		let t_ccontent = $(".t_replyType").val();
     	let t_cpw = $(".t_replynum").val();
     	
+    	
+    	
     	if($(".t_replyType").val().length<1){
     		alert("댓글을 입력하셔야 저장 가능합니다.");
     		$("t_replyType").focus();
@@ -46,14 +48,17 @@ $(function(){
     		success:function(data){
     			alert("댓글이 저장되었습니다.");
     			console.log(data);
+    			let date = new Date(data.t_cdate);
+    			let formattedDate =  `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
     			//태그 입력시작
+    			
     			let hdata="";
     			hdata +='<tr id="'+data.t_cno+'">';
-    			hdata +='<td><strong>댓글 작성자</strong>|<span style="color: blue;">'+data.id+'</span>&nbsp;&nbsp;&nbsp;<span>'+data.t_cdate+'</span>';
+    			hdata +='<td><strong>댓글 작성자</strong>|<span style="color: blue;" class="t_id">'+data.id+'</span>&nbsp;&nbsp;&nbsp;<span>'+formattedDate+'</span>';
     			hdata +='<li id="replyTxt">&nbsp;&nbsp;'+data.t_ccontent+'</li>';
     			hdata +='<li id="replyBtn">';
     			hdata +='<button class="rDelBtn" style="cursor: pointer;">삭제</button>&nbsp';
-    			hdata +='<button class="rUBtn" style="cursor: pointer;">수정</button>';
+    			hdata +='<button class="rUBtn tcUpdateBtn" style="cursor: pointer;">수정</button>';
     			hdata +='</li>';
     			hdata +='</td>';
     			hdata +='</tr>';
@@ -116,11 +121,11 @@ $(function(){
 		let t_cno= $(this).parent().parent().parent().attr("id");
 		let t_ccontent =$(this).parent().prev().text();
 		let t_cdate = $(this).parent().parent().find("span").text();
-		let id = "aaa";
+		let id = $(this).parent().parent().find(".t_id").text();
 		
 		let hdata = '';
 		hdata += '<input type="hidden" id="hiddenTxt" value="'+t_ccontent+'">';
-		hdata +='<td><strong>댓글 작성자</strong>|<strong style="color: blue;">'+id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+t_cdate+'</span>';
+		hdata +='<td><strong>댓글 작성자</strong>|<strong style="color: blue;" class="t_id">'+id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+t_cdate+'</span>';
 		hdata +='<li id="replyTxt"><textarea cols="145%">'+t_ccontent+'</textarea></li>';
 		hdata +='<li id="replyBtn">';
 		hdata +='<button class="rCanBtn">취소</button>&nbsp;';
@@ -144,7 +149,7 @@ $(function(){
 	let t_cno= $(this).parent().parent().parent().attr("id");
 	let t_ccontent = $(this).parent().prev().find("textarea").val();
 	let t_cdate = $(this).parent().parent().find("span").text();
-	let id ="bbb";
+
 	
 	//ajax - 댓글수정 저장
 	$.ajax({
@@ -155,12 +160,15 @@ $(function(){
 		success:function(data){
 			alert("댓글이 수정되었습니다.");
 			console.log(data);
+			let date = new Date(data.t_cdate);
+    		let formattedDate =  `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
+		
 			
 			//태그 입력 시작
 			let hdata ="";
 			
 			//hdata+='<input type="hidden" value="'+data.t_cpw+'" class="t_cpw">';
-			hdata+='<td><strong>댓글 작성자</strong>|<strong style="color: blue;">'+data.id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+data.t_cdate+'</span>';
+			hdata+='<td><strong>댓글 작성자</strong>|<strong style="color: blue;" class="t_id">'+data.id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+formattedDate+'</span>';
 			hdata+='<li id="replyTxt">'+data.t_ccontent+'</li>';
 			hdata+='<li id="replyBtn">';
 			hdata+='<button class="rDelBtn" style="cursor: pointer;">삭제</button>&nbsp;';
@@ -185,13 +193,13 @@ $(function(){
 		let t_cno= $(this).parent().parent().parent().attr("id");
 		let t_ccontent = $(this).closest("tr").find("input[type='hidden']").val();
 		let t_cdate = $(this).parent().parent().find("span").text();
-		let id ="bbb";
+		let id = $(this).parent().parent().find(".t_id").text();
 		
 		//태그 입력 시작
 		let hdata ="";
 		
 		//hdata+='<input type="hidden" value="'+data.t_cpw+'" class="t_cpw">';
-		hdata+='<td><strong>댓글 작성자</strong>|<strong style="color: blue;">'+id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+t_cdate+'</span>';
+		hdata+='<td><strong>댓글 작성자</strong>|<strong style="color: blue;" class="t_id">'+id+'</strong>&nbsp;&nbsp;&nbsp;<span>'+t_cdate+'</span>';
 		hdata+='<li id="replyTxt">'+t_ccontent+'</li>';
 		hdata+='<li id="replyBtn">';
 		hdata+='<button class="rDelBtn" style="cursor: pointer;">삭제</button>&nbsp;';

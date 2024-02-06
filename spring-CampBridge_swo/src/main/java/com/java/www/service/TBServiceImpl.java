@@ -12,11 +12,15 @@ import com.java.www.dto.TBCommentDto;
 import com.java.www.dto.TBoardDto;
 import com.java.www.mapper.TBoardMapper;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class TBServiceImpl implements TBService{
 	
 	@Autowired
 	TBoardMapper tboardMapper;
+	@Autowired
+	HttpSession session;
 	
 	@Override
 	public Map<String, Object> tb_selectSearch(int page, String searchTitle, String searchWord) {
@@ -137,6 +141,10 @@ public class TBServiceImpl implements TBService{
 
 	@Override //db에 저장된 댓글 1개 가져오기
 	public TBCommentDto TBCommentInsert(TBCommentDto tcdto) {
+		//session_id를 tcdto에 저장
+		tcdto.setId((String) session.getAttribute("session_id"));
+		
+		
 		//ajax 댓글입력
 		tboardMapper.TBCommentInsert(tcdto);
 		System.out.println("TBServiceImpl TBCommentInsert t_cno :"+tcdto.getT_cno());
@@ -163,6 +171,7 @@ public class TBServiceImpl implements TBService{
 	@Override//댓글 수정
 	public TBCommentDto t_BCommentUpdate(TBCommentDto tcdto) {
 		//session_id 
+		tcdto.setId((String) session.getAttribute("session_id"));
 		
 		//수정저장
 		tboardMapper.t_BCommentUpdate(tcdto);
