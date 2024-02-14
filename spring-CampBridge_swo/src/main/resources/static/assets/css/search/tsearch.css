@@ -27,10 +27,11 @@ section {margin:150px 50px; text-align: center;}
 
 /* 리스트 */
 .t_list{width: 1300px; margin: 0 auto; padding: 100px;}
-.t_list ul{font-size: 0;}
-.t_list .item{ display: inline-block; width: 30%; margin-left: 5%; margin-top: 40px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); border-radius: 10px;} 
+.t_list ul{font-size: 0; white-space: wrap; display: flex;}
+.t_list .t_contbox{width: 320px; height: 425px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); margin-bottom: 60px;  border-radius: 15px; display: inline-block; vertical-align: top; margin-right: 35px;   flex: 0 0 calc(33.333% - 20px);}
+.t_list .t_contbox:nth-child(3n) {margin-right: 0;}
+.t_list .item{margin-left: 20px;}
 .t_list .item:nth-child(-n+3){margin-top: 0;}
-.t_list .item:nth-child(3n-2){margin-left: 0;}
 .t_list .item .image{width: 100%; height: 200px; background-color: #ddd; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover;}
 .t_list .item1 .image{background-image: url(../../assets/img/tsearch/cpRent1.png); border-radius: 10px;}
 .t_list .item2 .image{background-image: url(../../assets/img/tsearch/cpRent2.png); border-radius: 10px;}
@@ -45,8 +46,8 @@ section {margin:150px 50px; text-align: center;}
 .t_list .item11 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
 .t_list .item12 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
 .t_list .item .cont{padding: 15px;}
-.t_list .item strong{display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700;}
-.t_list .item p{font-size: 15px; letter-spacing: -1px;}
+.t_list .item strong{width:290px; height:30px; display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700;}
+.t_list .item p{white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width:290px; height:22px; font-size: 15px; letter-spacing: -1px;}
 .t_list .item a{color:black; display: inline-block; margin-top: 10px; margin-left: 200px; padding: 5px 10px; font-size: 13px; letter-spacing: -1px; background: #FFCE32; font-weight: 700; border-radius: 3px; transition: all 1s ease;}
 .t_list .item a:hover{background: #009223; color: #fff; font-weight: 700;}
 

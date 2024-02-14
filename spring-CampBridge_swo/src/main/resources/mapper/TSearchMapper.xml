@@ -4,9 +4,15 @@
  <!--인터페이스 연결 MemberMapper.java -->  
 <mapper namespace="com.java.www.mapper.TSearchMapper"> 
 	<insert id="insertTheme">
-		insert into themeList values (#{})
-	
+		insert into themeList values (#{contentId},#{facltNm},#{lineIntro},
+		#{intro},#{facltDivNm},#{mangeDivNm},#{featureNm},#{induty},#{lctCl},#{doNm},#{sigunguNm},#{zipcode},#{addr1}
+		,#{addr2},#{mapX},#{mapY},#{direction},#{tel},#{homepage},#{resveUrl},#{resveCl},#{gnrlSiteCo},#{autoSiteCo},#{glampSiteCo}
+		,#{caravSiteCo},#{indvdlCaravSiteCo},#{siteBottomCl1},#{siteBottomCl2},#{siteBottomCl3},#{siteBottomCl4},#{siteBottomCl5}
+		,#{tooltip},#{glampInnerFclty},#{caravInnerFclty},#{operPdCl},#{operDeCl},#{trlerAcmpnyAt},#{caravAcmpnyAt},#{toiletCo}
+		,#{swrmCo},#{wtrplCo},#{brazierCl},#{sbrsCl},#{sbrsEtc},#{posblFcltyCl},#{posblFcltyEtc},#{themaEnvrnCl},#{eqpmnLendCl}
+		,#{animalCmgCl},#{tourEraCl},#{firstImageUrl},#{createdtime})
 	</insert>
+	
 
 	
 </mapper> 

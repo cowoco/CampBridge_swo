@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -68,42 +70,50 @@ public class SController {
 	public String tSearch() {
 		return "/search/tSearch";
 	}// tSearch()
+	//테마검색_뷰 pg
+	@GetMapping("tSearch_view")
+	public String tSearch_view() {
+		return "/search/tSearch_view";
+	}// tSearch_view()
+	//캠핑장 검색-페이지
 	
 	//테마검색 데이터 전송
 	@GetMapping("themeData")
 	@ResponseBody //데이터 전송
-	public String themeData(String themeTxt) throws Exception {
-		System.out.println("themeData txt : "+themeTxt);
+	public String themeData(@RequestParam(value="thema[]") List<String> thema) throws Exception {
+		System.out.println("themeData thema : "+thema);
 		String page = 1+"";
 		String servicekey="nPPQZrCKczmg%2FdIMJJdN8Zot7BoWCyT0LbxEA8xRBApq7Ahfh1u%2BdWpijsZbTseUr3sHT%2B9sJBV39afyi1K5dA%3D%3D";
-		
 		String result="";
-		if(themeTxt == null || themeTxt.equals("")) {
+		result = themeList(page,servicekey);
+		
+/*		if(thema == null || thema.equals("")) {
 			//검색단어가 없을때
 			result = themeList(page,servicekey);
 		}else {
 			//검색단어가 있을때
-			result = themeSearchList(themeTxt,page,servicekey);
-		}
+			result = themeSearchList(thema,page,servicekey);
+		}*/
 		
+		System.out.println("result : "+result);
 		return result;
 	}// tSearch()
 	
 	// 테마조회 메소드 
-	public String themeSearchList(String themeTxt,String page,String serviceKey) throws Exception {
-		StringBuilder urlBuilder = new StringBuilder("https://apis.data.go.kr/B551011/GoCamping/basedList"); /*URL*/
+	public String themeSearchList(String thema,String page,String serviceKey) throws Exception {
+		StringBuilder urlBuilder = new StringBuilder("https://apis.data.go.kr/B551011/GoCamping/searchList"); /*URL*/
 		 urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+serviceKey); /*Service Key*/
-		 urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8"));/*목록건수*/
+		 urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("3760", "UTF-8"));/*목록건수*/
 		 urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(page, "UTF-8"));/*페이지 번호*/
 		 urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8"));/*OS 구분*/
 		 urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8"));/*페이지 번호*/
-		 urlBuilder.append("&" + URLEncoder.encode("keyword","UTF-8") + "=" + URLEncoder.encode(themeTxt, "UTF-8"));/*검색어*/
+		 urlBuilder.append("&" + URLEncoder.encode("keyword","UTF-8") + "=" + URLEncoder.encode(thema, "UTF-8"));
 		 urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));/*응답페이지 번호*/
 		 URL url = new URL(urlBuilder.toString());
 		 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		 conn.setRequestMethod("GET");
 		 conn.setRequestProperty("Content-type", "application/json");
-		 System.out.println("Response code : "+ conn.getResponseCode());
+		 System.out.println("themeSearchList Response code : "+ conn.getResponseCode());
 		 BufferedReader rd;
 		 if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
 			 rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -120,7 +130,7 @@ public class SController {
 		 System.out.println(sb.toString());
 		 
 		
-		return toString();
+		return sb.toString();
 	}//themeSearchList
 	
 	//테마목록 메소드
@@ -128,7 +138,7 @@ public class SController {
 	public String themeList(String page,String serviceKey) throws Exception {
 		StringBuilder urlBuilder = new StringBuilder("https://apis.data.go.kr/B551011/GoCamping/basedList"); /*URL*/
 		 urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+serviceKey); /*Service Key*/
-		 urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8"));/*목록건수*/
+		 urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("3760", "UTF-8"));/*목록건수*/
 		 urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(page, "UTF-8"));/*페이지 번호*/
 		 urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8"));/*OS 구분*/
 		 urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8"));/*페이지 번호*/
@@ -137,7 +147,7 @@ public class SController {
 		 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		 conn.setRequestMethod("GET");
 		 conn.setRequestProperty("Content-type", "application/json");
-         System.out.println("Response code: " + conn.getResponseCode());
+         System.out.println("themeList Response code: " + conn.getResponseCode());
          BufferedReader rd;
          if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
              rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -163,10 +173,10 @@ public class SController {
          JSONObject jsonObject3 = (JSONObject) jsonObject2.get("body");
          JSONObject jsonObject4 = (JSONObject) jsonObject3.get("items");
          JSONArray docuArray = (JSONArray) jsonObject4.get("item");
-         System.out.println("docuArray 개수 : "+docuArray.size());
-         for(int i=0; i<10; i++) {
+         System.out.println("themeList docuArray 개수 : "+docuArray.size());
+         for(int i=0; i<3760; i++) {
         	 JSONObject jObject = (JSONObject) docuArray.get(i);
-        	 System.out.println("jObject themeTitle : "+jObject.get("galTitle"));
+        	 System.out.println("themeList jObject facltNm : "+jObject.get("facltNm"));
         	 
         	 //json데이터를 java 오브젝트로 변환 : ObjectMapper
         	 ObjectMapper objectMapper = new ObjectMapper();

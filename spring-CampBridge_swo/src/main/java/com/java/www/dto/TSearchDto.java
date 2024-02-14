@@ -23,6 +23,7 @@ public class TSearchDto {
 	private String hvofEnddle;
 	private String featureNm;
 	private String induty;
+	private String lctCl;
 	private String doNm;
 	private String sigunguNm;
 	private String zipcode;
