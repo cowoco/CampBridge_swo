@@ -95,77 +95,91 @@
 		  <div id="s_Btn">
 		 	<button type="button">검색하기</button>
 		  </div>
-		  <script type="text/javascript">
-		  $("#s_Btn").click(function(){
-			 alert("키워드 검색을 실행합니다.");
-			 let thema =[];
-			 //자바스크립트 배열넣기
-			 $("input[type='checkbox']:checked").each(function(){
-				 thema.push($(this).val());
-			 });
-			 
-			 $.ajax({
-				 url:"/search/themeData",
-				 type:"get",
-				 data:{"thema":thema},
-				 dataType:"json",
-				 success:function(data){
-					 alert("성공");
-					 console.log("전체데이터 : "+data);
-					 let iarr = data.response.body.items.item;
-					 let hdata="";
-					 for(let i=0; i<iarr.length; i++){
-						 hdata +='<div class="t_contbox">';
-						 hdata +='<div class="image">'+iarr[i].firstImageUrl+'</div>';
-						 hdata +='<div class="cont">';
-						 hdata +='<strong>'+iarr[i].facltNm+'</strong>';
-						 hdata +='<p>'+iarr[i].addr1+'</p>';
-						if(iarr[i].tel == ''){
-							 hdata += '<p>등록된 전화번호가 없습니다.</p>';
-						}else{
-							 hdata +='<p>'+iarr[i].tel+'</p>';
-						}//tel-if문
-						 hdata +='<p>'+iarr[i].lineIntro+'</p>';
-						 hdata +='<a href="/search/tSearch_view">바로가기</a>';
-						 hdata +='</div>';
-						 hdata +='</div>';
-
-					 }//for
-					 $(".item").html(hdata);
-					
-				 },//success
-				 error:function(){
-					 alert("실패");
-				 }//error
-			 });//ajax
-		  });//s_Btn
-		  </script>
-		  
-		  
-		  
 		  <div class="t_list">
             <ul>
-                <li class="item">
+                <li class="item" id="cont_item">
+                <c:forEach var="tsdto" items="${map.list}">
                 	<div class="t_contbox">
-	                    <div class="image">사진</div>
+	                    <div class="image"><img class="image" src="${tsdto.firstImageUrl}"></div>
 	                    <div class="cont">
-	                        <strong>캠핑장이름</strong>
-	                        <p>캠핑장주소</p>
-	                        <p>캠핑장연락처</p>
-	                        <p>캠핑장소개내용</p>
-	                        <a href="/search/tSearch_view">바로가기</a>
+	                        <strong>${tsdto.facltNm}</strong>
+	                        <p>${tsdto.addr1}</p>
+	                        <c:if test="${empty tsdto.tel}">
+		                        <p>등록된 전화 번호가 없습니다.</p>
+	                        </c:if>
+	                        <c:if test="${not empty tsdto.tel}">
+		                        <p>${tsdto.tel}</p>
+	                        </c:if>
+	                        <p>${tsdto.lineIntro}</p>
+	                        <a href="tSearch_view?contentId=${tsdto.contentId}">바로가기</a>
 	                    </div>
                 	</div>
+                </c:forEach>
                 </li>
-                
-
             </ul>
         </div>
-		
-		
+        <script type="text/javascript">
+        $(function(){
+        	$(".tsMoreBtn").click(function(){
+        		 //alert("더보기 버튼 실행");
+        		let page = 2;
+        		
+        		
+        		$.ajax({
+        			url:"/search/tsMore",
+        			type:"post",
+        			data:{"page":page},
+        			dataType:"json",
+        	        success: function (data) {
+        	            if (data.list.length > 0) {
+        	                let hdata = "";
+
+        	                data.list.forEach(tsdto => {
+        	                    hdata += '<div class="t_contbox">';
+        	                    hdata += '<div class="image"><img class="image" src="' + tsdto.firstImageUrl + '"></div>';
+        	                    hdata += '<div class="cont">';
+        	                    hdata += '<strong>' + tsdto.facltNm + '</strong>';
+        	                    hdata += '<p>' + tsdto.addr1 + '</p>';
+        	                    
+        	                    if (tsdto.tel == '') {
+        	                        hdata += '<p>등록된 전화 번호가 없습니다.</p>';
+        	                    } else {
+        	                        hdata += '<p>' + tsdto.tel + '</p>';
+        	                    }
+        	                    
+        	                    hdata += '<p>' + tsdto.lineIntro + '</p>';
+        	                    hdata += '<a href="tSearch_view?contentId=' + tsdto.contentId + '">바로가기</a>';
+        	                    hdata += '</div>';
+        	                    hdata += '</div>';
+        	                });
+
+        	                $("#cont_item").append(hdata);
+
+        	                page++;
+        	            } else {
+        	                // 더 이상 데이터가 없을 경우, 더보기 버튼을 숨김
+        	                $("#loadMoreButton").hide();
+        	            }
+        	        },
+        			error:function(){
+        				alert("더보기 실패");
+        			}
+        		
+        		
+        		});//ajax
+        		
+        		
+        		
+        		
+        		
+        	});
+        	
+        });
+        
+        </script>
 		<div id="p_Btn">
-		  <a href="#"><button>더보기</button></a>
-		  </div>
+		  <button type="button" class="tsMoreBtn">더보기</button>
+		</div>
 					
 			</section>
 		

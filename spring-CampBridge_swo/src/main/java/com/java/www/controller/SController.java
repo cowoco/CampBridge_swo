@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,7 +14,9 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.www.dto.TSearchDto;
 import com.java.www.service.TSearchService;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("search")
@@ -65,17 +70,43 @@ public class SController {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////추천 검색
 	
-	//테마검색
-	@GetMapping("tSearch")
-	public String tSearch() {
+	//테마검색 List
+	@GetMapping("tSearch")//게시글 전체 가져오기
+	public String tSearch(@RequestParam(defaultValue = "1") int page,
+			Model model) {
+	//db에서 가져오기
+	Map<String, Object> map = tSearchService.ts_selectAll(page);
+	//model에 저징
+	model.addAttribute("map",map);
+		
 		return "/search/tSearch";
-	}// tSearch()
-	//테마검색_뷰 pg
-	@GetMapping("tSearch_view")
-	public String tSearch_view() {
+	}// tSearch()//게시글 전체 가져오기
+	
+	@PostMapping("tsMore")//ajax(tsearch)
+	@ResponseBody
+	public Map<String, Object> tsMore(@RequestParam(defaultValue = "1") int page,
+			Model model) {
+		//db에서 가져오기
+		System.out.println("page : "+page);
+		Map<String, Object> map = tSearchService.ts_selectAll(page);
+		//model에 저징
+		
+		return map;
+	}// tSearch()//게시글 전체 가져오기
+	
+	
+	//테마검색 view
+	@GetMapping("tSearch_view")// 게시글 1개 가져오기
+	public String tSearch_view(@RequestParam(defaultValue = "1") int contentId,Model model) {
+		System.out.println("SController tSearch_view  contentId : "+contentId);
+		// 게시글 1개 가져오기
+		Map<String, Object> map = tSearchService.ts_selectOne(contentId);
+		
+		//model에 저장 
+		model.addAttribute("map",map);
 		return "/search/tSearch_view";
-	}// tSearch_view()
-	//캠핑장 검색-페이지
+	}// tSearch_view()// 게시글 1개 가져오기
+	
 	
 	//테마검색 데이터 전송
 	@GetMapping("themeData")

@@ -32,19 +32,9 @@ section {margin:150px 50px; text-align: center;}
 .t_list .t_contbox:nth-child(3n) {margin-right: 0;}
 .t_list .item{margin-left: 20px;}
 .t_list .item:nth-child(-n+3){margin-top: 0;}
-.t_list .item .image{width: 100%; height: 200px; background-color: #ddd; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover;}
-.t_list .item1 .image{background-image: url(../../assets/img/tsearch/cpRent1.png); border-radius: 10px;}
-.t_list .item2 .image{background-image: url(../../assets/img/tsearch/cpRent2.png); border-radius: 10px;}
-.t_list .item3 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
-.t_list .item4 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
-.t_list .item5 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
-.t_list .item6 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
-.t_list .item7 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
-.t_list .item8 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
-.t_list .item9 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
-.t_list .item10 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
-.t_list .item11 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
-.t_list .item12 .image{background-image: url(../../assets/img/tsearch/cpRent3.png); border-radius: 10px;}
+.t_list .item .image{width: 320px;  height: 200px; background-color: #ddd; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover;}
+
+
 .t_list .item .cont{padding: 15px;}
 .t_list .item strong{width:290px; height:30px; display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700;}
 .t_list .item p{white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width:290px; height:22px; font-size: 15px; letter-spacing: -1px;}
