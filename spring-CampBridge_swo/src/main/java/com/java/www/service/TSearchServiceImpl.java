@@ -30,6 +30,7 @@ public class TSearchServiceImpl implements TSearchService{
 		int countPerPage = 12;
 		int startRow = (page-1)*countPerPage+1;
 		int endRow = startRow+countPerPage-1;
+		//게시글 전체 가져오기 ajax 더보기 버튼
 		int countAll = tSearchMapper.ts_selectCountAll();
 		System.out.println("TSearchServiceImpl ts_selectAll countAll :"+countAll);
 		//게시글 전체 가져오기 

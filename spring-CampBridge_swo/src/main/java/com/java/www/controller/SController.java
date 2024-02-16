@@ -8,6 +8,7 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -69,11 +71,26 @@ public class SController {
 	}// recommendsearch()
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////추천 검색
+	//테마검색 검색기능 구현 
+	//dB에서 테마검색 가져오기
+	@PostMapping("theme_Search")
+	@ResponseBody
+	public List<String> theme_Search(@RequestParam(value="themaEnvrnCl[]") List<String> themaEnvrnCl,Model model){
+		//db에서 가져오기 
+		List<String> good= themaEnvrnCl;
+				
+		
+		
+		//model에 저장
+		//model.addAttribute("map",map);
+		
+		return good;
+	}
+	
 	
 	//테마검색 List
 	@GetMapping("tSearch")//게시글 전체 가져오기
-	public String tSearch(@RequestParam(defaultValue = "1") int page,
-			Model model) {
+	public String tSearch(@RequestParam(defaultValue = "1")int page,Model model) {
 	//db에서 가져오기
 	Map<String, Object> map = tSearchService.ts_selectAll(page);
 	//model에 저징
@@ -84,15 +101,14 @@ public class SController {
 	
 	@PostMapping("tsMore")//ajax(tsearch)
 	@ResponseBody
-	public Map<String, Object> tsMore(@RequestParam(defaultValue = "1") int page,
-			Model model) {
+	public Map<String, Object> tsMore(@RequestParam(defaultValue = "1") int page,Model model) {
 		//db에서 가져오기
 		System.out.println("page : "+page);
 		Map<String, Object> map = tSearchService.ts_selectAll(page);
 		//model에 저징
 		
 		return map;
-	}// tSearch()//게시글 전체 가져오기
+	}// tSearch()//게시글 전체 가져오기 ajax 더보기 버튼
 	
 	
 	//테마검색 view
@@ -101,13 +117,12 @@ public class SController {
 		System.out.println("SController tSearch_view  contentId : "+contentId);
 		// 게시글 1개 가져오기
 		Map<String, Object> map = tSearchService.ts_selectOne(contentId);
-		
 		//model에 저장 
 		model.addAttribute("map",map);
 		return "/search/tSearch_view";
 	}// tSearch_view()// 게시글 1개 가져오기
 	
-	
+	//**** api 공공데이터 db로 가져오기 ***
 	//테마검색 데이터 전송
 	@GetMapping("themeData")
 	@ResponseBody //데이터 전송

@@ -28,11 +28,39 @@
 	    <!-- Template Main CSS File -->
 	    <link href="/assets/css/main2.css" rel="stylesheet">
 	    <link href="/assets/css/header.css" rel="stylesheet">
-		<link href="/assets/css/search/campsearch.css" rel="stylesheet">
+		<link href="/assets/css/search/tSearch_view.css" rel="stylesheet">
+		<!-- javascript -->
+		<script src="/assets/js/search/tSearch.js"></script>
+		
 	    
 	    <style>
         	.ico_ico_sports span {letter-spacing: 1.5px;}
   		</style>
+  		
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f6b278f5c975f9a60b956c6a7f757ebc"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+// marker.setMap(null);    
+</script>
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
@@ -50,7 +78,12 @@
 		<div class="camp_info_box">
 		<!-- 이미지 -->
 		<div class="img_b">
-			<img  src="${map.tsdto.firstImageUrl}" alt="사천비토솔섬오토캠핑장 메인 이미지">
+			<c:if test="${not empty map.tsdto.firstImageUrl}">
+				<img  src="${map.tsdto.firstImageUrl}" alt="사천비토솔섬오토캠핑장 메인 이미지">
+			</c:if>
+			<c:if test="${empty map.tsdto.firstImageUrl}">
+				<img  src="../assets/img/noPhoto_b.jpg" alt="사천비토솔섬오토캠핑장 메인 이미지">
+			</c:if>
 		</div>
 		<!-- 이미지 옆 표 -->
 		<div class="cont_tb">
@@ -60,6 +93,10 @@
 					<col style="width: 70%;" />
 				</colgroup>
 				<tbody>
+					<tr>
+						<th scope="col">캠핑장명</th>
+						<td>${map.tsdto.facltNm }</td>
+					</tr>
 					<tr>
 						<th scope="col">주소</th>
 						<td>${map.tsdto.addr1 }</td>
@@ -72,7 +109,7 @@
 					</c:if>
 					<tr>
 						<th scope="col">캠핑장 환경</th>
-						<td>${map.tsdto.lctCl} / ${map.tsdto.facltDivNm }</td>
+						<td>${map.tsdto.lctCl}   ${map.tsdto.facltDivNm }</td>
 					</tr>
 					<tr>
 						<th scope="col">캠핑장 유형</th>
@@ -98,14 +135,16 @@
 							</td>
 						</tr>
 					</c:if>
-					<tr>
-						<th scope="col">주변이용가능시설</th>
-						<td>${map.tsdto.posblFcltyCl }
-							<c:if test="${not empty map.tsdto.posblFcltyEtc}">
-								/ ${map.tsdto.posblFcltyEtc}
-							</c:if>
-						</td>
-					</tr>
+					<c:if test="${not empty map.tsdto.posblFcltyCl}">
+						<tr>
+							<th scope="col">주변이용가능시설</th>
+							<td>${map.tsdto.posblFcltyCl }
+								<c:if test="${not empty map.tsdto.posblFcltyEtc}">
+									/ ${map.tsdto.posblFcltyEtc}
+								</c:if>
+							</td>
+						</tr>
+					</c:if>
 				</tbody>
 			</table>
 		</div>
@@ -116,11 +155,8 @@
 	    <input type="radio" name="tabmenu" id="tab01" checked>
 	    <label for="tab01">캠핑장 소개</label>
 	    <input type="radio" name="tabmenu" id="tab02">
-	    <label for="tab02">이용안내</label>
-	    <input type="radio" name="tabmenu" id="tab03">
-	    <label for="tab03">위치/주변정보</label>
-	    <input type="radio" name="tabmenu" id="tab04">
-	    <label for="tab04">캠핑&여행후기</label>
+	    <label for="tab02">위치/주변정보</label>
+
 	    <div class="conbox con1">
 	    	<span>
 				<c:if test="${not empty map.tsdto.intro}">
@@ -139,9 +175,8 @@
 				</c:if>	    	
 			</span>
 	    </div>
-	    <div class="conbox con2">안에 들어가는 내용으로 높이 자동 맞춤</div>
-	    <div class="conbox con3">컨텐츠탭 내용03</div>
-	    <div class="conbox con4">컨텐츠탭 내용04</div>
+	    <div class="conbox con2">위치 및 주변 정보 <br> ${map.tsdto.tooltip} <br><br><br> <div id="map" style="width:1080px;height:500px;position: relative;"></div></div>
+	   
 	</div>
 								
 	<h3 class="icon_h3">캠핑장 시설정보</h3>
@@ -172,29 +207,23 @@
 						<th scope="col">기타 정보</th>
 						<td>
 							<ul class="table_ul05">
-								<li>개인 트레일러  입장 ${map.tsdto.trlerAcmpnyAt  eq 'Y' ? '가능' : '불가능'  }</li>
-								<li>반려동물 동반 ${map.tsdto.animalCmgCl }</li>
+								<li>개인 트레일러  입장 (${map.tsdto.trlerAcmpnyAt  eq 'Y' ? '가능' : '불가능'  })</li>
+								<li>개인 캠핑카  입장 (${map.tsdto.caravAcmpnyAt  eq 'Y' ? '가능' : '불가능'  })</li>
+								<li>반려동물 동반 (${map.tsdto.animalCmgCl })</li>
 							</ul>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(※ 실제 결과는 현장사정 및 계절에 따라 달라질 수 있으니 캠핑장 사업주에 직접 확인 후 이용바랍니다.)
 						</td>
 					</tr>
-					<tr>
-						<th scope="col">기타 부대시설</th>
-						<td>
-							<ul class="table_ul05">
-								<li>바다사이트쪽은 카라반,트레일러 입장금지</li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="col">사이트 간격</th>
-						<td>
-							<ul class="table_ul05">
-								<li>${map.tsdto.sitedStnc }</li>
-								
-							</ul>
-						</td>
-					</tr>
+					<c:if test="${not empty map.tsdto.sbrsEtc}">
+						<tr>
+							<th scope="col">기타 부대시설</th>
+							<td>
+								<ul class="table_ul05">
+									<li>${map.tsdto.sbrsEtc}</li>
+								</ul>
+							</td>
+						</tr>
+					</c:if>
 					<tr>
 						<th scope="col">바닥형태 (단위:면)</th>
 						<td>
@@ -208,40 +237,22 @@
 							</ul>
 						</td>
 					</tr>
-					<tr>
-						<th scope="col">사이트 크기</th>
-						<td>
-							<ul class="table_ul05">
-								<li>${map.tsdto.siteMg1Width } X ${map.tsdto.siteMg1Vrticl } : 30개</li>
-							</ul>
-						</td>
-					</tr>
-					<tr>
-						<th scope="col">캠핑장비대여</th>
-						<td>
-							<ul class="table_ul05">
-								<li>텐트</li>
-								<li>릴선</li>
-								<li>화로대</li>
-								<li>난방기구</li>
-								<li>식기</li>
-								<li>침낭</li>
-							</ul>
-						</td>
-					</tr>
+					
+					<c:if test="${not empty map.tsdto.eqpmnLendCl }">
+						<tr>
+							<th scope="col">캠핑장비대여</th>
+							<td>
+								<ul class="table_ul05">
+									<li>${map.tsdto.eqpmnLendCl }</li>
+								</ul>
+							</td>
+						</tr>
+					</c:if>
 					<tr>
 						<th class="col">화로대</th>
 						<td class="etc_type">${map.tsdto.brazierCl }</td>
 					</tr>
-					<tr>
-						<th scope="col">안전시설현황</th>
-						<td>
-							<ul class="table_ul05">
-								<li>소화기 (${map.tsdto.extshrCo} )</li>
-								<li>방화수 (1)</li>
-							</ul>
-						</td>
-					</tr>
+					
 				</tbody>
 			</table>
 		</div>

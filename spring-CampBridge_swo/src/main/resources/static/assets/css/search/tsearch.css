@@ -36,7 +36,7 @@ section {margin:150px 50px; text-align: center;}
 
 
 .t_list .item .cont{padding: 15px;}
-.t_list .item strong{width:290px; height:30px; display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700;}
+.t_list .item strong{white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width:290px; height:30px; display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700;}
 .t_list .item p{white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width:290px; height:22px; font-size: 15px; letter-spacing: -1px;}
 .t_list .item a{color:black; display: inline-block; margin-top: 10px; margin-left: 200px; padding: 5px 10px; font-size: 13px; letter-spacing: -1px; background: #FFCE32; font-weight: 700; border-radius: 3px; transition: all 1s ease;}
 .t_list .item a:hover{background: #009223; color: #fff; font-weight: 700;}

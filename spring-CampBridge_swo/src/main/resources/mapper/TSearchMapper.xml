@@ -18,7 +18,7 @@
        select * from ( select row_number() over(order by contentId desc)rnum, a.*from gocamping a ) 
        where rnum between #{startRow} and #{endRow}
     </select>
-    
+    <!-- 게시글 전체 가져오기 ajax 더보기 버튼  -->
 	<select id="ts_selectCountAll" resultType="int">
        select count(*) from gocamping 
     </select>

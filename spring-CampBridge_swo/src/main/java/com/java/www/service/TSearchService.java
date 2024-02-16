@@ -6,6 +6,7 @@ import com.java.www.dto.TSearchDto;
 
 public interface TSearchService {
 	//============== 테마검색 ==============
+	
 	//갤러리 1개 데이터 저장
 	void insertTheme(TSearchDto tSearchDto);
 	
@@ -14,5 +15,7 @@ public interface TSearchService {
 	
 	//테마검색 게시글 1개 가져오기
 	Map<String, Object> ts_selectOne(int contentId);
+
+	
 
 }
