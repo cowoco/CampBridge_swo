@@ -1,5 +1,5 @@
-/**
- *  tSearch.js
+/*-**
+/*- *  tSearch.js
  */
 
  /* 뷰페이지 */
@@ -11,4 +11,4 @@
 		};
 		
 		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-	});
+	});7

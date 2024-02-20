@@ -1,5 +1,6 @@
 package com.java.www.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.java.www.dto.TSearchDto;
@@ -15,6 +16,14 @@ public interface TSearchService {
 	
 	//테마검색 게시글 1개 가져오기
 	Map<String, Object> ts_selectOne(int contentId);
+
+	//테마검색 검색단어 가져오기
+	List<String> theme_Search(List<String> themaEnvrnCl);
+
+	
+
+
+
 
 	
 

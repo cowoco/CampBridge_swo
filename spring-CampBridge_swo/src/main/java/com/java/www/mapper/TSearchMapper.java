@@ -1,6 +1,7 @@
 package com.java.www.mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,6 +20,10 @@ public interface TSearchMapper {
 	
 	//게시글 1개 가져오기
 	TSearchDto ts_selectOne(int contentId);
+
+	//검색어 가져오기
+	List<String> theme_Search(List<String> themaEnvrnCl);	
+	
 
 	
 

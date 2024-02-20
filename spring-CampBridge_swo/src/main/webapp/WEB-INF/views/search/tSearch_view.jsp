@@ -159,15 +159,17 @@ marker.setMap(map);
 
 	    <div class="conbox con1">
 	    	<span>
-				<c:if test="${not empty map.tsdto.intro}">
-			    	${map.tsdto.intro}
-				</c:if>	    	
-				<c:if test="${empty map.tsdto.intro}">
-					<br>
-					등록된 소개가 없습니다.
-					<br>
-					<br>	
-				</c:if>	    	
+				<c:choose>
+				    <c:when test="${not empty map.tsdto.intro and DBMS_LOB.GETLENGTH(map.tsdto.intro) > 0}">
+				        ${map.tsdto.intro}
+				    </c:when>
+				    <c:otherwise>
+				        <br>
+				        등록된 소개글이 없습니다.
+				        <br>
+				        <br> 
+				    </c:otherwise>
+				</c:choose>
 	    	</span>
 			<span class="date_info">
 				<c:if test="${not empty map.tsdto.modifiedtime}">
@@ -175,7 +177,9 @@ marker.setMap(map);
 				</c:if>	    	
 			</span>
 	    </div>
-	    <div class="conbox con2">위치 및 주변 정보 <br> ${map.tsdto.tooltip} <br><br><br> <div id="map" style="width:1080px;height:500px;position: relative;"></div></div>
+	    <div class="conbox con2">위치 및 주변 정보 <br> ${map.tsdto.tooltip} <br><br>주소 : ${map.tsdto.addr1 }
+	    <br>
+	     <div id="map" style="width:1080px;height:500px;position: relative;"></div></div>
 	   
 	</div>
 								

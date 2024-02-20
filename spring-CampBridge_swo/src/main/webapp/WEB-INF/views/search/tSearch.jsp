@@ -69,25 +69,25 @@
 						<label for="thema6">액티비티</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema7" name="thema" value="봄꽃여행" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema7" name="thema" value="봄꽃여행" /> 
 						<label for="thema7">봄꽃여행</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema11" name="thema" value="걷기길" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema11" name="thema" value="걷기길"/> 
 						<label for="thema11">걷기길</label> 
 					</li>
 				</ul>
 				<ul>	
 					<li> 
-						<input type="checkbox" id="thema8" name="thema" value="여름물놀이" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema8" name="thema" value="여름물놀이" /> 
 						<label for="thema8">여름물놀이</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema9" name="thema" value="가을단풍명소" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema9" name="thema" value="가을단풍명소"/> 
 						<label for="thema9">가을단풍명소</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema10" name="thema" value="겨울눈꽃명소" onClick="clkOftenAddr(this);"/> 
+						<input type="checkbox" id="thema10" name="thema" value="겨울눈꽃명소"/> 
 						<label for="thema10">겨울눈꽃명소</label> 
 					</li>
 		 		</ul>
@@ -96,18 +96,23 @@
 		  <script>
 		  	$(function(){
 		  		$("#s_Btn").click(function(){
+		  			//체크된 값
 		  			var checkedThemes = document.querySelectorAll('input[name="thema"]:checked');
+		  			//선택된 것을 배열에 저장
 		  			var checkedValues = Array.from(checkedThemes).map(checkbox => checkbox.value);
+		  			
+		  			
 		  			//alert(checkedValues+" 검색");
 		  			console.log("click :"+checkedValues);
-		  			
 		  			 $.ajax({
 						 url:"/search/theme_Search",
 						 type:"post",
 						 data:{"themaEnvrnCl":checkedValues},
+						 //data:{"themaEnvrnCl":"일몰명소"},
 						 dataType:"text",
 						 success:function(data){
 							 alert("성공");
+							 //console.log("전체데이터 checkedValues: "+checkedValues);
 							 console.log("전체데이터 : "+data);
 							
 						 },//success

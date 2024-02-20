@@ -2,6 +2,7 @@ package com.java.www.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class TSearchServiceImpl implements TSearchService{
 	
 	@Override
 	public void insertTheme(TSearchDto tSearchDto) {
+		//갤러리 데이터 저장
 		tSearchMapper.insertTheme(tSearchDto);
-		
 		
 	}
 
@@ -55,10 +56,19 @@ public class TSearchServiceImpl implements TSearchService{
 		Map<String, Object> map = new HashMap<>();
 		map.put("tsdto", tsdto);
 		
-		
-		
 		return map;
 	}//ts_selectOne//게시글 1개 가져오기
+
+	@Override
+	public List<String> theme_Search(List<String> themaEnvrnCl) {
+		
+		List<String> themeList = tSearchMapper.theme_Search(themaEnvrnCl);
+		System.out.println("TSearchServiceImpl theme_Search themeList :"+themeList);
+		return themeList;
+	}
+
+
+
 
 
 	

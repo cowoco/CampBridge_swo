@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.www.dto.TSearchDto;
+import com.java.www.service.RSearchService;
 import com.java.www.service.TSearchService;
 
 import oracle.jdbc.proxy.annotation.Post;
@@ -34,7 +36,7 @@ import oracle.jdbc.proxy.annotation.Post;
 public class SController {
 	
 	@Autowired TSearchService tSearchService;
-	
+	@Autowired RSearchService rSearchService;
 
 	//캠핑장 검색
 	@GetMapping("campsearch")
@@ -65,8 +67,12 @@ public class SController {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////지도 검색
 	
 	//추천검색
-	@GetMapping("recommendsearch")
-	public String recommendsearch() {
+	@GetMapping("recommendsearch")//게시글 전체 가져오기
+	public String recommendsearch(@RequestParam(defaultValue = "1")int page,Model model) {
+		//db에서 가져오기 
+		Map<String, Object> map = rSearchService.rs_selectAll(page);
+		//model
+		model.addAttribute("map",map);
 		return "/search/recommendsearch";
 	}// recommendsearch()
 	
@@ -75,16 +81,15 @@ public class SController {
 	//dB에서 테마검색 가져오기
 	@PostMapping("theme_Search")
 	@ResponseBody
-	public List<String> theme_Search(@RequestParam(value="themaEnvrnCl[]") List<String> themaEnvrnCl,Model model){
-		//db에서 가져오기 
-		List<String> good= themaEnvrnCl;
-				
+	public List<String> theme_Search(@RequestParam(value="themaEnvrnCl[]") List<String> themaEnvrnCl){
 		
+		for(int i=0;i<themaEnvrnCl.size();i++) {
+			System.out.println("themaEnvrnCl themaEnvrnCl : "+themaEnvrnCl.get(i));
+		}
+		List<String> themeList = tSearchService.theme_Search(themaEnvrnCl);
+		System.out.println("SController theme_Search themeList : " +themeList);
 		
-		//model에 저장
-		//model.addAttribute("map",map);
-		
-		return good;
+		return themeList;
 	}
 	
 	
@@ -99,7 +104,7 @@ public class SController {
 		return "/search/tSearch";
 	}// tSearch()//게시글 전체 가져오기
 	
-	@PostMapping("tsMore")//ajax(tsearch)
+	@PostMapping("tsMore")//더보기 버튼 ajax(tsearch)
 	@ResponseBody
 	public Map<String, Object> tsMore(@RequestParam(defaultValue = "1") int page,Model model) {
 		//db에서 가져오기

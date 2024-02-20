@@ -42,166 +42,101 @@
 		   <!-- 카드형 리스트 -->
 		    <div class="list_wrap">
             <ul>
-			
 				<div class="list_wrap_theme_main">
-
-					<div class="list_wrap_theme_top">
-						<h2>일몰맛집</h2>
-					</div><!--End list_wrap_theme_top   -->
 					<div class="list_wrap_theme_bottom">
-						<li class="item item1">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-						<li class="item item2">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-						<li class="item item3">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
+						<li class="item" id="cont_item">
+					
+						<div class="list_wrap_theme_top">
+							<h2>별 보기 좋은</h2>
+						</div><!--End list_wrap_theme_top   -->
+						<c:forEach var="rsdto" items="${map.liststar}">
+			                	<div class="r_contbox">
+				                    <div class="image">
+					                    <c:if test="${not empty rsdto.firstImageUrl }">
+					                    	<img class="image" src="${rsdto.firstImageUrl}"></div>
+					                    </c:if>
+					                    <c:if test="${empty rsdto.firstImageUrl }">
+					                    	<img class="image" src="../assets/img/noPhoto_s.jpg"></div>
+					                    </c:if>
+				                    <div class="cont">
+				                        <strong>${rsdto.facltNm}</strong>
+				                        <p>${rsdto.addr1}</p>
+				                        <c:if test="${empty rsdto.tel}">
+					                        <p>등록된 전화 번호가 없습니다.</p>
+				                        </c:if>
+				                        <c:if test="${not empty rsdto.tel}">
+					                        <p>${rsdto.tel}</p>
+				                        </c:if>
+				                        <p>${rsdto.lineIntro}</p>
+				                        <a href="tSearch_view?contentId=${rsdto.contentId}">바로가기</a>
+				                    </div>
+			                	</div>
+			            
+		                 </c:forEach>
 						</li>
 					</div><!-- End list_wrap_theme_bottom -->
 				</div><!--End list_wrap_theme_main  -->
 
+				<div class="list_wrap_theme_main">
+					<div class="list_wrap_theme_bottom">
+						<li class="item" id="cont_item">
 					
-				<div class="list_wrap_theme">
-					<div class="list_wrap_theme_top">
-						<h2>일몰맛집</h2>
-					</div>
-					<!-- End list_wrap_theme_top   -->
-
+						<div class="list_wrap_theme_top">
+							<h2>가족친화</h2>
+						</div><!--End list_wrap_theme_top   -->
+						<c:forEach var="rsdto" items="${map.listfam}">
+			                	<div class="r_contbox">
+				                    <div class="image"><img class="image" src="${rsdto.firstImageUrl}"></div>
+				                    <div class="cont">
+				                        <strong>${rsdto.facltNm}</strong>
+				                        <p>${rsdto.addr1}</p>
+				                        <c:if test="${empty rsdto.tel}">
+					                        <p>등록된 전화 번호가 없습니다.</p>
+				                        </c:if>
+				                        <c:if test="${not empty rsdto.tel}">
+					                        <p>${rsdto.tel}</p>
+				                        </c:if>
+				                        <p>${rsdto.lineIntro}</p>
+				                        <a href="tSearch_view?contentId=${rsdto.contentId}">바로가기</a>
+				                    </div>
+			                	</div>
+		                 </c:forEach>
+		                 
+		                 
+						</li>
+					</div><!-- End list_wrap_theme_bottom -->
+				</div><!--End list_wrap_theme_main  -->
+				
+				<div class="list_wrap_theme_main">
 					<div class="list_wrap_theme_bottom">
-						<li class="item item4">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
+						<li class="item" id="cont_item">
+					
+						<div class="list_wrap_theme_top">
+							<h2>일몰맛집</h2>
+						</div><!--End list_wrap_theme_top   -->
+						<c:forEach var="rsdto" items="${map.listsun}">
+			                	<div class="r_contbox">
+				                    <div class="image"><img class="image" src="${rsdto.firstImageUrl}"></div>
+				                    <div class="cont">
+				                        <strong>${rsdto.facltNm}</strong>
+				                        <p>${rsdto.addr1}</p>
+				                        <c:if test="${empty rsdto.tel}">
+					                        <p>등록된 전화 번호가 없습니다.</p>
+				                        </c:if>
+				                        <c:if test="${not empty rsdto.tel}">
+					                        <p>${rsdto.tel}</p>
+				                        </c:if>
+				                        <p>${rsdto.lineIntro}</p>
+				                        <a href="tSearch_view?contentId=${rsdto.contentId}">바로가기</a>
+				                    </div>
+			                	</div>
+			            
+		                 </c:forEach>
 						</li>
-						<li class="item item5">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-						<li class="item item6">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-					</div><!-- End list_wrap_theme_bottom  -->
-				</div><!-- End list_wrap_theme  -->
-				<div class="list_wrap_theme">
-					<div class="list_wrap_theme_top">
-						<h2>일몰맛집</h2>
-					</div>
-					<!-- End list_wrap_theme_top   -->
-
-					<div class="list_wrap_theme_bottom">
-						<li class="item item4">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-						<li class="item item5">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-						<li class="item item6">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-					</div><!-- End list_wrap_theme_bottom  -->
-				</div><!-- End list_wrap_theme  -->
+					</div><!-- End list_wrap_theme_bottom -->
+				</div><!--End list_wrap_theme_main  -->
 				
 				
-				
-				<div class="list_wrap_theme">
-					<div class="list_wrap_theme_top">
-						<h2>일몰맛집</h2>
-					</div>
-					<!-- End list_wrap_theme_top   -->
-					<div class="list_wrap_theme_bottom">
-						<li class="item item4">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-						<li class="item item5">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-						<li class="item item6">
-							<div class="image">사진</div>
-							<div class="cont">
-								<strong>캠핑장이름</strong>
-								<p>캠핑장주소</p>
-								<p>캠핑장연락처</p>
-								<p>캠핑장소개내용</p>
-								<a href="#">바로가기</a>
-							</div>
-						</li>
-					</div><!-- End list_wrap_theme_bottom  -->
-				</div><!-- End list_wrap_theme  -->
 
 			</ul>
         </div><!-- End list_wrap -->

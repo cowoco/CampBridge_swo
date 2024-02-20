@@ -22,13 +22,17 @@
 	<select id="ts_selectCountAll" resultType="int">
        select count(*) from gocamping 
     </select>
-    
-    <!-- 테마검색 - 게시글 1개 가져오기  -->
+  	  <!-- 테마검색 - 게시글 1개 가져오기  -->
     <select id="ts_selectOne" resultType="com.java.www.dto.TSearchDto">
    		select * from gocamping where contentId=#{contentId}
     </select>
-	
-	
+   
+    <select id="theme_Search"  resultType="com.java.www.dto.TSearchDto">
+    	select * from gocamping where themaEnvrnCl=#{themaEnvrnCl}
+    </select>
+  	  
+  
+    
 	
 	
 	

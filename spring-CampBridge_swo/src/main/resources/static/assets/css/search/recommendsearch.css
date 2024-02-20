@@ -3,28 +3,20 @@ section{margin:150px 50px; text-align:center;}
 .list_wrap ul, li{list-style: none;}
 .notice_search_cardstyle a{text-decoration: none; color: #009223;}
 .notice_search_cardstyle h1{font-weight: 700; margin:40px 0 60px 0;}
-.list_wrap_theme_main h2{font-weight: 900; margin-left: 40px;}
+.list_wrap_theme_main h2{font-weight: 900; }
 .list_wrap_theme h2{font-weight: 900; margin-left: 40px;}
-.list_wrap{width: 1300px; margin: -240px 0 0 220px;}
-.list_wrap ul{font-size: 0; margin-top: 350px;}
-.list_wrap .item{display: inline-block; width: 27%; margin: 40px 0 0 60px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); border-radius: 10px;}
+.list_wrap{width: 1300px; margin: 0 auto;}
+.list_wrap ul{font-size: 0; white-space: nowrap; display: flex; flex-direction: column; /* 세로 레이아웃으로 변경합니다. */ overflow-x: auto; /* 가로 스크롤을 허용하도록 추가 */}
+.list_wrap .r_contbox{width: 320px; height: 425px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); margin-bottom: 60px;  border-radius: 15px; display: inline-block; vertical-align: top; margin-right: 35px;   flex: 0 0 calc(33.333% - 20px);  white-space: normal;}
+.list_wrap .r_contbox:nth-child(3n) {  margin-right: 35px;}
 .list_wrap .item:nth-child(-n+3){margin-top: 0;}
-.list_wrap .item .image{width: 100%; height: 200px; background-color: #ddd; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover;}
-    .list_wrap .item1 .image{background-image: url(../img/1.jpg); border-radius: 10px;}
-    .list_wrap .item2 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item3 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item4 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item5 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item6 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item7 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item8 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item9 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item10 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item11 .image{background-image: url(1.jpg); border-radius: 10px;}
-    .list_wrap .item12 .image{background-image: url(1.jpg); border-radius: 10px;}
+.list_wrap .item .image{width: 320px;  height: 200px; background-color: #ddd; border-radius: 15px; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover; overflow: hidden; }
+.list_wrap .item .image img { width: 100%; height: 100%; object-fit: cover;}
 .list_wrap .item .cont{padding: 15px;}
-.list_wrap .item strong{display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700; text-align: center;}
-.list_wrap .item p{font-size: 15px; letter-spacing: -1px;}
-.list_wrap .item a{color:black; display: inline-block; margin-top: 10px; margin-left: 244px; padding: 5px 10px; font-size: 13px; letter-spacing: -1px; background: #FFCE32; font-weight: 700; border-radius: 3px; transition: all 1s ease;}.list_wrap .item a:hover{background: #009223; color: #fff; font-weight: 700;}
+.list_wrap .item strong{white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width:290px; height:30px; display: block; margin: 0 0 10px 0; font-size: 20px; letter-spacing: -1px; font-weight: 700;}
+.list_wrap .item p{white-space: nowrap;overflow: hidden; text-overflow: ellipsis; width:290px; height:22px; font-size: 15px; letter-spacing: -1px;}
+.list_wrap .item a{margin-left: 214px; color:black; display: inline-block; margin-top: 10px; padding: 5px 10px; font-size: 13px; letter-spacing: -1px; background: #FFCE32; font-weight: 700; border-radius: 3px; transition: all 1s ease;}
 .list_wrap_theme{margin-top:20px;}
-.list_wrap_theme_top{width:300px; height:100px; padding:30px; color:#009223;}
+.list_wrap_theme_top{width:300px; height:100px; padding:50px 20px 0 0px; margin:10px 0 20px 36px;   color:#009223; }
+.r_contbox .image{width: 320px;  height: 200px;}
+
