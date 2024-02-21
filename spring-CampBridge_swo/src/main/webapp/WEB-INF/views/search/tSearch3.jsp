@@ -45,49 +45,49 @@
 		  		<div class="thema">
 				 <ul>
 					 <li>
-						 <input type="checkbox" id="thema1" name="themaEnvrnCl" value="일출명소" /> 
+						 <input type="checkbox" id="thema1" name="thema" value="일출명소" /> 
 						 <label for="thema1">일출명소</label> 
 					 </li>
 			 		<li> 
-				 		<input type="checkbox" id="thema2" name="themaEnvrnCl" value="일몰명소" />
+				 		<input type="checkbox" id="thema2" name="thema" value="일몰명소" />
 				 		<label for="thema2">일몰명소</label> 
 			 		</li>
 					<li> 
-						<input type="checkbox" id="thema3" name="themaEnvrnCl" value="항공레저" /> 
+						<input type="checkbox" id="thema3" name="thema" value="항공레저" /> 
 						<label for="thema3">항공레저</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema4" name="themaEnvrnCl" value="스키" /> 
+						<input type="checkbox" id="thema4" name="thema" value="스키" /> 
 						<label for="thema4">스키</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema5" name="themaEnvrnCl" value="낚시" /> 
+						<input type="checkbox" id="thema5" name="thema" value="낚시" /> 
 						<label for="thema5">낚시</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema6" name="themaEnvrnCl" value="액티비티" /> 
+						<input type="checkbox" id="thema6" name="thema" value="액티비티" /> 
 						<label for="thema6">액티비티</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema7" name="themaEnvrnCl" value="봄꽃여행" /> 
+						<input type="checkbox" id="thema7" name="thema" value="봄꽃여행" /> 
 						<label for="thema7">봄꽃여행</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema11" name="themaEnvrnCl" value="걷기길"/> 
+						<input type="checkbox" id="thema11" name="thema" value="걷기길"/> 
 						<label for="thema11">걷기길</label> 
 					</li>
 				</ul>
 				<ul>	
 					<li> 
-						<input type="checkbox" id="thema8" name="themaEnvrnCl" value="여름물놀이" /> 
+						<input type="checkbox" id="thema8" name="thema" value="여름물놀이" /> 
 						<label for="thema8">여름물놀이</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema9" name="themaEnvrnCl" value="가을단풍명소"/> 
+						<input type="checkbox" id="thema9" name="thema" value="가을단풍명소"/> 
 						<label for="thema9">가을단풍명소</label> 
 					</li>
 					<li> 
-						<input type="checkbox" id="thema10" name="themaEnvrnCl" value="겨울눈꽃명소"/> 
+						<input type="checkbox" id="thema10" name="thema" value="겨울눈꽃명소"/> 
 						<label for="thema10">겨울눈꽃명소</label> 
 					</li>
 		 		</ul>
@@ -97,66 +97,62 @@
 		  	$(function(){
 		  		$("#s_Btn").click(function(){
 		  			//체크된 값
-		  			var themaEnvrnCl = [];
-		  			$("input[type='checkbox']:checked").each(function(){
-		  				themaEnvrnCl.push($(this).val());
-		  			});
-		  			if (themaEnvrnCl.length < 1) {
-		  				 alert("테마를 선택하셔야 검색이 가능합니다.");
-					    return false;
-					}
-		  			console.log("click :"+themaEnvrnCl);
-		  			//ajax 
+		  			var 
+		  			
+		  			var checkedThemes = document.querySelectorAll('input[name="thema"]:checked');
+		  			//선택된 것을 배열에 저장
+		  			var checkedValues = Array.from(checkedThemes).map(checkbox => checkbox.value);
+		  			
+		  			
+		  			//alert(checkedValues+" 검색");
+		  			console.log("click :"+checkedValues);
 		  			 $.ajax({
 						 url:"/search/theme_Search",
 						 type:"post",
-						 data:{"themaEnvrnCl":themaEnvrnCl},
-						 dataType:"json",
+						 data:{"themaEnvrnCl":checkedValues},
+						 //data:{"themaEnvrnCl":"일몰명소"},
+						 dataType:"text",
 						 success:function(data){
 							 alert("성공");
-							 
-			        	     let hdata = "";
-			        	     for(let i=0; i<data.length; i++){
-			        	    	 console.log("전체데이터 : "+data);
-			        	    	 hdata += '<div class="t_contbox">';
-			        	    	 if(data[i].firstImageUrl != null){
-			    	                    hdata += '<div class="image"><img class="image" src="' + data[i].firstImageUrl + '"></div>';
-				                 }else{
-			    	                    hdata += '<div class="image"><img class="image" src="../assets/img/noPhoto_s.jpg"></div>';
-			    	                }
-			        	    	 	hdata += '<div class="cont">';
-	        	                    hdata += '<strong>' + data[i].facltNm + '</strong>';
-	        	                    hdata += '<p>' + data[i].addr1 + '</p>';
-	        	                    
-	        	                    if (data[i].tel == null) {
-	        	                        hdata += '<p>등록된 전화 번호가 없습니다.</p>';
-	        	                    } else {
-	        	                        hdata += '<p>' + data[i].tel + '</p>';
-	        	                    }
-	        	                    
-	        	                    if(data[i].lineIntro != null){
-		        	                    hdata += '<p>' + data[i].lineIntro + '</p>';	
-	        	                    }else{
-	        	                    	hdata += '<p> </p>'
-	        	                    }
-	        	                    
-	        	                    hdata += '<a href="tSearch_view?contentId=' + data[i].contentId + '">바로가기</a>';
-	        	                    hdata += '</div>';
-	        	                    hdata += '</div>';
-	        	                    
-			        	     }//for
-			        	     $(".item").html(hdata);
-			 
-									 
+							 //console.log("전체데이터 checkedValues: "+checkedValues);
+							 console.log("전체데이터 : "+data);
+							
 						 },//success
 						 error:function(){
 							 alert("실패");
 						 }//error
 					 });//ajax
-				
+						 /*
+							 let iarr = data.response.body.items.item;
+							 let hdata="";
+							 for(let i=0; i<iarr.length; i++){
+								 hdata +='<div class="t_contbox">';
+								 hdata +='<div class="image">'+iarr[i].firstImageUrl+'</div>';
+								 hdata +='<div class="cont">';
+								 hdata +='<strong>'+iarr[i].facltNm+'</strong>';
+								 hdata +='<p>'+iarr[i].addr1+'</p>';
+								if(iarr[i].tel == ''){
+									 hdata += '<p>등록된 전화번호가 없습니다.</p>';
+								}else{
+									 hdata +='<p>'+iarr[i].tel+'</p>';
+								}//tel-if문
+								 hdata +='<p>'+iarr[i].lineIntro+'</p>';
+								 hdata +='<a href="/search/tSearch_view">바로가기</a>';
+								 hdata +='</div>';
+								 hdata +='</div>';
+							 }//for
+							 $(".item").html(hdata);
+*/
+		  			
+		  			
+		  			
+		  			
 		  			
 		  		});//click
+		  		
 		  	});//jqery
+		  
+		  
 		  </script>
 		  
 		  <div id="s_Btn">
@@ -239,7 +235,7 @@
         	                // 더 이상 데이터가 없을 경우, 더보기 버튼을 숨김
         	                $(".tsMoreBtn").hide();
         	            }
-        	        },//success
+        	        },
         			error:function(){
         				alert("더보기 실패");
         			}

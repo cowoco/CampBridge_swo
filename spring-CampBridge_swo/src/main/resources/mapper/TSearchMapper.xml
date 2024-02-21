@@ -26,10 +26,12 @@
     <select id="ts_selectOne" resultType="com.java.www.dto.TSearchDto">
    		select * from gocamping where contentId=#{contentId}
     </select>
-   
-    <select id="theme_Search"  resultType="com.java.www.dto.TSearchDto">
-    	select * from gocamping where themaEnvrnCl=#{themaEnvrnCl}
-    </select>
+    <select id="theme_Search" resultType="com.java.www.dto.TSearchDto">
+	    SELECT * FROM gocamping WHERE
+            <foreach collection="list" index="index" item="themaEnvrnCl" open="(" close=")" separator="or">
+                themaEnvrnCl LIKE '%'||#{themaEnvrnCl}||'%'
+            </foreach>
+	</select>
   	  
   
     

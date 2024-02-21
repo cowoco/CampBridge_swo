@@ -29,6 +29,8 @@
 	    <link href="/assets/css/main2.css" rel="stylesheet">
 		<link href="/assets/css/header.css" rel="stylesheet">
 		<link href="/assets/css/search/campsearch.css" rel="stylesheet">
+		
+		<script src="../assets/js/search/campsearch.js"></script>
 	    
 	    <style>
         
@@ -47,80 +49,82 @@
 		    	
 			<!-- 체크박스 -->
 			<li>
+			<form name="cSearchFrm" id="cSearchFrm" method="get" action="#">
+			
 				<div class="tm_ver f_open">
 					<div class="folder_w">
 						<strong>지역별</strong>
 						<div class="check_w">
 							<ul>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do01" class="check01" value="1" title="1"/>
+									<input type="checkbox" name="doNm" id="c_do01" class="check01" value="서울시" title="1"/>
 									<label for="c_do01">서울시</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do02" class="check01" value="2" title="2"/>
+									<input type="checkbox" name="doNm" id="c_do02" class="check01" value="부산시" title="2"/>
 									<label for="c_do02">부산시</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do03" class="check01" value="3" title="3"/>
+									<input type="checkbox" name="doNm" id="c_do03" class="check01" value="대구시" title="3"/>
 									<label for="c_do03">대구시</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do04" class="check01" value="4" title="4"/>
+									<input type="checkbox" name="doNm" id="c_do04" class="check01" value="인천시" title="4"/>
 									<label for="c_do04">인천시</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do05" class="check01" value="5" title="5"/>
+									<input type="checkbox" name="doNm" id="c_do05" class="check01" value="광주시" title="5"/>
 									<label for="c_do05">광주시</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do06" class="check01" value="6" title="6"/>
+									<input type="checkbox" name="doNm" id="c_do06" class="check01" value="대전시" title="6"/>
 									<label for="c_do06">대전시</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do07" class="check01" value="7" title="7"/>
+									<input type="checkbox" name="doNm" id="c_do07" class="check01" value="울산시" title="7"/>
 									<label for="c_do07">울산시</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do08" class="check01" value="8" title="8"/>
+									<input type="checkbox" name="doNm" id="c_do08" class="check01" value="세종시" title="8"/>
 									<label for="c_do08">세종시</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do09" class="check01" value="9" title="9"/>
+									<input type="checkbox" name="doNm" id="c_do09" class="check01" value="경기도" title="9"/>
 									<label for="c_do09">경기도</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do10" class="check01" value="10" title="10"/>
+									<input type="checkbox" name="doNm" id="c_do10" class="check01" value="강원도" title="10"/>
 									<label for="c_do10">강원도</label>
 								</li>
 							</ul>
 							<ul>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do11" class="check01" value="11" title="11"/>
+									<input type="checkbox" name="doNm" id="c_do11" class="check01" value="충청북도" title="11"/>
 									<label for="c_do11">충청북도</label>
 								</li>
 								
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do12" class="check01" value="12" title="12"/>
+									<input type="checkbox" name="doNm" id="c_do12" class="check01" value="충청남도" title="12"/>
 									<label for="c_do12">충청남도</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do13" class="check01" value="13" title="13"/>
+									<input type="checkbox" name="doNm" id="c_do13" class="check01" value="전라북도" title="13"/>
 									<label for="c_do13">전라북도</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do14" class="check01" value="14" title="14"/>
+									<input type="checkbox" name="doNm" id="c_do14" class="check01" value="전라남도" title="14"/>
 									<label for="c_do14">전라남도</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do015" class="check01" value="15" title="15"/>
+									<input type="checkbox" name="doNm" id="c_do015" class="check01" value="경상북도" title="15"/>
 									<label for="c_do15">경상북도</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do16" class="check01" value="16" title="16"/>
+									<input type="checkbox" name="doNm" id="c_do16" class="check01" value="경상남도" title="16"/>
 									<label for="c_do16">경상남도</label>
 								</li>
 								<li>
-									<input type="checkbox" name="searchDo" id="c_do17" class="check01" value="17" title="17"/>
+									<input type="checkbox" name="doNm" id="c_do17" class="check01" value="제주도" title="17"/>
 									<label for="c_do17">제주도</label>
 								</li>
 							</ul>
@@ -137,21 +141,21 @@
 						<strong>입지구분</strong>
 						<div class="check_w">
 							<ul>
-								<li><input type="checkbox" name="searchLctCl" id="c_lct_cl01" class="check01" value="47" title="47"
+								<li><input type="checkbox" name="lctCl" id="c_lct_cl01" class="check01" value="해변" title="47"
 										 /><label for="c_lct_cl01">해변</label></li>
-								<li><input type="checkbox" name="searchLctCl" id="c_lct_cl02" class="check01" value="48" title="48"
+								<li><input type="checkbox" name="lctCl" id="c_lct_cl02" class="check01" value="섬" title="48"
 										 /><label for="c_lct_cl02">섬</label></li>
-								<li><input type="checkbox" name="searchLctCl" id="c_lct_cl03" class="check01" value="49" title="49"
+								<li><input type="checkbox" name="lctCl" id="c_lct_cl03" class="check01" value="산" title="49"
 										 /><label for="c_lct_cl03">산</label></li>
-								<li><input type="checkbox" name="searchLctCl" id="c_lct_cl04" class="check01" value="50" title="50"
+								<li><input type="checkbox" name="lctCl" id="c_lct_cl04" class="check01" value="숲" title="50"
 										 /><label for="c_lct_cl04">숲</label></li>
-								<li><input type="checkbox" name="searchLctCl" id="c_lct_cl05" class="check01" value="51" title="51"
+								<li><input type="checkbox" name="lctCl" id="c_lct_cl05" class="check01" value="계곡" title="51"
 										 /><label for="c_lct_cl05">계곡</label></li>
-								<li><input type="checkbox" name="searchLctCl" id="c_lct_cl06" class="check01" value="52" title="52"
+								<li><input type="checkbox" name="lctCl" id="c_lct_cl06" class="check01" value="강" title="52"
 										 /><label for="c_lct_cl06">강</label></li>
-								<li><input type="checkbox" name="searchLctCl" id="c_lct_cl07" class="check01" value="53" title="53"
+								<li><input type="checkbox" name="lctCl" id="c_lct_cl07" class="check01" value="호수" title="53"
 										 /><label for="c_lct_cl07">호수</label></li>
-								<li><input type="checkbox" name="searchLctCl" id="c_lct_cl08" class="check01" value="54" title="54"
+								<li><input type="checkbox" name="lctCl" id="c_lct_cl08" class="check01" value="도심" title="54"
 										 /><label for="c_lct_cl08">도심</label></li>
 								</ul>
 						</div>
@@ -160,237 +164,75 @@
 				</div> <!--//tm_ver-->
 			</li>
 					
-			<li>
-				<div class="tm_ver f_open">
-					<div class="folder_w">
-						<strong>바닥형태</strong>
-						<div class="check_w">
-							<ul>
-								<li><input type="checkbox" class="check01" name="searchSiteBottomCl1" id="searchSiteBottomCl1" value="Y" title="잔디"
-									><label for="searchSiteBottomCl1" class="label_name">잔디</label></li>
-								<li><input type="checkbox" class="check01" name="searchSiteBottomCl2" id="searchSiteBottomCl2" value="Y" title="파쇄석"
-									><label for="searchSiteBottomCl2" class="label_name">파쇄석</label></li>
-								<li><input type="checkbox" class="check01" name="searchSiteBottomCl3" id="searchSiteBottomCl3" value="Y" title="데크"
-									><label for="searchSiteBottomCl3" class="label_name">데크</label></li>
-								<li><input type="checkbox" class="check01" name="searchSiteBottomCl4" id="searchSiteBottomCl4" value="Y" title="자갈"
-									><label for="searchSiteBottomCl4" class="label_name">자갈</label></li>
-								<li><input type="checkbox" class="check01" name="searchSiteBottomCl7" id="searchSiteBottomCl7" value="Y" title="기타"
-									><label for="searchSiteBottomCl7" class="label_name">기타</label></li>
-							</ul>
-						</div>
-					</div>
-					<!--//folder_w-->
-				</div> <!--//tm_ver-->
-			</li>
-			
-			<li>
-				<div class="tm_ver f_open">
-					<div class="folder_w">
-						<strong>테마별</strong>
-						<div class="check_w">
-							<ul>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode01" value="80" title="80" class="check01"
-										 /><label for="searchThemeEnvrnClCode01">일출명소</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode02" value="81" title="81" class="check01"
-										 /><label for="searchThemeEnvrnClCode02">일몰명소</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode03" value="82" title="82" class="check01"
-										 /><label for="searchThemeEnvrnClCode03">수상레저</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode04" value="83" title="83" class="check01"
-										 /><label for="searchThemeEnvrnClCode04">항공레저</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode05" value="84" title="84" class="check01"
-										 /><label for="searchThemeEnvrnClCode05">스키</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode06" value="85" title="85" class="check01"
-										 /><label for="searchThemeEnvrnClCode06">낚시</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode07" value="154" title="154" class="check01"
-										 /><label for="searchThemeEnvrnClCode07">액티비티</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode08" value="86" title="86" class="check01"
-										 /><label for="searchThemeEnvrnClCode08">봄꽃여행</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode09" value="87" title="87" class="check01"
-										 /><label for="searchThemeEnvrnClCode09">여름물놀이</label></li>
-							</ul>
-							<ul>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode010" value="88" title="88" class="check01"
-										 /><label for="searchThemeEnvrnClCode010">가을단풍명소</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode011" value="89" title="89" class="check01"
-										 /><label for="searchThemeEnvrnClCode011">겨울눈꽃명소</label></li>
-								<li><input type="checkbox" name="searchThemeEnvrnClCode" id="searchThemeEnvrnClCode012" value="90" title="90" class="check01"
-										 /><label for="searchThemeEnvrnClCode012">걷기길</label></li>
-								</ul>
-						</div>
-					</div>
-					<!--//folder_w-->
-				</div> <!--//tm_ver-->
-			</li>
-					
-			<li>
-				<div class="tm_ver f_open">
-					<div class="folder_w">
-						<strong>기타정보</strong>
-						<div class="check_w">
-							<ul>
-								<li><input type="checkbox" class="check01" name="searchTrlerAcmpnyAt" id="searchTrlerAcmpnyAt" value="Y" title="개인 트레일러 입장가능"
-									><label for="searchTrlerAcmpnyAt"
-									class="label_name">개인 트레일러 입장가능</label></li>
-								<li><input type="checkbox" class="check01" name="searchCaravAcmpnyAt" id="searchCaravAcmpnyAt" value="Y" title="개인 캠핑카 입장가능"
-									><label for="searchCaravAcmpnyAt"
-									class="label_name">개인 캠핑카 입장가능</label></li>
-								<li><input type="checkbox" class="check01" name="searchAnimalCmgCl" id="searchAnimalCmgCl" value="CL02" title="반려동물 동반가능"
-									><label for="searchAnimalCmgCl"
-									class="label_name">반려동물 동반가능</label></li>
-							</ul>
-							    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(※ 실제 결과는 현장사정 및 계절에 따라 달라질수 있으니 캠핑장 사업주에 직접 확인 후 이용바랍니다.)
-						</div>
-					</div>
-					<!--//folder_w-->
-				</div> <!--//tm_ver-->
-			</li>
-					
+			</form>		
 			<li class="detail_btn_w">
 				<button type="button" class="b_lightgray" id="searchForm3ResetBtn">초기화</button>
-				<button type="submit" class="b_blue">검색하기</button>
+				<button type="button" id="csearchBtn" class="b_blue">검색하기</button>
 			</li>
 					
 		    <!-- 카드형 리스트 -->
-		    <div class="list_wrap">
+		    
+		    <div class="csList">
             <ul>
                 <li class="item item1">
-                    <div class="image">사진</div>
+		    <c:forEach var="gcdto" items="${map.list}">
+                	<div class="cs_contbox">
+                    <div class="image"><img src="${gcdto.firstImageUrl}" class="image"></div>
                     <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="/search/campsearch_view">바로가기</a>
+                        <strong>${gcdto.facltNm}</strong>
+                        
+                        <p>${gcdto.addr1}</p>
+                        
+                        <c:if test="${gcdto.tel!=null}">
+                        	<p>${gcdto.tel}</p>
+                        </c:if>
+                        <c:if test="${gcdto.tel==null}">
+                        	<p id="pnull">(등록된 연락처가 없습니다)</p>
+                        </c:if>
+                        
+                        <c:if test="${gcdto.lineIntro!=null}">
+                        	<p>${gcdto.lineIntro}</p>
+                        </c:if>
+                        <c:if test="${gcdto.lineIntro==null}">
+                        	<p id="pnull">(등록된 한줄소개가 없습니다)</p>
+                        </c:if>
+                        
+                        
+                        <a href="campsearch_view?contentId=${gcdto.contentId}">바로가기</a>
                     </div>
+                	</div>
+		    </c:forEach>
                 </li>
-                <li class="item item2">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item3">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item4">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item5">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item6">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item7">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item8">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item9">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item10">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item11">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
-                <li class="item item12">
-                    <div class="image">사진</div>
-                    <div class="cont">
-                        <strong>캠핑장이름</strong>
-                        <p>캠핑장주소</p>
-                        <p>캠핑장연락처</p>
-                        <p>캠핑장소개내용</p>
-                        <a href="#">바로가기</a>
-                    </div>
-                </li>
+                
             </ul>
         </div>
         
         <ul class="bottom_number">
-	      <li class="first"></li>
-	      <li class="prev"></li>
-	      <li class="number">1</li>
-	      <li class="number">2</li>
-	      <li class="number">3</li>
-	      <li class="number">4</li>
-	      <li class="number">5</li>
-	      <li class="number">6</li>
-	      <li class="number">7</li>
-	      <li class="number">8</li>
-	      <li class="number">9</li>
-	      <li class="number">10</li>
-	      <li class="next"></li>
-	      <li class="last"></li>
+        	<a href="campsearch?page=1"><li class="first"></li></a>
+        	<c:if test="${map.page<=1}">
+	     		<li class="prev"></li></c:if>
+        	<c:if test="${map.page>1}">
+	     		<a href="campsearch?page=${map.page-1}">
+	     			<li class="prev"></li></a></c:if>
+	     	<c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
+	      		<c:if test="${map.page==i}">
+		      		<li class="number"><div>${i}</div></li>
+	      		</c:if>
+	      		<c:if test="${map.page!=i}">
+	      			<a href="campsearch?page=${i}">
+		      		<li class="number"><div>${i}</div></li>
+	      		</c:if>
+	   			</a>
+	     	</c:forEach>
+	     	<c:if test="${map.page<map.maxPage}">
+		      <a href="campsearch?page=${map.page+1}"><li class="next"></li></a>
+	     	</c:if>
+	     	<c:if test="${map.page>=map.maxPage}">
+		      <li class="next"></li>
+	     	</c:if>
+	     	
+		    <a href="campsearch?page=${map.maxPage}"><li class="last"></li></a>
+		    
 		</ul>
   
 	</section>

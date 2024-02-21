@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- MemberMapper.java(InterFace) 연결 -->
+<mapper namespace="com.java.www.mapper.CampSearchMapper">
+
+<!-- 전체 가져오기 -->
+	<select id="selectAll" resultType="com.java.www.dto.GoCampingDto">
+		select * from ( select row_number() over(order by contentId desc)rnum, a.*from gocamping a )
+       where rnum between #{startRow} and #{endRow}
+	</select>
+	
+<!-- 체크 가져오기 -->
+	<select id="chSelect" resultType="com.java.www.dto.GoCampingDto">
+		select * from gocamping where
+		<foreach collection ="list" index='index' item='doNm' open="(" close=")" separator="or">
+			doNm like '%'||#{doNm}||'%'
+		</foreach>
+		
+	</select>
+	
+<!-- 1개 가져오기 -->
+	<select id="selectOne" resultType="com.java.www.dto.GoCampingDto">
+		select * from gocamping where contentId=#{contentId}
+	</select>
+
+	
+<!-- 게시글 총개수 -->
+	<select id="selectCountAll" resultType="int">
+		select count (*) from gocamping
+	</select>
+	
+
+</mapper>

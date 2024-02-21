@@ -60,12 +60,15 @@ public class TSearchServiceImpl implements TSearchService{
 	}//ts_selectOne//게시글 1개 가져오기
 
 	@Override
-	public List<String> theme_Search(List<String> themaEnvrnCl) {
-		
-		List<String> themeList = tSearchMapper.theme_Search(themaEnvrnCl);
-		System.out.println("TSearchServiceImpl theme_Search themeList :"+themeList);
-		return themeList;
+	public List<TSearchDto> theme_Search(List<String> themaEnvrnCl) {
+		//테마검색 체크된 검색단어 배열로 가져오기
+		List<TSearchDto> list = tSearchMapper.theme_Search(themaEnvrnCl);
+		System.out.println("TSearchServiceImpl theme_Search themelist :");
+		return list;
 	}
+
+
+
 
 
 

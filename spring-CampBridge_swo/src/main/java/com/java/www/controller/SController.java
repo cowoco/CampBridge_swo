@@ -5,11 +5,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -21,15 +19,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.java.www.dto.GoCampingDto;
 import com.java.www.dto.TSearchDto;
+import com.java.www.service.CampSearchService;
 import com.java.www.service.RSearchService;
 import com.java.www.service.TSearchService;
 
-import oracle.jdbc.proxy.annotation.Post;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("search")
@@ -37,16 +36,48 @@ public class SController {
 	
 	@Autowired TSearchService tSearchService;
 	@Autowired RSearchService rSearchService;
+	@Autowired CampSearchService campsearchService; // 이 서비스는 DB에서 데이터를 가져오는 로직을 담당
+	@Autowired HttpSession session;
+	
+	
 
-	//캠핑장 검색
+	//캠핑장 검색  //전체 가져오기
 	@GetMapping("campsearch")
-	public String campsearch() {
+	public String campsearch(@RequestParam(defaultValue = "1") int page, Model model) {
+		
+		//전체 가져오기
+		Map<String, Object> map = campsearchService.selectAll(page);
+		//model에 데이터 담기
+		model.addAttribute("map",map);
+
 		return "/search/campsearch";
 	}// campsearch()
 	
-	//캠핑장 검색-페이지
+	
+	@GetMapping("/sChkData")
+	@ResponseBody
+	public List<GoCampingDto> campsearch(@RequestParam(value="doNm[]") List<String> doNm) throws Exception{
+		
+		System.out.println("배열확인 : "+doNm);
+		List<GoCampingDto> list = campsearchService.chSelect(doNm);
+		
+		return list;
+	}//campsearch
+	
+
+
+
+	//캠핑장 뷰페이지
 	@GetMapping("campsearch_view")
-	public String campsearch_view() {
+	public String campsearch_view(@RequestParam(defaultValue = "1") int contentId, Model model) {
+		
+		System.out.println("SC contentId : "+contentId);
+		
+		//게시글 1개 가져오기
+		Map<String, Object> map = campsearchService.selectOne(contentId);
+		
+		//model저장
+		model.addAttribute("map",map);
 		return "/search/campsearch_view";
 	}// campsearch_view()
 	
@@ -81,15 +112,12 @@ public class SController {
 	//dB에서 테마검색 가져오기
 	@PostMapping("theme_Search")
 	@ResponseBody
-	public List<String> theme_Search(@RequestParam(value="themaEnvrnCl[]") List<String> themaEnvrnCl){
+	public List<TSearchDto> theme_Search(@RequestParam(value="themaEnvrnCl[]") List<String> themaEnvrnCl){
 		
-		for(int i=0;i<themaEnvrnCl.size();i++) {
-			System.out.println("themaEnvrnCl themaEnvrnCl : "+themaEnvrnCl.get(i));
-		}
-		List<String> themeList = tSearchService.theme_Search(themaEnvrnCl);
-		System.out.println("SController theme_Search themeList : " +themeList);
+		List<TSearchDto> list = tSearchService.theme_Search(themaEnvrnCl);
+		System.out.println("SController theme_Search list : " +list);
 		
-		return themeList;
+		return list;
 	}
 	
 	
@@ -101,7 +129,7 @@ public class SController {
 	//model에 저징
 	model.addAttribute("map",map);
 		
-		return "/search/tSearch";
+	return "/search/tSearch";
 	}// tSearch()//게시글 전체 가져오기
 	
 	@PostMapping("tsMore")//더보기 버튼 ajax(tsearch)

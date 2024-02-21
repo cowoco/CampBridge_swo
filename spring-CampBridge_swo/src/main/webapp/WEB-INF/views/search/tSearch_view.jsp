@@ -160,7 +160,7 @@ marker.setMap(map);
 	    <div class="conbox con1">
 	    	<span>
 				<c:choose>
-				    <c:when test="${not empty map.tsdto.intro and DBMS_LOB.GETLENGTH(map.tsdto.intro) > 0}">
+				    <c:when test="${not empty map.tsdto.intro}">
 				        ${map.tsdto.intro}
 				    </c:when>
 				    <c:otherwise>

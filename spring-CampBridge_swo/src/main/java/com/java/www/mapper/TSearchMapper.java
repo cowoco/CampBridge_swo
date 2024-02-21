@@ -21,8 +21,10 @@ public interface TSearchMapper {
 	//게시글 1개 가져오기
 	TSearchDto ts_selectOne(int contentId);
 
-	//검색어 가져오기
-	List<String> theme_Search(List<String> themaEnvrnCl);	
+
+	//테마검색 체크된 검색단어 배열로 가져오기
+	List<TSearchDto> theme_Search(List<String> themaEnvrnCl);
+
 	
 
 	

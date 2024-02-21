@@ -17,8 +17,10 @@ public interface TSearchService {
 	//테마검색 게시글 1개 가져오기
 	Map<String, Object> ts_selectOne(int contentId);
 
-	//테마검색 검색단어 가져오기
-	List<String> theme_Search(List<String> themaEnvrnCl);
+	//테마검색 체크된 검색단어 배열로 가져오기
+	List<TSearchDto> theme_Search(List<String> themaEnvrnCl);	
+
+
 
 	
 
