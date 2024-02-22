@@ -31,11 +31,7 @@
 		<link href="/assets/css/search/tSearch_view.css" rel="stylesheet">
 		<!-- javascript -->
 		<script src="/assets/js/search/tSearch.js"></script>
-		
-	    
-	    <style>
-        	.ico_ico_sports span {letter-spacing: 1.5px;}
-  		</style>
+	 
   		
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f6b278f5c975f9a60b956c6a7f757ebc"></script>
 <script>

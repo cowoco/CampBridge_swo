@@ -102,6 +102,9 @@
 					</tr>
 					<tr>
 						<td colspan="4" class="article">${map.tbdto.t_bcontent}<br>
+							<c:if test="${map.tbdto.t_bfile!=null }">
+					        	<img src="/upload/${map.tbdto.t_bfile }">
+					         </c:if>
 						<br>
 						<br>
 						<br>

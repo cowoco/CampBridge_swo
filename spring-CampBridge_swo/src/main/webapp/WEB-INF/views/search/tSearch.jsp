@@ -29,15 +29,16 @@
 	    <link href="/assets/css/main2.css" rel="stylesheet">
 	    <link href="/assets/css/header.css" rel="stylesheet">
 		<link href="/assets/css/search/tsearch.css" rel="stylesheet">
+		<!-- javascript -->
+		<script src="../assets/js/search/tSearch.js"></script>
 	    
 	</head>
 	<body>
 	<!-- ======= Header ======= -->
 	<%@include file="../include/header.jsp" %>
 	<!-- End Header -->
-			<section class="tSearch">
-			
-			<!-- 체크박스 -->
+		<section class="tSearch">
+		<!-- 체크박스 -->
 		  <div class="t_check">
 		  		<img src="../assets/img/tsearch/thema_icon.png">
 		 		<h1>테마별로 떠나는 캠프</h1>
@@ -93,72 +94,6 @@
 		 		</ul>
 		 		</div>
 		  </div>
-		  <script>
-		  	$(function(){
-		  		$("#s_Btn").click(function(){
-		  			//체크된 값
-		  			var themaEnvrnCl = [];
-		  			$("input[type='checkbox']:checked").each(function(){
-		  				themaEnvrnCl.push($(this).val());
-		  			});
-		  			if (themaEnvrnCl.length < 1) {
-		  				 alert("테마를 선택하셔야 검색이 가능합니다.");
-					    return false;
-					}
-		  			console.log("click :"+themaEnvrnCl);
-		  			//ajax 
-		  			 $.ajax({
-						 url:"/search/theme_Search",
-						 type:"post",
-						 data:{"themaEnvrnCl":themaEnvrnCl},
-						 dataType:"json",
-						 success:function(data){
-							 alert("성공");
-							 
-			        	     let hdata = "";
-			        	     for(let i=0; i<data.length; i++){
-			        	    	 console.log("전체데이터 : "+data);
-			        	    	 hdata += '<div class="t_contbox">';
-			        	    	 if(data[i].firstImageUrl != null){
-			    	                    hdata += '<div class="image"><img class="image" src="' + data[i].firstImageUrl + '"></div>';
-				                 }else{
-			    	                    hdata += '<div class="image"><img class="image" src="../assets/img/noPhoto_s.jpg"></div>';
-			    	                }
-			        	    	 	hdata += '<div class="cont">';
-	        	                    hdata += '<strong>' + data[i].facltNm + '</strong>';
-	        	                    hdata += '<p>' + data[i].addr1 + '</p>';
-	        	                    
-	        	                    if (data[i].tel == null) {
-	        	                        hdata += '<p>등록된 전화 번호가 없습니다.</p>';
-	        	                    } else {
-	        	                        hdata += '<p>' + data[i].tel + '</p>';
-	        	                    }
-	        	                    
-	        	                    if(data[i].lineIntro != null){
-		        	                    hdata += '<p>' + data[i].lineIntro + '</p>';	
-	        	                    }else{
-	        	                    	hdata += '<p> </p>'
-	        	                    }
-	        	                    
-	        	                    hdata += '<a href="tSearch_view?contentId=' + data[i].contentId + '">바로가기</a>';
-	        	                    hdata += '</div>';
-	        	                    hdata += '</div>';
-	        	                    
-			        	     }//for
-			        	     $(".item").html(hdata);
-			 
-									 
-						 },//success
-						 error:function(){
-							 alert("실패");
-						 }//error
-					 });//ajax
-				
-		  			
-		  		});//click
-		  	});//jqery
-		  </script>
-		  
 		  <div id="s_Btn">
 		 	<button type="button">검색하기</button>
 		  </div>
@@ -185,78 +120,10 @@
                 </li>
             </ul>
         </div>
-        <script type="text/javascript">
-        $(function(){
-        	let page = 2;
-        	$(".tsMoreBtn").click(function(){
-        		 //alert("더보기 버튼 실행");
-        		  
-        		
-        		$.ajax({
-        			url:"/search/tsMore",
-        			type:"post",
-        			data:{"page":page},
-        			dataType:"json",
-        	        success: function (data) {
-        	            if (data.list.length > 0) {
-        	                let hdata = "";
-
-        	                data.list.forEach(tsdto => {
-        	                    hdata += '<div class="t_contbox">';
-        	                    
-        	                    if(tsdto.firstImageUrl != null){
-	        	                    hdata += '<div class="image"><img class="image" src="' + tsdto.firstImageUrl + '"></div>';
-        	                    }else{
-	        	                    hdata += '<div class="image"><img class="image" src="../assets/img/noPhoto_s.jpg"></div>';
-        	                    }
-        	                    
-        	                    hdata += '<div class="cont">';
-        	                    hdata += '<strong>' + tsdto.facltNm + '</strong>';
-        	                    hdata += '<p>' + tsdto.addr1 + '</p>';
-        	                    
-        	                    if (tsdto.tel == null) {
-        	                        hdata += '<p>등록된 전화 번호가 없습니다.</p>';
-        	                    } else {
-        	                        hdata += '<p>' + tsdto.tel + '</p>';
-        	                    }
-        	                    
-        	                    if(tsdto.lineIntro != null){
-	        	                    hdata += '<p>' + tsdto.lineIntro + '</p>';	
-        	                    }else{
-        	                    	hdata += '<p> </p>'
-        	                    }
-        	                    
-        	                    hdata += '<a href="tSearch_view?contentId=' + tsdto.contentId + '">바로가기</a>';
-        	                    hdata += '</div>';
-        	                    hdata += '</div>';
-        	                });
-
-        	                $("#cont_item").append(hdata);
-
-        	                page++;
-        	                
-        	            } else {
-        	                // 더 이상 데이터가 없을 경우, 더보기 버튼을 숨김
-        	                $(".tsMoreBtn").hide();
-        	            }
-        	        },//success
-        			error:function(){
-        				alert("더보기 실패");
-        			}
-        		
-        		
-        		});//ajax
-
-        	});
-        	
-        });
-        
-        </script>
 		<div id="p_Btn">
 		  <button type="button" class="tsMoreBtn">더보기</button>
 		</div>
-					
-			</section>
+	</section>
 		
 		<!-- ======= Footer ======= -->
 	  	<%@include file="../include/footer.jsp" %>
